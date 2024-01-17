@@ -3,13 +3,13 @@
     <div class="container-fluid">
       <ul class="navbar-nav">
         <li class="nav-item">
-          Korisnik
+          <KorisnickiPodaci />
         </li>
         <li class="nav-item">
-          Dodaj
+          <Dodaj />
         </li>
         <li class="nav-item">
-          <izbornik />
+          <Izbornik />
         </li>
       </ul>
     </div>
@@ -19,10 +19,14 @@
 
 <script>
 import Izbornik from './components/Izbornik.vue';
+import KorisnickiPodaci from './components/KorisnickiPodaci.vue';
+import Dodaj from './components/Dodaj.vue';
 
 export default {
   components: {
     Izbornik,
+    KorisnickiPodaci,
+    Dodaj
 }
 }
 </script>
@@ -80,5 +84,9 @@ nav {
   border: none;
   padding-bottom: 1vh;
   text-align: left;
+}
+
+.modal-backdrop {
+  z-index: -1;
 }
 </style>
