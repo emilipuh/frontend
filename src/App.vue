@@ -9,13 +9,23 @@
           Dodaj
         </li>
         <li class="nav-item">
-          Izbornik
+          <izbornik />
         </li>
       </ul>
     </div>
   </nav>
   <router-view />
 </template>
+
+<script>
+import Izbornik from './components/Izbornik.vue';
+
+export default {
+  components: {
+    Izbornik,
+}
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -48,5 +58,27 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+.offcanvas-item {
+  text-decoration: none;
+}
+
+.btn {
+  font-weight: bold;
+  color: #2c3e50;
+  border: none;
+  padding: 0;
+}
+
+.offcanvas-title {
+  color: #0585bc;
+  font-weight: bold;
+}
+
+.card {
+  border: none;
+  padding-bottom: 1vh;
+  text-align: left;
 }
 </style>
