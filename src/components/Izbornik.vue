@@ -16,13 +16,13 @@
     aria-labelledby="offcanvasRightLabel"
   >
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasRightLabel">Expense Track</h5>
+      <h2 class="offcanvas-title" id="offcanvasRightLabel">Expense Track</h2>
     </div>
     <div class="offcanvas-body d-flex flex-column">
       <!-- ubačen collapse -->
       <p class="d-inline-flex gap-1">
         <button
-          class="btn dropdown-toggle"
+          class="offcanvas-item dropdown-toggle"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#collapsePrihodi"
@@ -42,7 +42,7 @@
       </div>
       <p class="d-inline-flex gap-1">
         <button
-          class="btn dropdown-toggle"
+          class="offcanvas-item dropdown-toggle"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#collapseRashodi"
@@ -72,6 +72,41 @@
 
 <script>
 export default {
-    name: 'Izbornik'
-}
+  name: "Izbornik",
+};
 </script>
+
+<style scoped lang="scss">
+@media screen and (max-width: 600px) {
+  .offcanvas {
+    max-width: 260px;
+  }
+
+  .offcanvas-title {
+    padding: 15px 25px;
+    color: #0585bc;
+    font-weight: bold;
+  }
+
+  .offcanvas-body {
+    padding: 20px 30px;
+  }
+  .offcanvas-item {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+    background-color: white;
+    border: none;
+    padding: 10px;
+  }
+  .card {
+    border: none;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+  }
+}
+</style>

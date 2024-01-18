@@ -18,75 +18,60 @@
 </template>
 
 <script>
-import Izbornik from './components/Izbornik.vue';
-import KorisnickiPodaci from './components/KorisnickiPodaci.vue';
-import Dodaj from './components/Dodaj.vue';
+import Izbornik from "./components/Izbornik.vue";
+import KorisnickiPodaci from "./components/KorisnickiPodaci.vue";
+import Dodaj from "./components/Dodaj.vue";
 
 export default {
   components: {
     Izbornik,
     KorisnickiPodaci,
-    Dodaj
-}
-}
+    Dodaj,
+  },
+};
 </script>
 
 <style lang="scss">
-#app {
-  background-image: url('@/assets/pozadina.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  margin: 0;
-  overflow: hidden;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 20px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-
-  a {
-    font-weight: bold;
+@media screen and (max-width: 600px) {
+  #app {
+    background-image: url("@/assets/pozadina.png");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Avenir, Helvetica, Arial, sans-serif; //promijeniti font family
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
     color: #2c3e50;
   }
-}
 
-.navbar-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
+  nav {
+    padding: 25px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 
-.offcanvas-item {
-  text-decoration: none;
-}
+    a {
+      font-weight: bold;
+      color: #2c3e50;
+    }
+  }
 
-.btn {
-  font-weight: bold;
-  color: #2c3e50;
-  border: none;
-  padding: 0;
-}
+  .navbar-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 
-.offcanvas-title {
-  color: #0585bc;
-  font-weight: bold;
-}
+  .btn {
+    font-weight: bold;
+    color: #2c3e50;
+    border: none;
+    padding: 0;
+  }
 
-.card {
-  border: none;
-  padding-bottom: 1vh;
-  text-align: left;
-}
-
-.modal-backdrop {
-  z-index: -1;
+  .modal-backdrop {
+    z-index: -1;
+  }
 }
 </style>
