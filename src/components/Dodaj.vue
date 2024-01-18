@@ -1,40 +1,30 @@
 <template>
-    <button
-      type="button"
-      class="btn"
-      data-bs-toggle="modal"
-      data-bs-target="#dodaj"
-    >
-      Dodaj
-    </button>
-    <div
-      class="modal fade"
-      id="dodaj"
-      tabindex="-1"
-      aria-labelledby="modalDodaj"
-      aria-hidden="true"
-      
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body d-flex flex-column align-items-center">
-            <button class="dodaj mb-2">Prihod +</button>
-            <button class="dodaj mb-2">Rashod -</button>
-          </div>
+  <button
+    type="button"
+    class="btn"
+    data-bs-toggle="modal"
+    data-bs-target="#dodaj"
+  >
+    Dodaj
+  </button>
+  <div
+    class="modal fade"
+    id="dodaj"
+    tabindex="-1"
+    aria-labelledby="modalDodaj"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body d-flex flex-column align-items-center">
+          <!-- ovo će biti router linkovi -->
+          <button class="dodaj mb-3">+ Prihod</button>
+          <button class="dodaj">- Rashod</button>
         </div>
       </div>
     </div>
-  </template>
-  
-<!-- Button trigger modal -->
+  </div>
+</template>
 
 <script>
 export default {
@@ -43,16 +33,25 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.modal-header {
-    border-bottom: none;
-}
+@media screen and (max-width: 600px) {
+  .modal-dialog {
+    max-width: 240px;
+    margin: auto;
+  }
 
-.modal-body {
+  .modal-content {
+    background-color: #006995;
+  }
+  .modal-body {
     padding: 0;
-}
+    margin: 25px;
+  }
 
-.dodaj {
+  .dodaj {
+    padding: 12px 60px;
     border: none;
+    border-radius: 8px;
     background-color: white;
+  }
 }
 </style>

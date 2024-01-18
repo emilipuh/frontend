@@ -1,5 +1,5 @@
 <template>
-  <!--Button trigger modal => pokrece se klikom na korisnika-->
+  <!-- Button trigger modal => pokrece se klikom na korisnika-->
   <button
     type="button"
     class="btn"
@@ -7,30 +7,21 @@
     data-bs-target="#korisnik"
   >
     Korisnik
-  </button> 
+  </button>
   <div
     class="modal fade"
     id="korisnik"
     tabindex="-1"
     aria-labelledby="modalKorisnik"
     aria-hidden="true"
-    
-  > 
+  >
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
         <div class="modal-body">
-           <!--ovdje idu učitani korisnički podaci iz baze--> 
-          <p style="color: #0585bc">Korisničko ime:</p>
+          <!-- ovdje idu učitani korisnički podaci iz baze -->
+          <h5 style="color: #0585bc; font-weight: bold;">Korisničko ime:</h5>
           <p>user123</p>
-          <p style="color: #0585bc">Email:</p>
+          <h5 style="color: #0585bc; font-weight: bold;">Email:</h5>
           <p>user123@gmail.com</p>
         </div>
       </div>
@@ -45,7 +36,30 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.modal-header {
-  border-bottom: none;
+@media screen and (max-width: 600px) {
+  .modal-dialog {
+    max-width: 300px;
+    margin: auto;
+  }
+
+  .modal-content {
+    background-color: #066995;
+  }
+
+  .modal-body {
+    padding: 20px;
+    margin: 30px;
+    border-radius: 8px;
+    background-color: white;
+  }
+
+  h5 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 16px;
+    margin: 6px;
+  }
 }
 </style>

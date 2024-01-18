@@ -23,6 +23,7 @@ import KorisnickiPodaci from "./components/KorisnickiPodaci.vue";
 import Dodaj from "./components/Dodaj.vue";
 
 export default {
+  name: 'app',
   components: {
     Izbornik,
     KorisnickiPodaci,
