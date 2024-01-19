@@ -2,6 +2,7 @@
   <div class="container">
     <div id="stanje">
       <h5>STANJE RAČUNA:</h5>
+      <h6 id="iznos"> {{ stanje.stanjeRacuna }} €</h6>
       <!-- tu ce mi se ispisivati stanje -->
     </div>
   </div>
@@ -24,12 +25,18 @@
 
 <script>
 import Navbar from "@/components/Navbar.vue";
+import stanje from "@/stanje";
 
 export default {
   name: "Home",
   components: {
     Navbar,
   },
+  data: function() {
+    return {
+      stanje
+    }
+  }
 };
 </script>
 
@@ -39,34 +46,39 @@ export default {
 }
 
 .container {
-  padding: 50px;
+  padding: 40px;
 }
 
 #stanje {
   background-color: #066995;
   border-radius: 10px;
-  padding: 35px 0px;
+  padding: 30px 0px;
 }
+
+#iznos {
+  margin: 30px 0px 10px 0px;
+}
+
 
 h5 {
   color: #ffbe53;
   font-weight: bold;
-  font-size: 28px;
+  font-size: 26px;
 }
 
 h6 {
   font-weight: bold;
-  font-size: 26px;
-  margin-bottom: 30px;
+  font-size: 24px;
+  margin-bottom: 40px;
 }
 
 .container-view {
-  margin-top: 30px;
+  margin-top: 20px;
   padding-left: 30px;
   text-align: start;
 }
 
 #stednja {
-  margin-top: 100px;
+  margin-top: 120px;
 }
 </style>
