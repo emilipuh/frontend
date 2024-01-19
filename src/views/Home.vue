@@ -12,3 +12,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.modal-backdrop {
+  z-index: -1;
+}
+</style>

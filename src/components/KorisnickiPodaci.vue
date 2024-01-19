@@ -8,13 +8,7 @@
   >
     Korisnik
   </button>
-  <div
-    class="modal fade"
-    id="korisnik"
-    tabindex="-1"
-    aria-labelledby="modalKorisnik"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="korisnik">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
@@ -27,6 +21,8 @@
       </div>
     </div>
   </div>
+
+  
 </template>
 
 <script>
@@ -36,7 +32,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@media screen and (max-width: 600px) {
+//@media screen and (max-width: 600px) {
   .modal-dialog {
     max-width: 300px;
     margin: auto;
@@ -61,5 +57,5 @@ export default {
     font-size: 16px;
     margin: 6px;
   }
-}
+//}
 </style>

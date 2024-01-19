@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar bg-body-tertiary fixed-bottom">
     <div class="container-fluid">
-      <button class="btn">Korisnik</button>
-      <button class="btn">Dodaj</button>
+      <KorisnickiPodaci />
+      <Dodaj />
       <button
         class="navbar-toggler"
         type="button"
@@ -74,9 +74,15 @@
 </template>
 
 <script>
+import KorisnickiPodaci from "./KorisnickiPodaci.vue";
+import Dodaj from "./Dodaj.vue";
+
 export default {
   name: "Navbar",
-  components: {},
+  components: {
+    KorisnickiPodaci,
+    Dodaj,
+  },
 };
 </script>
 
@@ -112,7 +118,7 @@ export default {
 }
 
 .dropdown-menu {
-    border: none;
-    font-size: 18px;
+  border: none;
+  font-size: 18px;
 }
 </style>
