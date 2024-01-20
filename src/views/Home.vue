@@ -9,15 +9,15 @@
   <div class="container-view">
     <div id="prihodi">
       <h6>
-        PRIHODI:
+        PRIHODI: {{ stanje.stanjePrihoda }} €
         <!-- možda props za prikaz -->
       </h6>
     </div>
     <div id="rashodi">
-      <h6>RASHODI:</h6>
+      <h6>RASHODI: {{ stanje.stanjeRashoda }} €</h6>
     </div>
     <div id="stednja">
-      <h6>ŠTEDNJA:</h6>
+      <h6>ŠTEDNJA: {{ stanje.stanjeStednje }} €</h6>
     </div>
   </div>
   <Navbar />
