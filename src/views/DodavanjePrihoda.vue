@@ -1,42 +1,56 @@
 <template>
   <div class="container">
     <div class="dodajPrihod">
-      <h5 class="title">Novi prihod</h5>
-      <form>
-        <div class="mb-4">
-          <label for="kategorija" class="form-label">Kategorija</label>
-          <div class="d-flex">
-            <!-- dodati ikonice -->
-            <button class="btn-kategorija" type="button">Plaća</button>
-            <button class="btn-kategorija" type="button">Ostalo</button>
+      <div class="content">
+        <h5 class="title">Novi prihod</h5>
+        <div class="row">
+          <div class="col-12">
+            <label class="form-label">Kategorija</label>
+            <div class="d-flex mb-2">
+              <input
+                type="checkbox"
+                class="btn-check"
+                id="btn-check"
+                autocomplete="off"
+              />
+              <label class="btn" for="btn-check">Plaća</label>
+              <input
+                type="checkbox"
+                class="btn-check"
+                id="btn-check"
+                autocomplete="off"
+              />
+              <label class="btn" for="btn-check">Ostalo</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <label for="iznos" class="form-label">Iznos</label>
+            <input
+              type=""
+              placeholder="Iznos"
+              class="form-control"
+              id="iznos"
+            />
+          </div>
+          <div class="col-12">
+            <label for="datum" class="form-label">Datum</label>
+            <input type="date" class="form-control" placeholder="Datum" id="datum" />
+          </div>
+          <div class="col-12">
+            <label for="biljeska" class="form-label">Bilješka</label>
+            <input
+              type=""
+              placeholder="Bilješka"
+              class="form-control"
+              id="biljeska"
+            />
           </div>
         </div>
-        <div class="mb-3">
-          <label for="iznos" class="form-label">Iznos</label>
-          <input type="" placeholder="Iznos" class="form-control" id="iznos" />
-        </div>
-        <div class="mb-3">
-          <label for="datum" class="form-label">Datum</label>
-          <input
-            type="date"
-            class="form-control"
-            id="datum"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="biljeska" class="form-label">Bilješka</label>
-          <input
-            type=""
-            placeholder="Bilješka"
-            class="form-control"
-            id="biljeska"
-          />
-        </div>
-      </form>
+      </div>
     </div>
     <div class="buttons">
-      <router-link to="/" class="btn">Poništi</router-link>
-      <button class="btn">Potvrdi</button>
+      <router-link to="/" class="button">Poništi</router-link>
+      <button class="button">Potvrdi</button>
     </div>
   </div>
 </template>
@@ -54,64 +68,62 @@ export default {
   height: 100%;
 }
 
-.title {
-  padding: 50px 0px;
-  font-size: 24px;
+.dodajPrihod {
+  border-radius: 18px;
+  background-color: #066995;
+  height: 75%;
+  margin: 3vh 3vh;
 }
+
+.title {
+  font-size: 22px;
+  padding: 3vh;
+}
+
+.row {
+  margin: 0vh 2vh;
+}
+
+.btn {
+  color: black;
+  margin-right: 10px;
+  // gornji padding viši radi ikonica
+  padding: 50px 16px 8px 16px;
+  //   border: none;
+}
+// ubaciti da mi button bude žut kad kliknem
 
 .buttons {
   display: flex;
   justify-content: space-evenly;
 }
 
-.btn {
+.button {
   border-radius: 12px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
-  background-color: whitesmoke;
-  padding: 12px 54px;
-}
-
-.btn:active {
-    background-color: yellow;
-}
-.btn-kategorija {
+  text-decoration: none;
   color: black;
-  background-color: inherit;
-  margin-right: 10px;
-  // gornji padding viši radi ikonica
-  padding: 50px 16px 8px 16px;
-//   border: none;
-}
-
-.dodajPrihod {
-  border-radius: 18px;
-  background-color: #066995;
-  height: 80%;
-  margin: 60px 25px 25px 25px;
-}
-
-form {
-  margin: 0px 28px;
+  background-color: whitesmoke;
+  padding: 1.5vh 5vh;
 }
 
 .form-control {
-  margin-top: 5px !important;
-  margin-bottom: 50px !important;
-  padding: 20px 15px;
+  margin-top: 1vh !important;
+  margin-bottom: 5vh !important;
+  padding: 1.5vh;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 #iznos {
-    color: lightgreen;
+  color: lightgreen;
 }
 
 .form-label {
-  margin-bottom: 15px;
   display: flex;
   color: black;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 }
 

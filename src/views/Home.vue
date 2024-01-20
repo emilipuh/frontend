@@ -46,29 +46,29 @@ export default {
 }
 
 .container {
-  padding: 40px;
+  padding: 50px 60px;
 }
 
 #stanje {
   background-color: #066995;
-  border-radius: 10px;
-  padding: 30px 0px;
+  border-radius: 15px;
+  padding: 25px 0px;
 }
 
 #iznos {
-  margin: 30px 0px 10px 0px;
+  margin: 30px 0px 5px 0px;
 }
 
 
 h5 {
   color: #ffbe53;
   font-weight: bold;
-  font-size: 26px;
+  font-size: 24px;
 }
 
 h6 {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 22px;
   margin-bottom: 40px;
 }
 
