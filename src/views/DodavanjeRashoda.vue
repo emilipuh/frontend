@@ -75,10 +75,9 @@ export default {
 
 <style scoped lang="scss">
 .container {
-  min-height: 90%;
+  min-height: 100dvh;
   padding: 0px;
   display: flex;
-  flex-direction: column;
   justify-content: space-evenly;
 }
 

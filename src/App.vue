@@ -14,7 +14,7 @@ export default {
   background-image: url("@/assets/pozadina.png");
   background-size: cover;
   background-position: center;
-  height: 100vh;
+  height: 100dvh;
   margin: 0;
   overflow: hidden;
   font-family: Avenir, Helvetica, Arial, sans-serif; //promijeniti font family

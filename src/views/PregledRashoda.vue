@@ -21,8 +21,8 @@
   
   <style scoped lang="scss">
   .container {
-    max-height: 100%;
-    padding: 6vh 2vh 0vh 2vh;
+    max-height: 100dvh;
+    padding-top: 2vh;
   }
   .upis {
     border-radius: 2vh;

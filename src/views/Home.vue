@@ -46,39 +46,41 @@ export default {
 }
 
 .container {
-  padding: 50px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
 
 #stanje {
   background-color: #066995;
   border-radius: 15px;
-  padding: 25px 0px;
+  margin: 5vh 3vh;
 }
-
-#iznos {
-  margin: 30px 0px 5px 0px;
-}
-
 
 h5 {
   color: #ffbe53;
   font-weight: bold;
   font-size: 24px;
+  padding-top: 3vh;
+  margin: 0;
 }
 
 h6 {
   font-weight: bold;
   font-size: 22px;
-  margin-bottom: 40px;
+  margin-top: 2vh;
+  margin-bottom: 3vh;
 }
 
 .container-view {
-  margin-top: 20px;
-  padding-left: 30px;
-  text-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 2vh;
 }
 
 #stednja {
-  margin-top: 120px;
+  margin-top: 10%;
 }
 </style>
