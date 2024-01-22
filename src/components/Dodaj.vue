@@ -18,10 +18,14 @@
       <div class="modal-content">
         <div class="modal-body d-flex flex-column">
           <button class="btnPrihod bg-light">
-            <router-link to="/dodajPrihod" class="modal-item">+ Prihod</router-link>
+            <router-link to="/dodajPrihod" class="modal-item"
+              >+ Prihod</router-link
+            >
           </button>
           <button class="btnRashod bg-light">
-            <router-link to="/dodajRashod" class="modal-item">- Rashod</router-link>
+            <router-link to="/dodajRashod" class="modal-item"
+              >- Rashod</router-link
+            >
           </button>
         </div>
       </div>
@@ -36,7 +40,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-//@media screen and (max-width: 600px) {
 .modal-dialog {
   max-width: 240px;
   margin: auto;
@@ -56,7 +59,8 @@ export default {
   font-weight: bold;
 }
 
-.btnPrihod, .btnRashod {
+.btnPrihod,
+.btnRashod {
   padding: 12px 0px;
   border-radius: 10px;
   border: none;
@@ -65,5 +69,4 @@ export default {
 .btnPrihod {
   margin-bottom: 15px;
 }
-//}
 </style>

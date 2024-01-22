@@ -7,20 +7,22 @@
           <div class="col-12">
             <label class="form-label">Kategorija</label>
             <div class="d-flex mb-2">
-              <input
-                type="checkbox"
-                class="btn-check"
-                id="btn-check"
-                autocomplete="off"
-              />
-              <label class="btn" for="btn-check">Plaća</label>
-              <input
-                type="checkbox"
-                class="btn-check"
-                id="btn-check"
-                autocomplete="off"
-              />
-              <label class="btn" for="btn-check">Ostalo</label>
+              <p class="d-inline-flex gap-1">
+                <button
+                  type="button"
+                  class="btn"
+                  data-bs-toggle="button"
+                >
+                  Plaća
+                </button>
+                <button
+                  type="button"
+                  class="btn"
+                  data-bs-toggle="button"
+                >
+                  Ostalo
+                </button>
+              </p>
             </div>
           </div>
           <div class="col-12">
@@ -34,7 +36,12 @@
           </div>
           <div class="col-12">
             <label for="datum" class="form-label">Datum</label>
-            <input type="date" class="form-control" placeholder="Datum" id="datum" />
+            <input
+              type="date"
+              class="form-control"
+              placeholder="Datum"
+              id="datum"
+            />
           </div>
           <div class="col-12">
             <label for="biljeska" class="form-label">Bilješka</label>
@@ -58,35 +65,45 @@
 <script>
 export default {
   name: "dodavanjePrihoda",
+  data: function () {
+    return {
+      placa: "",
+      ostalo: "",
+    };
+  },
 };
 </script>
 
 <style scoped lang="scss">
 .container {
+  min-height: 90%;
   padding: 0px;
-  border: 2px solid transparent;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .dodajPrihod {
   border-radius: 18px;
   background-color: #066995;
-  height: 75%;
-  margin: 3vh 3vh;
+  margin-left: 2vh;
+  margin-right: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.content {
+  margin: 4vh 2vh 2vh 2vh;
+}
 .title {
   font-size: 22px;
-  padding: 3vh;
-}
-
-.row {
-  margin: 0vh 2vh;
+  margin-bottom: 3vh;
+  padding: 0;
 }
 
 .btn {
   color: black;
-  margin-right: 10px;
   // gornji padding viši radi ikonica
   padding: 50px 16px 8px 16px;
   //   border: none;
@@ -97,7 +114,6 @@ export default {
   display: flex;
   justify-content: space-evenly;
 }
-
 .button {
   border-radius: 12px;
   font-size: 18px;
@@ -110,7 +126,7 @@ export default {
 
 .form-control {
   margin-top: 1vh !important;
-  margin-bottom: 5vh !important;
+  margin-bottom: 4vh !important;
   padding: 1.5vh;
   text-align: center;
   font-size: 16px;
