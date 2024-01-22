@@ -1,41 +1,9 @@
 <template>
   <div class="container">
-    <div class="dodajRashod">
+    <div class="dodajStednju">
       <div class="content">
-        <h5 class="title">Novi rashod</h5>
+        <h5 class="title">Nova štednja</h5>
         <div class="row">
-          <div class="col-12">
-            <label class="form-label">Kategorija</label>
-            <div class="kategorija">
-              <button type="button" class="btn" data-bs-toggle="button">
-                <i class="fa-solid fa-cart-shopping"></i>
-                Kupovina
-              </button>
-              <button type="button" class="btn" data-bs-toggle="button">
-                <i class="fa-solid fa-receipt"></i>
-                Računi
-              </button>
-              <button type="button" class="btn" data-bs-toggle="button">
-                <i class="fa-solid fa-heart-pulse"></i>
-                Zdravlje
-              </button>
-              <button type="button" class="btn" data-bs-toggle="button">
-                <i class="fa-solid fa-book"></i>
-                Edukacija
-              </button>
-              <button type="button" class="btn" data-bs-toggle="button">
-                <i class="fa-solid fa-car"></i>
-                Vozilo
-              </button>
-              <button type="button" class="btn" data-bs-toggle="button">
-                <i class="fa-solid fa-dog"></i>
-                Kućni ljubimci
-              </button>
-              <button type="button" class="btn" data-bs-toggle="button">
-                Ostalo
-              </button>
-            </div>
-          </div>
           <div class="col-12">
             <label for="iznos" class="form-label">Iznos</label>
             <input
@@ -75,8 +43,7 @@
 
 <script>
 export default {
-  name: "dodavanjeRashoda",
-  data: function () {},
+  name: "dodajStednju",
 };
 </script>
 
@@ -88,7 +55,7 @@ export default {
   justify-content: space-evenly;
 }
 
-.dodajRashod {
+.dodajStednju {
   border-radius: 18px;
   background-color: #066995;
   margin-left: 2vh;
@@ -101,10 +68,6 @@ export default {
 .content {
   margin: 4vh;
 }
-
-.kategorija {
-  text-align: start;
-}
 .title {
   font-size: 22px;
   margin-bottom: 3vh;
@@ -113,6 +76,9 @@ export default {
 
 .btn {
   color: black;
+  // gornji padding viši radi ikonica
+  padding: 50px 16px 8px 16px;
+  //   border: none;
 }
 // ubaciti da mi button bude žut kad kliknem
 
@@ -136,10 +102,6 @@ export default {
   padding: 1.5vh;
   text-align: center;
   font-size: 16px;
-}
-
-#iznos {
-  color: red;
 }
 
 .form-label {

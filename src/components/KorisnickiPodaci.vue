@@ -6,6 +6,7 @@
     data-bs-toggle="modal"
     data-bs-target="#korisnik"
   >
+    <i class="fa-regular fa-circle-user"></i>
     Korisnik
   </button>
   <div class="modal fade" id="korisnik">
@@ -54,4 +55,5 @@ p {
   font-size: 16px;
   margin: 6px;
 }
+
 </style>

@@ -11,7 +11,8 @@
         aria-controls="offcanvasNavbar"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <i class="fa-solid fa-bars"></i>
+        <p style="margin: 0 0 0 1vh">Izbornik</p>
       </button>
       <div
         class="offcanvas offcanvas-end"
@@ -29,7 +30,7 @@
             <li class="nav-item dropdown">
               <div
                 class="nav-item dropdown-toggle"
-                type="button"
+                role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
@@ -66,7 +67,8 @@
           </ul>
         </div>
         <div class="offcanvas-footer">
-          <a>Odjava</a>
+          <i class="fa-solid fa-power-off"></i>
+          <a style="margin-left: 1vh;">Odjava</a>
         </div>
       </div>
     </div>
@@ -109,6 +111,13 @@ export default {
   padding-bottom: 10px;
   font-size: 20px;
   color: black;
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
 }
 
 .offcanvas-footer {

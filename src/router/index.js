@@ -4,6 +4,8 @@ import DodavanjePrihoda from '@/views/DodavanjePrihoda';
 import DodavanjeRashoda from '@/views/DodavanjeRashoda';
 import PregledPrihoda from '@/views/PregledPrihoda';
 import PregledRashoda from '@/views/PregledRashoda';
+import Stednja from '@/views/Stednja';
+import DodajStednju from '@/views/DodajStednju';
 
 const routes = [
   {
@@ -30,6 +32,16 @@ const routes = [
     path: '/pregledRashoda',
     name: 'pregledRashoda',
     component: PregledRashoda
+  },
+  {
+    path: '/stednja',
+    name: 'stednja',
+    component: Stednja
+  },
+  {
+    path: '/dodajStednju', 
+    name: 'dodajStednju',
+    component: DodajStednju
   }
 ]
 

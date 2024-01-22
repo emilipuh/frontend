@@ -8,18 +8,12 @@
             <label class="form-label">Kategorija</label>
             <div class="d-flex mb-2">
               <p class="d-inline-flex gap-1">
-                <button
-                  type="button"
-                  class="btn"
-                  data-bs-toggle="button"
-                >
+                <button type="button" class="btn" data-bs-toggle="button">
+                  <i class="fa-solid fa-briefcase"></i>
                   Plaća
                 </button>
-                <button
-                  type="button"
-                  class="btn"
-                  data-bs-toggle="button"
-                >
+                <button type="button" class="btn" data-bs-toggle="button">
+                  <i class="fa-solid fa-hand-holding-dollar"></i>
                   Ostalo
                 </button>
               </p>
@@ -93,7 +87,7 @@ export default {
 }
 
 .content {
-  margin: 4vh 2vh 2vh 2vh;
+  margin: 4vh;
 }
 .title {
   font-size: 22px;

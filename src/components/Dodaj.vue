@@ -5,6 +5,7 @@
     data-bs-toggle="modal"
     data-bs-target="#dodaj"
   >
+    <i class="fa-regular fa-square-plus"></i>
     Dodaj
   </button>
   <div
@@ -40,6 +41,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+//@media screen and (max-width: 600px) {
 .modal-dialog {
   max-width: 240px;
   margin: auto;
@@ -69,4 +71,5 @@ export default {
 .btnPrihod {
   margin-bottom: 15px;
 }
+//}
 </style>

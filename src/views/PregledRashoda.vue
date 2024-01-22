@@ -7,10 +7,16 @@
         <!-- jedan hard coded za primjer -->
         <div class="upis mb-2">
           <p class="text">15/10/2023 - 150 €</p>
-          <p class="text">Mjesečna rata za kredit</p>
+          <p class="text" style="width: 25vh; text-align: center">
+            Mjesečna rata za kredit
+          </p>
+          <i class="fa-solid fa-trash-can"></i>
         </div>
       </div>
     </div>
+    <!-- <router-link to="/" id="icon">
+      <i class="fa-solid fa-caret-left fa-2xl" id="icon"></i
+    ></router-link> -->
   </template>
   
   <script>
@@ -35,5 +41,20 @@
     font-weight: bold;
     margin: 1vh;
   }
+  
+  i {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1vh;
+    margin-bottom: 1vh;
+  }
+  
+  // #icon {
+  //   color: black;
+  //   text-decoration: none;
+  //   margin-top: 60vh;
+  //   margin-right: 2vh;
+  // }
   </style>
   
