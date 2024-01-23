@@ -1,4 +1,5 @@
 <template>
+  <!-- modal -->
   <button
     type="button"
     class="btn"
@@ -7,21 +8,17 @@
   >
     Potvrdi
   </button>
-  <div class="modal" id="potvrdi">
+  <div class="modal" tabindex="-1" id="potvrdi">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
           <div class="confirm">
-            <!-- message confirmation -->
             <h6>Želite li spremiti upis?</h6>
           </div>
-          <div class="buttons">
-            <!-- neki router link -->
-            <button class="btns">Ne</button>
-            <button class="btns">
-              <router-link to="/" class="modal-item">Da</router-link>
-            </button>
-          </div>
+        </div>
+        <div class="buttons">
+          <button type="button" class="btns" data-bs-dismiss="modal">Ne</button>
+          <router-link to="/" class="btns">Da</router-link>
         </div>
       </div>
     </div>
@@ -47,11 +44,6 @@ export default {
 
 .modal-body {
   border-radius: 3vh;
-}
-
-.modal-item {
-  text-decoration: none;
-  color: black;
 }
 
 h5 {
@@ -93,6 +85,7 @@ h6 {
   margin-top: 1vh;
   font-size: 16px;
   font-weight: bold;
+  text-decoration: none;
   color: black;
   background-color: whitesmoke;
   padding: 1.5vh 5vh;

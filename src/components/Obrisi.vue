@@ -5,22 +5,19 @@
     data-bs-toggle="modal"
     data-bs-target="#obrisi"
   >
-  <i class="fa-solid fa-trash-can"></i>
+    <i class="fa-solid fa-trash-can"></i>
   </button>
-  <div class="modal" id="obrisi">
+  <div class="modal" tabindex="-1" id="obrisi">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
           <div class="delete">
-            <!-- message confirmation -->
             <h6>Želite li obrisati upis?</h6>
           </div>
-          <div class="buttons">
-            <button class="btns">Ne</button>
-            <button class="btns">
-              <router-link to="/" class="modal-item">Da</router-link>
-            </button>
-          </div>
+        </div>
+        <div class="buttons">
+          <button type="button" class="btns" data-bs-dismiss="modal">Ne</button>
+          <router-link to="/" class="btns">Da</router-link>
         </div>
       </div>
     </div>

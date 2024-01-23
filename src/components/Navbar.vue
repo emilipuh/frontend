@@ -116,6 +116,7 @@ export default {
 .btn {
   border: none;
   font-size: 16px;
+  color: black;
 }
 
 .offcanvas-footer {

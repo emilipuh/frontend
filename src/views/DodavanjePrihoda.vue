@@ -67,7 +67,7 @@
       </div>
     </div>
     <div class="buttons">
-      <Poništi />
+      <Ponisti />
       <Potvrdi />
     </div>
   </div>
@@ -75,13 +75,13 @@
 
 <script>
 import Potvrdi from '@/components/Potvrdi.vue';
-import Poništi from '@/components/Poništi.vue';
+import Ponisti from '@/components/Ponisti.vue';
 
 export default {
   name: "dodavanjePrihoda",
   components: {
     Potvrdi,
-    Poništi
+    Ponisti
   },
   data: function () {
     return {

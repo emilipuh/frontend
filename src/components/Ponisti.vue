@@ -1,4 +1,5 @@
 <template>
+  <!-- modal -->
   <button
     type="button"
     class="btn"
@@ -7,21 +8,17 @@
   >
     Poništi
   </button>
-  <div class="modal" id="ponisti">
+  <div class="modal" tabindex="-1" id="ponisti">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
-          <div class="cancel">
-            <!-- message confirmation -->
+          <div class="confirm">
             <h6>Želite li poništiti upis?</h6>
           </div>
-          <div class="buttons">
-            <!-- neki router link -->
-            <button class="btns">Ne</button>
-            <button class="btns">
-              <router-link to="/" class="modal-item">Da</router-link>
-            </button>
-          </div>
+        </div>
+        <div class="buttons">
+          <button type="button" class="btns" data-bs-dismiss="modal">Ne</button>
+          <router-link to="/" class="btns">Da</router-link>
         </div>
       </div>
     </div>
@@ -30,7 +27,7 @@
 
 <script>
 export default {
-  name: "Ponisti",
+  name: "Potvrdi",
 };
 </script>
 
@@ -47,11 +44,6 @@ export default {
 
 .modal-body {
   border-radius: 3vh;
-}
-
-.modal-item {
-  text-decoration: none;
-  color: black;
 }
 
 h5 {
@@ -73,7 +65,7 @@ p {
   padding: 1.5vh 5vh;
 }
 
-.cancel {
+.confirm {
   border-radius: 2vh;
   padding: 3vh 2vh;
   background-color: white;
@@ -93,6 +85,7 @@ h6 {
   margin-top: 1vh;
   font-size: 16px;
   font-weight: bold;
+  text-decoration: none;
   color: black;
   background-color: whitesmoke;
   padding: 1.5vh 5vh;

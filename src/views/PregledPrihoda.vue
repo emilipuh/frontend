@@ -35,12 +35,12 @@
 </template>
 
 <script>
-import Obriši from "@/components/Obriši.vue";
+import Obrisi from "@/components/Obrisi.vue";
 
 export default {
   name: "pregledPrihoda",
   components: {
-    Obriši,
+    Obrisi,
   },
 };
 </script>
