@@ -6,19 +6,36 @@
         <div class="row">
           <div class="col-12">
             <label class="form-label">Kategorija</label>
-            <div class="d-flex mb-2">
-              <p class="d-inline-flex gap-1">
-                <button type="button" class="btn" data-bs-toggle="button">
-                  <i class="fa-solid fa-briefcase"></i>
-                  Plaća
-                </button>
-                <button type="button" class="btn" data-bs-toggle="button">
-                  <i class="fa-solid fa-hand-holding-dollar"></i>
-                  Ostalo
-                </button>
-              </p>
+            <div class="kategorije">
+              <div
+                class="btn-group"
+                role="group"
+                aria-label="Basic radio toggle button group"
+              >
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="btnradio"
+                  id="btnradio1"
+                  autocomplete="off"
+                />
+                <label class="btn" for="btnradio1">
+                  <i class="fa-solid fa-briefcase"></i> Plaća</label
+                >
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="btnradio"
+                  id="btnradio2"
+                  autocomplete="off"
+                />
+                <label class="btn" for="btnradio2">
+                  <i class="fa-solid fa-hand-holding-dollar"></i> Ostalo</label
+                >
+              </div>
             </div>
           </div>
+
           <div class="col-12">
             <label for="iznos" class="form-label">Iznos</label>
             <input
@@ -50,15 +67,22 @@
       </div>
     </div>
     <div class="buttons">
-      <router-link to="/" class="button">Poništi</router-link>
-      <button class="button">Potvrdi</button>
+      <Poništi />
+      <Potvrdi />
     </div>
   </div>
 </template>
 
 <script>
+import Potvrdi from '@/components/Potvrdi.vue';
+import Poništi from '@/components/Poništi.vue';
+
 export default {
   name: "dodavanjePrihoda",
+  components: {
+    Potvrdi,
+    Poništi
+  },
   data: function () {
     return {
       placa: "",
@@ -81,27 +105,26 @@ export default {
   background-color: #066995;
   margin-left: 2vh;
   margin-right: 2vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .content {
   margin: 4vh;
 }
+
 .title {
   font-size: 22px;
   margin-bottom: 3vh;
   padding: 0;
 }
 
+.kategorije {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
 .btn {
   color: black;
-  // gornji padding viši radi ikonica
-  padding: 50px 16px 8px 16px;
-  //   border: none;
 }
-// ubaciti da mi button bude žut kad kliknem
 
 .buttons {
   display: flex;
@@ -125,10 +148,6 @@ export default {
   font-size: 16px;
 }
 
-#iznos {
-  color: lightgreen;
-}
-
 .form-label {
   display: flex;
   color: black;
@@ -138,5 +157,8 @@ export default {
 
 ::placeholder {
   color: lightgrey;
+}
+#iznos {
+  color: lightgreen;
 }
 </style>

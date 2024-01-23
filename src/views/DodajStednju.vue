@@ -35,15 +35,23 @@
       </div>
     </div>
     <div class="buttons">
-      <router-link to="/" class="button">Poništi</router-link>
-      <button class="button">Potvrdi</button>
+      <Poništi />
+      <Potvrdi />
     </div>
   </div>
 </template>
 
 <script>
+import Potvrdi from '@/components/Potvrdi.vue';
+import Poništi from '@/components/Poništi.vue';
+
 export default {
   name: "dodajStednju",
+  components: {
+    Potvrdi,
+    Poništi,
+    Poništi
+}
 };
 </script>
 

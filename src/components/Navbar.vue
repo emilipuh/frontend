@@ -4,7 +4,7 @@
       <KorisnickiPodaci />
       <Dodaj />
       <button
-        class="navbar-toggler"
+        class="btn navbar-toggler"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNavbar"
@@ -12,7 +12,7 @@
         aria-label="Toggle navigation"
       >
         <i class="fa-solid fa-bars"></i>
-        <p style="margin: 0 0 0 1vh">Izbornik</p>
+        Izbornik
       </button>
       <div
         class="offcanvas offcanvas-end"
@@ -113,11 +113,9 @@ export default {
   color: black;
 }
 
-.navbar-toggler {
+.btn {
   border: none;
-  padding: 0;
-  display: flex;
-  align-items: center;
+  font-size: 16px;
 }
 
 .offcanvas-footer {

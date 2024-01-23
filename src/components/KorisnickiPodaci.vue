@@ -49,11 +49,11 @@ export default {
 
 h5 {
   font-size: 18px;
+  padding: 0;
 }
 
 p {
   font-size: 16px;
   margin: 6px;
 }
-
 </style>
