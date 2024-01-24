@@ -2,8 +2,8 @@
 // globalna datoteka
 
 export default {
-    stanjeRacuna: 0,
-    stanjePrihoda: 0,
-    stanjeRashoda: 0,
-    stanjeStednje: 0
-}
+  stanjeRacuna: 0,
+  prihodi: 0,
+  rashodi: 0,
+  stednja: 0,
+};

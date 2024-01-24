@@ -47,4 +47,8 @@ h6 {
   margin-top: 2vh;
   margin-bottom: 3vh;
 }
+
+.modal-backdrop {
+  z-index: -1;
+}
 </style>

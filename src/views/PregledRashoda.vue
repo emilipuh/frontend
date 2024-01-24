@@ -13,7 +13,7 @@
           </p>
         </div>
         <div class="obrisi">
-          <Obriši />
+          <Obrisi />
         </div>
       </div>
     </div>

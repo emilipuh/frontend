@@ -7,13 +7,13 @@
     </div>
     <div class="container-view">
       <div id="prihodi">
-        <h6>PRIHODI: {{ stanje.stanjePrihoda }} €</h6>
+        <h6>PRIHODI: {{ stanje.prihodi }} €</h6>
       </div>
       <div id="rashodi">
-        <h6>RASHODI: {{ stanje.stanjeRashoda }} €</h6>
+        <h6>RASHODI: {{ stanje.rashodi }} €</h6>
       </div>
       <div id="stednja">
-        <h6>ŠTEDNJA: {{ stanje.stanjeStednje }} €</h6>
+        <h6>ŠTEDNJA: {{ stanje.stednja }} €</h6>
       </div>
     </div>
   </div>
@@ -35,14 +35,15 @@ export default {
       stanje,
     };
   },
+  methods: {
+    stanjeRacuna() {
+      this.stanje.stanjeRacuna = this.stanje.prihodi + this.stanje.rashodi + this.stanje.stednja;
+    },
+  },
 };
 </script>
 
 <style lang="scss">
-.modal-backdrop {
-  z-index: -1;
-}
-
 .container {
   display: flex;
   flex-direction: column;

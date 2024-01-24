@@ -18,7 +18,7 @@
         </div>
         <div class="buttons">
           <button type="button" class="btns" data-bs-dismiss="modal">Ne</button>
-          <router-link to="/" class="btns">Da</router-link>
+          <router-link to="/" class="btns" @click="spremiUpis">Da</router-link>
         </div>
       </div>
     </div>
@@ -28,6 +28,19 @@
 <script>
 export default {
   name: "Potvrdi",
+  methods: {
+    spremiUpis() {
+      this.$emit("spremiUpis", {
+        kategorija: this.$parent.inputKategorija,
+        // izmijeniti
+        dropdownKategorija: this.$parent.dropdownKategorija,
+        iznos: this.$parent.inputIznos,
+        datum: this.$parent.inputDatum,
+        biljeska: this.$parent.inputBiljeska,
+      });
+    },
+  },
+  emits: ['spremiUpis']
 };
 </script>
 

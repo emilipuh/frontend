@@ -7,38 +7,37 @@
           <div class="col-12">
             <label class="form-label">Kategorija</label>
             <div class="kategorije">
-              <div
-                class="btn-group"
-                role="group"
-                aria-label="Basic radio toggle button group"
+              <input
+                type="radio"
+                class="btn-check"
+                :class="{ active: inputKategorija === 'placa' }"
+                @click="updateKategorija('placa')"
+                name="btnradio"
+                id="placa"
+                autocomplete="off"
+              />
+              <label class="btn" for="placa">
+                <i class="fa-solid fa-briefcase"></i> Plaća</label
               >
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="btnradio"
-                  id="btnradio1"
-                  autocomplete="off"
-                />
-                <label class="btn" for="btnradio1">
-                  <i class="fa-solid fa-briefcase"></i> Plaća</label
-                >
-                <input
-                  type="radio"
-                  class="btn-check"
-                  name="btnradio"
-                  id="btnradio2"
-                  autocomplete="off"
-                />
-                <label class="btn" for="btnradio2">
-                  <i class="fa-solid fa-hand-holding-dollar"></i> Ostalo</label
-                >
-              </div>
+              <input
+                type="radio"
+                class="btn-check"
+                :class="{ active: inputKategorija === 'ostalo' }"
+                @click="updateKategorija('ostalo')"
+                name="btnradio"
+                id="ostalo"
+                autocomplete="off"
+              />
+              <label class="btn" for="ostalo">
+                <i class="fa-solid fa-hand-holding-dollar"></i> Ostalo</label
+              >
             </div>
           </div>
 
           <div class="col-12">
             <label for="iznos" class="form-label">Iznos</label>
             <input
+              v-model="inputIznos"
               type=""
               placeholder="Iznos"
               class="form-control"
@@ -48,6 +47,7 @@
           <div class="col-12">
             <label for="datum" class="form-label">Datum</label>
             <input
+              v-model="inputDatum"
               type="date"
               class="form-control"
               placeholder="Datum"
@@ -57,6 +57,7 @@
           <div class="col-12">
             <label for="biljeska" class="form-label">Bilješka</label>
             <input
+              v-model="inputBiljeska"
               type=""
               placeholder="Bilješka"
               class="form-control"
@@ -68,26 +69,45 @@
     </div>
     <div class="buttons">
       <Ponisti />
-      <Potvrdi />
+      <!-- spremljeni podaci radi pregleda -->
+      <Potvrdi @spremiUpis="spremi"/>
     </div>
+    <!-- samo za debugging -->
+    <!-- <p>Odabrana kategorija: {{ inputKategorija }}</p>
+    <p>Iznos: {{ inputIznos }}</p>
+    <p>Datum: {{ inputDatum }}</p>
+    <p>Biljeska: {{ inputBiljeska }}</p> -->
   </div>
 </template>
 
 <script>
-import Potvrdi from '@/components/Potvrdi.vue';
-import Ponisti from '@/components/Ponisti.vue';
+import Potvrdi from "@/components/Potvrdi.vue";
+import Ponisti from "@/components/Ponisti.vue";
+import stanje from "@/stanje";
 
 export default {
   name: "dodavanjePrihoda",
   components: {
     Potvrdi,
-    Ponisti
+    Ponisti,
+    stanje,
   },
   data: function () {
     return {
-      placa: "",
-      ostalo: "",
+      inputKategorija: null, // spremanje i pamcenje odabrane kategorije
+      inputIznos: "", // citanje iznosa
+      inputDatum: "",
+      inputBiljeska: "",
+      stanje
     };
+  },
+  methods: {
+    updateKategorija(kategorija) {
+      this.inputKategorija = kategorija;
+    },
+    spremi(podaci) {
+      console.log("spremljeno: ", podaci);
+    },
   },
 };
 </script>
@@ -118,12 +138,15 @@ export default {
 }
 
 .kategorije {
-  margin: 0;
-  padding: 0;
   display: flex;
 }
 .btn {
   color: black;
+}
+
+.btn-check:checked + .btn {
+  background-color: yellow;
+  border: none;
 }
 
 .buttons {
