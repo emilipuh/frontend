@@ -3,7 +3,6 @@
     <div id="stanje">
       <h5>STANJE RAČUNA:</h5>
       <h6 id="iznos">{{ stanje.stanjeRacuna }} €</h6>
-      <!-- tu ce mi se ispisivati stanje -->
     </div>
     <div class="container-view">
       <div id="prihodi">
@@ -34,11 +33,6 @@ export default {
     return {
       stanje,
     };
-  },
-  methods: {
-    stanjeRacuna() {
-      this.stanje.stanjeRacuna = this.stanje.prihodi + this.stanje.rashodi + this.stanje.stednja;
-    },
   },
 };
 </script>

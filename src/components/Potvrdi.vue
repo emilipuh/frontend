@@ -18,7 +18,7 @@
         </div>
         <div class="buttons">
           <button type="button" class="btns" data-bs-dismiss="modal">Ne</button>
-          <router-link to="/" class="btns" @click="spremiUpis">Da</router-link>
+          <router-link to="/" class="btns" @click="potvrdiUpis">Da</router-link>
         </div>
       </div>
     </div>
@@ -29,8 +29,8 @@
 export default {
   name: "Potvrdi",
   methods: {
-    spremiUpis() {
-      this.$emit("spremiUpis", {
+    potvrdiUpis() {
+      this.$emit("potvrdiUpis", {
         kategorija: this.$parent.inputKategorija,
         // izmijeniti
         dropdownKategorija: this.$parent.dropdownKategorija,
@@ -40,7 +40,7 @@ export default {
       });
     },
   },
-  emits: ['spremiUpis']
+  emits: ["potvrdiUpis"],
 };
 </script>
 

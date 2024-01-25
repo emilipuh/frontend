@@ -7,6 +7,7 @@
           <div class="col-12">
             <label for="iznos" class="form-label">Iznos</label>
             <input
+              v-model="inputIznos"
               type=""
               placeholder="Iznos"
               class="form-control"
@@ -16,6 +17,7 @@
           <div class="col-12">
             <label for="datum" class="form-label">Datum</label>
             <input
+              v-model="inputDatum"
               type="date"
               class="form-control"
               placeholder="Datum"
@@ -25,6 +27,7 @@
           <div class="col-12">
             <label for="biljeska" class="form-label">Bilješka</label>
             <input
+              v-model="inputBiljeska"
               type=""
               placeholder="Bilješka"
               class="form-control"
@@ -36,21 +39,39 @@
     </div>
     <div class="buttons">
       <Ponisti />
-      <Potvrdi />
+      <Potvrdi @potvrdiUpis="spremiStednju"/>
     </div>
   </div>
 </template>
 
 <script>
-import Potvrdi from '@/components/Potvrdi.vue';
-import Ponisti from '@/components/Ponisti.vue';
+import Potvrdi from "@/components/Potvrdi.vue";
+import Ponisti from "@/components/Ponisti.vue";
+import stanje from "@/stanje";
 
 export default {
   name: "dodajStednju",
   components: {
     Potvrdi,
     Ponisti,
-}
+  },
+  data: function () {
+    return {
+      inputIznos: "",
+      inputDatum: "",
+      inputBiljeska: "",
+      stanje
+    };
+  },
+  methods: {
+    spremiStednju(podaci) {
+      //console.log("spremljeno: ", podaci); // tu mi se poziva samo ispis podataka na konzoli
+      let iznos = parseInt(this.inputIznos) || 0;
+      this.stanje.stednja += iznos;
+      console.log("Stanje: ", stanje);
+      this.$emit("potvrdiUpis", podaci);
+    },
+  },
 };
 </script>
 

@@ -70,7 +70,7 @@
     <div class="buttons">
       <Ponisti />
       <!-- spremljeni podaci radi pregleda -->
-      <Potvrdi @spremiUpis="spremi"/>
+      <Potvrdi @potvrdiUpis="spremiPrihod" />
     </div>
     <!-- samo za debugging -->
     <!-- <p>Odabrana kategorija: {{ inputKategorija }}</p>
@@ -90,7 +90,6 @@ export default {
   components: {
     Potvrdi,
     Ponisti,
-    stanje,
   },
   data: function () {
     return {
@@ -98,15 +97,23 @@ export default {
       inputIznos: "", // citanje iznosa
       inputDatum: "",
       inputBiljeska: "",
-      stanje
+      stanje,
     };
   },
   methods: {
     updateKategorija(kategorija) {
       this.inputKategorija = kategorija;
     },
-    spremi(podaci) {
-      console.log("spremljeno: ", podaci);
+    stanjeRacuna() {
+      this.stanje.stanjeRacuna =
+        this.stanje.prihodi - this.stanje.rashodi + this.stanje.stednja;
+    },
+    spremiPrihod(podaci) {
+      let iznos = parseInt(this.inputIznos) || 0;
+      this.stanje.prihodi += iznos;
+      console.log("Stanje: ", stanje);
+      this.$emit("potvrdiUpis", podaci);
+      this.stanjeRacuna();
     },
   },
 };
@@ -182,6 +189,6 @@ export default {
   color: lightgrey;
 }
 #iznos {
-  color: lightgreen;
+  color: green;
 }
 </style>

@@ -142,7 +142,7 @@
     </div>
     <div class="buttons">
       <Ponisti />
-      <Potvrdi @spremiUpis="spremi"/>
+      <Potvrdi @potvrdiUpis="spremiRashod"/>
     </div>
   </div>
 </template>
@@ -150,6 +150,7 @@
 <script>
 import Potvrdi from "@/components/Potvrdi.vue";
 import Ponisti from "@/components/Ponisti.vue";
+import stanje from "@/stanje";
 
 export default {
   name: "dodavanjeRashoda",
@@ -164,6 +165,7 @@ export default {
       inputIznos: "",
       inputDatum: "",
       inputBiljeska: "",
+      stanje
     };
   },
   methods: {
@@ -174,8 +176,17 @@ export default {
     updateDropdownKategorija(kategorija) {
       this.dropdownKategorija = kategorija;
     },
-    spremi(podaci) {
-      console.log("spremljeno: ", podaci);
+    stanjeRacuna() {
+      this.stanje.stanjeRacuna =
+        this.stanje.prihodi - this.stanje.rashodi + this.stanje.stednja;
+    },
+    spremiRashod(podaci) {
+      //console.log("spremljeno: ", podaci); // tu mi se poziva samo ispis podataka na konzoli
+      let iznos = parseInt(this.inputIznos) || 0;
+      this.stanje.rashodi += iznos;
+      console.log("Stanje: ", stanje);
+      this.$emit("potvrdiUpis", podaci);
+      this.stanjeRacuna();
     },
   },
 };
