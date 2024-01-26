@@ -142,7 +142,14 @@
     </div>
     <div class="buttons">
       <Ponisti />
-      <Potvrdi @potvrdiUpis="spremiRashod"/>
+      <Potvrdi
+        :kategorija="inputKategorija"
+        :dropdownKategorija="dropdownKategorija"
+        :iznos="inputIznos"
+        :datum="inputDatum"
+        :biljeska="inputBiljeska"
+        @potvrdiUpis="spremiRashod"
+      />
     </div>
   </div>
 </template>
@@ -165,7 +172,7 @@ export default {
       inputIznos: "",
       inputDatum: "",
       inputBiljeska: "",
-      stanje
+      stanje,
     };
   },
   methods: {

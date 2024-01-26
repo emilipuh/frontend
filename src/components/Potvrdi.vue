@@ -30,15 +30,24 @@ export default {
   name: "Potvrdi",
   methods: {
     potvrdiUpis() {
-      this.$emit("potvrdiUpis", {
-        kategorija: this.$parent.inputKategorija,
+      const podaci = {
+        kategorija: this.$props.kategorija,
         // izmijeniti
-        dropdownKategorija: this.$parent.dropdownKategorija,
-        iznos: this.$parent.inputIznos,
-        datum: this.$parent.inputDatum,
-        biljeska: this.$parent.inputBiljeska,
-      });
+        dropdownKategorija: this.$props.dropdownKategorija,
+        iznos: this.$props.iznos,
+        datum: this.$props.datum,
+        biljeska: this.$props.biljeska,
+      };
+      console.log("Potvrdi.vue komponenta - podaci: ", podaci);
+      this.$emit('potvrdiUpis', podaci);
     },
+  },
+  props: {
+    kategorija: String,
+    dropdownKategorija: String,
+    iznos: String,
+    datum: String,
+    biljeska: String,
   },
   emits: ["potvrdiUpis"],
 };

@@ -70,7 +70,13 @@
     <div class="buttons">
       <Ponisti />
       <!-- spremljeni podaci radi pregleda -->
-      <Potvrdi @potvrdiUpis="spremiPrihod" />
+      <Potvrdi
+        :kategorija="inputKategorija"
+        :iznos="inputIznos"
+        :datum="inputDatum"
+        :biljeska="inputBiljeska"
+        @potvrdiUpis="spremiPrihod"
+      />
     </div>
     <!-- samo za debugging -->
     <!-- <p>Odabrana kategorija: {{ inputKategorija }}</p>
