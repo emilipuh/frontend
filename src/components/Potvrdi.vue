@@ -32,8 +32,6 @@ export default {
     potvrdiUpis() {
       const podaci = {
         kategorija: this.$props.kategorija,
-        // izmijeniti
-        dropdownKategorija: this.$props.dropdownKategorija,
         iznos: this.$props.iznos,
         datum: this.$props.datum,
         biljeska: this.$props.biljeska,
@@ -44,7 +42,6 @@ export default {
   },
   props: {
     kategorija: String,
-    dropdownKategorija: String,
     iznos: String,
     datum: String,
     biljeska: String,

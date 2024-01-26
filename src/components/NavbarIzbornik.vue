@@ -7,23 +7,23 @@
         class="btn navbar-toggler"
         type="button"
         data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasNavbar"
-        aria-controls="offcanvasNavbar"
+        data-bs-target="#izbornik"
+        aria-controls="izbornik"
         aria-label="Toggle navigation"
       >
-        <i class="fa-solid fa-bars"></i>
+        <div class="navbar-icon">
+          <i class="fa-solid fa-bars fa-xl"></i>
+        </div>
         Izbornik
       </button>
       <div
         class="offcanvas offcanvas-end"
         tabindex="-1"
-        id="offcanvasNavbar"
-        aria-labelledby="offcanvasNavbarLabel"
+        id="izbornik"
+        aria-labelledby="izbornik"
       >
         <div class="offcanvas-header">
-          <h3 class="offcanvas-title" id="offcanvasNavbarLabel">
-            Expense Track
-          </h3>
+          <h5 style="color: #066995">Expense Track</h5>
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav">
@@ -68,7 +68,8 @@
         </div>
         <div class="offcanvas-footer">
           <i class="fa-solid fa-power-off"></i>
-          <a style="margin-left: 1vh;">Odjava</a>
+          <!-- router link -->
+          <a style="margin-left: 1vh;" class="nav-item" >Odjava</a>
         </div>
       </div>
     </div>
@@ -89,36 +90,25 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container-fluid {
-  justify-content: space-around;
-}
-
 .offcanvas {
   max-width: 300px;
 }
-
-.offcanvas-title {
-  margin: 15px 0px 25px 0px;
-  color: #066995;
-  font-weight: bold;
-}
-
 .offcanvas-body {
   text-align: start;
+  margin-top: 3vh;
 }
 .nav-item {
-  text-decoration: none;
   padding-bottom: 10px;
   font-size: 20px;
-  color: black;
 }
-
 .btn {
   border: none;
   font-size: 16px;
   color: black;
 }
-
+.navbar-icon {
+  margin-bottom: 1vh;
+}
 .offcanvas-footer {
   text-align: start;
   font-size: 20px;
@@ -127,6 +117,5 @@ export default {
 
 .dropdown-menu {
   border: none;
-  font-size: 18px;
 }
 </style>

@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-12">
             <label class="form-label">Kategorija</label>
-            <div class="kategorije">
+            <div class="d-flex">
               <input
                 type="radio"
                 class="btn-check"
@@ -17,8 +17,11 @@
                 autocomplete="off"
               />
               <label class="btn" for="placa">
-                <i class="fa-solid fa-briefcase"></i> Plaća</label
-              >
+                <div>
+                  <i class="fa-solid fa-briefcase fa-lg"></i>
+                </div>
+                Plaća
+              </label>
               <input
                 type="radio"
                 class="btn-check"
@@ -29,8 +32,11 @@
                 autocomplete="off"
               />
               <label class="btn" for="ostalo">
-                <i class="fa-solid fa-hand-holding-dollar"></i> Ostalo</label
-              >
+                <div>
+                  <i class="fa-solid fa-hand-holding-dollar fa-lg"></i>
+                </div>
+                Ostalo
+              </label>
             </div>
           </div>
 
@@ -78,11 +84,6 @@
         @potvrdiUpis="spremiPrihod"
       />
     </div>
-    <!-- samo za debugging -->
-    <!-- <p>Odabrana kategorija: {{ inputKategorija }}</p>
-    <p>Iznos: {{ inputIznos }}</p>
-    <p>Datum: {{ inputDatum }}</p>
-    <p>Biljeska: {{ inputBiljeska }}</p> -->
   </div>
 </template>
 
@@ -117,7 +118,6 @@ export default {
     spremiPrihod(podaci) {
       let iznos = parseInt(this.inputIznos) || 0;
       this.stanje.prihodi += iznos;
-      console.log("Stanje: ", stanje);
       this.$emit("potvrdiUpis", podaci);
       this.stanjeRacuna();
     },
@@ -150,11 +150,9 @@ export default {
   padding: 0;
 }
 
-.kategorije {
-  display: flex;
-}
 .btn {
   color: black;
+  margin-right: 2vh;
 }
 
 .btn-check:checked + .btn {

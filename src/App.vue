@@ -48,6 +48,21 @@ h6 {
   margin-bottom: 3vh;
 }
 
+a {
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+p {
+  margin: 0;
+}
+
+.modal-content {
+  background-color: #066995;
+}
+
+// doraditi
 .modal-backdrop {
   z-index: -1;
 }

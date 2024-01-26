@@ -5,7 +5,9 @@
     data-bs-toggle="modal"
     data-bs-target="#dodaj"
   >
-    <i class="fa-regular fa-square-plus"></i>
+  <div class="navbar-icon">
+    <i class="fa-regular fa-square-plus fa-xl"></i>
+  </div>
     Dodaj
   </button>
   <div
@@ -19,12 +21,12 @@
       <div class="modal-content">
         <div class="modal-body d-flex flex-column">
           <button class="btnPrihod bg-light">
-            <router-link to="/dodajPrihod" class="modal-item"
+            <router-link to="/dodajPrihod"
               >+ Prihod</router-link
             >
           </button>
           <button class="btnRashod bg-light">
-            <router-link to="/dodajRashod" class="modal-item"
+            <router-link to="/dodajRashod"
               >- Rashod</router-link
             >
           </button>
@@ -41,24 +43,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-//@media screen and (max-width: 600px) {
 .modal-dialog {
   max-width: 240px;
   margin: auto;
-}
-
-.modal-content {
-  background-color: #006995;
-}
-.modal-body {
-  padding: 0;
-  margin: 20px;
-}
-
-.modal-item {
-  text-decoration: none;
-  color: inherit;
-  font-weight: bold;
 }
 
 .btnPrihod,
@@ -71,5 +58,4 @@ export default {
 .btnPrihod {
   margin-bottom: 15px;
 }
-//}
 </style>

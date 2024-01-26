@@ -6,7 +6,9 @@
     data-bs-toggle="modal"
     data-bs-target="#korisnik"
   >
-    <i class="fa-regular fa-circle-user"></i>
+    <div class="navbar-icon">
+      <i class="fa-regular fa-circle-user fa-xl"></i>
+    </div>
     Korisnik
   </button>
   <div class="modal fade" id="korisnik">
@@ -14,9 +16,9 @@
       <div class="modal-content">
         <div class="modal-body">
           <!-- ovdje idu učitani korisnički podaci iz baze -->
-          <h5 style="color: #0585bc; font-weight: bold">Korisničko ime:</h5>
+          <p style="color: #0585bc; font-weight: bold">Korisničko ime:</p>
           <p>user123</p>
-          <h5 style="color: #0585bc; font-weight: bold">Email:</h5>
+          <p style="color: #0585bc; font-weight: bold">Email:</p>
           <p>user123@gmail.com</p>
         </div>
       </div>
@@ -36,24 +38,10 @@ export default {
   margin: auto;
 }
 
-.modal-content {
-  background-color: #066995;
-}
-
 .modal-body {
   padding: 20px;
   margin: 30px;
   border-radius: 8px;
   background-color: white;
-}
-
-h5 {
-  font-size: 18px;
-  padding: 0;
-}
-
-p {
-  font-size: 16px;
-  margin: 6px;
 }
 </style>

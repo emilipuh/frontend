@@ -17,8 +17,11 @@
                 autocomplete="off"
               />
               <label class="btn" for="kupovina">
-                <i class="fa-solid fa-cart-shopping"></i> Kupovina</label
-              >
+                <div>
+                  <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                </div>
+                Kupovina
+              </label>
               <input
                 type="radio"
                 class="btn-check"
@@ -29,23 +32,29 @@
                 autocomplete="off"
               />
               <label class="btn" for="racuni">
-                <i class="fa-solid fa-receipt"></i> Računi</label
-              >
+                <div>
+                  <i class="fa-solid fa-receipt fa-lg"></i>
+                </div>
+                Računi
+              </label>
               <div class="dropdown">
                 <button
-                  class="btn dropdown-toggle"
+                  class="btn"
                   type="radio"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {{ dropdownKategorija }}
+                  <div>
+                    <i class="fa-solid fa-ellipsis fa-lg"></i>
+                  </div>
+                  {{ inputKategorija }}
                 </button>
                 <ul class="dropdown-menu">
                   <input
                     type="radio"
                     class="btn-check"
-                    :class="{ active: dropdownKategorija === 'Zdravlje' }"
-                    @click="updateDropdownKategorija('Zdravlje')"
+                    :class="{ active: inputKategorija === 'Zdravlje' }"
+                    @click="updateKategorija('Zdravlje')"
                     name="btnradio"
                     id="zdravlje"
                     autocomplete="off"
@@ -57,8 +66,8 @@
                   <input
                     type="radio"
                     class="btn-check"
-                    :class="{ active: dropdownKategorija === 'Edukacija' }"
-                    @click="updateDropdownKategorija('Edukacija')"
+                    :class="{ active: inputKategorija === 'Edukacija' }"
+                    @click="updateKategorija('Edukacija')"
                     name="btnradio"
                     id="edukacija"
                     autocomplete="off"
@@ -70,8 +79,8 @@
                   <input
                     type="radio"
                     class="btn-check"
-                    :class="{ active: dropdownKategorija === 'Vozilo' }"
-                    @click="updateDropdownKategorija('Vozilo')"
+                    :class="{ active: inputKategorija === 'Vozilo' }"
+                    @click="updateKategorija('Vozilo')"
                     name="btnradio"
                     id="vozilo"
                     autocomplete="off"
@@ -83,8 +92,8 @@
                   <input
                     type="radio"
                     class="btn-check"
-                    :class="{ active: dropdownKategorija === 'Kućni ljubimci' }"
-                    @click="updateDropdownKategorija('Kućni ljubimci')"
+                    :class="{ active: inputKategorija === 'Kućni ljubimci' }"
+                    @click="updateKategorija('Kućni ljubimci')"
                     name="btnradio"
                     id="kucniLjubimci"
                     autocomplete="off"
@@ -96,8 +105,8 @@
                   <input
                     type="radio"
                     class="btn-check"
-                    :class="{ active: dropdownKategorija === 'Ostalo' }"
-                    @click="updateDropdownKategorija('Ostalo')"
+                    :class="{ active: inputKategorija === 'Ostalo' }"
+                    @click="inputKategorija('Ostalo')"
                     name="btnradio"
                     id="ostalo"
                     autocomplete="off"
@@ -144,7 +153,6 @@
       <Ponisti />
       <Potvrdi
         :kategorija="inputKategorija"
-        :dropdownKategorija="dropdownKategorija"
         :iznos="inputIznos"
         :datum="inputDatum"
         :biljeska="inputBiljeska"
@@ -167,8 +175,7 @@ export default {
   },
   data: function () {
     return {
-      inputKategorija: "",
-      dropdownKategorija: "Više",
+      inputKategorija: "Više",
       inputIznos: "",
       inputDatum: "",
       inputBiljeska: "",
@@ -178,10 +185,6 @@ export default {
   methods: {
     updateKategorija(kategorija) {
       this.inputKategorija = kategorija;
-    },
-    // nekako drugacije da su mi sve kategorije u jednom
-    updateDropdownKategorija(kategorija) {
-      this.dropdownKategorija = kategorija;
     },
     stanjeRacuna() {
       this.stanje.stanjeRacuna =
@@ -226,6 +229,7 @@ export default {
 
 .kategorije {
   display: flex;
+  justify-content: space-around;
 }
 .btn {
   color: black;

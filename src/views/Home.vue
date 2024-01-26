@@ -17,18 +17,18 @@
     </div>
   </div>
 
-  <Navbar />
+  <NavbarIzbornik />
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
+import NavbarIzbornik from "@/components/NavbarIzbornik.vue";
 import stanje from "@/stanje.js";
 
 export default {
   name: "Home",
   components: {
-    Navbar,
-  },
+    NavbarIzbornik,
+},
   data: function () {
     return {
       stanje,
