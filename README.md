@@ -26,3 +26,4 @@ ExpenseTrack je web aplikacija koja je namijenjena korisnicima koji žele pratit
 ------
 
 Zaključak glasi da ExpenseTrack web aplikacija korisniku nudi jednostavnu mogućnost praćenja troškova i prihoda kroz određene bilješke i zapise koji su vidljivi u korisničkom sučelju web aplikacije. 
+
