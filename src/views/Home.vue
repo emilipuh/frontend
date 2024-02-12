@@ -1,19 +1,18 @@
 <template>
   <div class="container">
-    <div id="stanje">
+    <div id="stanje" v-if="stanje"> <!-- ako postoji stanje -->
       <h5 style="padding: 0">STANJE RAČUNA:</h5>
       <h6 style="margin-bottom: 0">{{ stanje.stanjeRacuna }} €</h6>
-      <!-- uvijek mora biti ispisana nula!!! -->
     </div>
     <div class="container-view">
-      <div id="prihodi">
+      <div id="prihodi" v-if="stanje">
         <h6>PRIHODI: {{ stanje.prihodi }} €</h6>
         <!-- čitamo sa backenda -->
       </div>
-      <div id="rashodi">
+      <div id="rashodi" v-if="stanje">
         <h6>RASHODI: {{ stanje.rashodi }} €</h6>
       </div>
-      <div id="stednja">
+      <div id="stednja" v-if="stanje">
         <h6>ŠTEDNJA: {{ stanje.stednja }} €</h6>
       </div>
     </div>
@@ -25,6 +24,7 @@
 <script>
 import NavbarIzbornik from "@/components/NavbarIzbornik.vue";
 import stanje from "@/stanje.js";
+import { Service, Stanje } from "@/services";
 
 export default {
   name: "Home",
@@ -33,17 +33,16 @@ export default {
   },
   data: function () {
     return {
-      stanje: {},
+      stanje: null,
     };
   },
   mounted() {
-    fetch("http://localhost:3000/") // vraća promise
-      .then((response) => {
-        return response.json();
-      })
+    Stanje.dohvatiStanje() // ovo mi vraća promise...
       .then((data) => {
-        console.log("Podaci s backenda: ", data);
-        this.stanje = data; // tu izjednačavamo podatke s backenda i frontenda
+        this.stanje = data; // Postavljamo dobivene podatke na stanje komponente
+      })
+      .catch((error) => {
+        console.error("Greška prilikom dohvaćanja podataka:", error);
       });
   },
 };
