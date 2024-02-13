@@ -10,7 +10,9 @@
               <input
                 type="radio"
                 class="btn-check"
-                :class="{ active: inputKategorija === 'kupovina' }"
+                :class="{
+                  active: this.stanje.uneseniPodaci.kategorija === 'kupovina',
+                }"
                 @click="updateKategorija('kupovina')"
                 name="btnradio"
                 id="kupovina"
@@ -25,7 +27,9 @@
               <input
                 type="radio"
                 class="btn-check"
-                :class="{ active: inputKategorija === 'racuni' }"
+                :class="{
+                  active: this.stanje.uneseniPodaci.kategorija === 'racuni',
+                }"
                 @click="updateKategorija('racuni')"
                 name="btnradio"
                 id="racuni"
@@ -47,13 +51,16 @@
                   <div>
                     <i class="fa-solid fa-ellipsis fa-lg"></i>
                   </div>
-                  {{ inputKategorija }}
+                  {{ this.stanje.uneseniPodaci.kategorija }}
                 </button>
                 <ul class="dropdown-menu">
                   <input
                     type="radio"
                     class="btn-check"
-                    :class="{ active: inputKategorija === 'Zdravlje' }"
+                    :class="{
+                      active:
+                        this.stanje.uneseniPodaci.kategorija === 'Zdravlje',
+                    }"
                     @click="updateKategorija('Zdravlje')"
                     name="btnradio"
                     id="zdravlje"
@@ -66,7 +73,10 @@
                   <input
                     type="radio"
                     class="btn-check"
-                    :class="{ active: inputKategorija === 'Edukacija' }"
+                    :class="{
+                      active:
+                        this.stanje.uneseniPodaci.kategorija === 'Edukacija',
+                    }"
                     @click="updateKategorija('Edukacija')"
                     name="btnradio"
                     id="edukacija"
@@ -79,7 +89,9 @@
                   <input
                     type="radio"
                     class="btn-check"
-                    :class="{ active: inputKategorija === 'Vozilo' }"
+                    :class="{
+                      active: this.stanje.uneseniPodaci.kategorija === 'Vozilo',
+                    }"
                     @click="updateKategorija('Vozilo')"
                     name="btnradio"
                     id="vozilo"
@@ -92,7 +104,11 @@
                   <input
                     type="radio"
                     class="btn-check"
-                    :class="{ active: inputKategorija === 'Kućni ljubimci' }"
+                    :class="{
+                      active:
+                        this.stanje.uneseniPodaci.kategorija ===
+                        'Kućni ljubimci',
+                    }"
                     @click="updateKategorija('Kućni ljubimci')"
                     name="btnradio"
                     id="kucniLjubimci"
@@ -105,8 +121,10 @@
                   <input
                     type="radio"
                     class="btn-check"
-                    :class="{ active: inputKategorija === 'Ostalo' }"
-                    @click="inputKategorija('Ostalo')"
+                    :class="{
+                      active: this.stanje.uneseniPodaci.kategorija === 'Ostalo',
+                    }"
+                    @click="updateKategorija('Ostalo')"
                     name="btnradio"
                     id="ostalo"
                     autocomplete="off"
@@ -120,7 +138,7 @@
         <div class="col-12">
           <label for="iznos" class="form-label">Iznos</label>
           <input
-            v-model="inputIznos"
+            v-model="this.stanje.uneseniPodaci.iznos"
             type=""
             placeholder="Iznos"
             class="form-control"
@@ -130,7 +148,7 @@
         <div class="col-12">
           <label for="datum" class="form-label">Datum</label>
           <input
-            v-model="inputDatum"
+            v-model="this.stanje.uneseniPodaci.datum"
             type="date"
             class="form-control"
             placeholder="Datum"
@@ -140,7 +158,7 @@
         <div class="col-12">
           <label for="biljeska" class="form-label">Bilješka</label>
           <input
-            v-model="inputBiljeska"
+            v-model="this.stanje.uneseniPodaci.biljeska"
             type=""
             placeholder="Bilješka"
             class="form-control"
@@ -151,13 +169,7 @@
     </div>
     <div class="buttons">
       <Ponisti />
-      <Potvrdi
-        :kategorija="inputKategorija"
-        :iznos="inputIznos"
-        :datum="inputDatum"
-        :biljeska="inputBiljeska"
-        @potvrdiUpis="spremiRashod"
-      />
+      <Potvrdi @potvrdiUpis="spremiRashod" />
     </div>
   </div>
 </template>
@@ -166,6 +178,7 @@
 import Potvrdi from "@/components/Potvrdi.vue";
 import Ponisti from "@/components/Ponisti.vue";
 import stanje from "@/stanje";
+import { Stanje } from "@/services";
 
 export default {
   name: "dodavanjeRashoda",
@@ -175,28 +188,38 @@ export default {
   },
   data: function () {
     return {
-      inputKategorija: "Više",
-      inputIznos: "",
-      inputDatum: "",
-      inputBiljeska: "",
-      stanje,
+      stanje
     };
   },
   methods: {
     updateKategorija(kategorija) {
-      this.inputKategorija = kategorija;
+      this.stanje.uneseniPodaci.kategorija = kategorija;
     },
     stanjeRacuna() {
       this.stanje.stanjeRacuna =
-        this.stanje.prihodi - this.stanje.rashodi + this.stanje.stednja;
+        this.stanje.prihodi- this.stanje.rashodi;
+        console.log("Stanje računa: ", this.stanje.stanjeRacuna)
     },
-    spremiRashod(podaci) {
-      //console.log("spremljeno: ", podaci); // tu mi se poziva samo ispis podataka na konzoli
-      let iznos = parseInt(this.inputIznos) || 0;
-      this.stanje.rashodi += iznos;
-      console.log("Stanje: ", stanje);
+    spremiRashod() {
+      // još uvijek sprema u lokalni store na frontend
+      let podaci = {
+        kategorija: this.stanje.uneseniPodaci.kategorija,
+        iznos: this.stanje.uneseniPodaci.iznos,
+        datum: this.stanje.uneseniPodaci.datum,
+        biljeska: this.stanje.uneseniPodaci.biljeska,
+      };
+      this.stanje.rashodi += parseInt(podaci.iznos);
+      console.log("Ukupni rashodi: ", this.stanje.rashodi);
+      console.log("Upisani rashod: ", podaci.iznos);
       this.$emit("potvrdiUpis", podaci);
       this.stanjeRacuna();
+      // poziv async, spremamo generirane podatke, dodati then
+      Stanje.noviRashod(podaci);
+      // isprazniti sva polja za novi upis
+      this.stanje.uneseniPodaci.kategorija = '';
+      this.stanje.uneseniPodaci.iznos = '';
+      this.stanje.uneseniPodaci.datum = '';
+      this.stanje.uneseniPodaci.biljeska = '';
     },
   },
 };

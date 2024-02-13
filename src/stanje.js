@@ -6,6 +6,12 @@ let stanje = {
   prihodi: 0,
   rashodi: 0,
   stednja: 0,
+  uneseniPodaci: {
+    kategorija: '',
+    iznos: null,
+    datum: '',
+    biljeska: ''
+  }
 };
 
 export default stanje;

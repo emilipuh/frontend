@@ -18,6 +18,7 @@
         </div>
         <div class="buttons">
           <button type="button" class="btns" data-bs-dismiss="modal">Ne</button>
+        <!-- možda umjesto router linka $router??? -->
           <router-link to="/" class="btns" @click="potvrdiUpis">Da</router-link>
         </div>
       </div>
@@ -26,25 +27,21 @@
 </template>
 
 <script>
+import stanje from '@/stanje';
+
 export default {
   name: "Potvrdi",
   methods: {
     potvrdiUpis() {
-      const podaci = {
-        kategorija: this.$props.kategorija,
-        iznos: this.$props.iznos,
-        datum: this.$props.datum,
-        biljeska: this.$props.biljeska,
+      let podaci = {
+        kategorija: stanje.uneseniPodaci.kategorija,
+        iznos: stanje.uneseniPodaci.iznos,
+        datum: stanje.uneseniPodaci.datum,
+        biljeska: stanje.uneseniPodaci.biljeska,
       };
       console.log("Potvrdi.vue komponenta - podaci: ", podaci);
       this.$emit('potvrdiUpis', podaci);
     },
-  },
-  props: {
-    kategorija: String,
-    iznos: String,
-    datum: String,
-    biljeska: String,
   },
   emits: ["potvrdiUpis"],
 };

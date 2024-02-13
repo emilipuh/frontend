@@ -10,11 +10,17 @@ let Service = axios.create({
 let Stanje = {
     async dohvatiStanje() {
         let response = await Service.get('/');
-        console.log("Odgovor sa backenda: ", response);
         let data = response.data;
         console.log("Podaci s backenda: ", data);
         return data;
-    }
+    },
+    async noviPrihod(data) { // prima nove podatke koji se trebaju spremiti
+        console.log("Spremam prihod podatke na backend...", data)
+    },
+    async noviRashod(data) { // prima nove podatke koji se trebaju spremiti
+        console.log("Spremam rashod podatke na backend...", data)
+    },
+
 }
 
 export { Service, Stanje }
