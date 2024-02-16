@@ -9,10 +9,10 @@
             <div class="d-flex">
               <input
                 type="radio"
+                name="kategorija"
                 class="btn-check"
-                :class="{ active: this.stanje.uneseniPodaci.kategorija === 'placa' }"
+                :class="{ active: stanje.kategorija === 'placa' }"
                 @click="updateKategorija('placa')"
-                name="btnradio"
                 id="placa"
                 autocomplete="off"
               />
@@ -24,12 +24,12 @@
               </label>
               <input
                 type="radio"
+                name="kategorija"
                 class="btn-check"
                 :class="{
-                  active: this.stanje.uneseniPodaci.kategorija === 'ostalo',
+                  active: stanje.kategorija === 'ostalo',
                 }"
                 @click="updateKategorija('ostalo')"
-                name="btnradio"
                 id="ostalo"
                 autocomplete="off"
               />
@@ -45,8 +45,9 @@
           <div class="col-12">
             <label for="iznos" class="form-label">Iznos</label>
             <input
-              v-model="stanje.uneseniPodaci.iznos"
+              v-model="stanje.iznos"
               type=""
+              name="iznos"
               placeholder="Iznos"
               class="form-control"
               id="iznos"
@@ -55,8 +56,9 @@
           <div class="col-12">
             <label for="datum" class="form-label">Datum</label>
             <input
-              v-model="stanje.uneseniPodaci.datum"
+              v-model="stanje.datum"
               type="date"
+              name="datum"
               class="form-control"
               placeholder="Datum"
               id="datum"
@@ -65,8 +67,9 @@
           <div class="col-12">
             <label for="biljeska" class="form-label">Bilješka</label>
             <input
-              v-model="stanje.uneseniPodaci.biljeska"
+              v-model="stanje.biljeska"
               type="text"
+              name="biljeska"
               placeholder="Bilješka"
               class="form-control"
               id="biljeska"
@@ -77,7 +80,6 @@
     </div>
     <div class="buttons">
       <Ponisti />
-      <!-- spremljeni podaci radi pregleda -->
       <Potvrdi @potvrdiUpis="spremiPrihod" />
     </div>
   </div>
@@ -87,7 +89,7 @@
 import Potvrdi from "@/components/Potvrdi.vue";
 import Ponisti from "@/components/Ponisti.vue";
 import stanje from "@/stanje";
-import { Stanje } from "@/services";
+import { Stanje, Prihod } from "@/services";
 
 export default {
   name: "dodavanjePrihoda",
@@ -101,36 +103,19 @@ export default {
     };
   },
   methods: {
-    // treba postici to da mi se nakon upisa prihoda v-model isprazni
     updateKategorija(kategorija) {
-      this.stanje.uneseniPodaci.kategorija = kategorija;
+      this.stanje.kategorija = kategorija;
     },
-    stanjeRacuna() {
-      this.stanje.stanjeRacuna = this.stanje.prihodi - this.stanje.rashodi;
-      console.log("Stanje računa: ", this.stanje.stanjeRacuna)
-    },
-    // ovdje ću nekako pozivati async metodu za spremanje novih upisanih podataka
-    // vjerojatno će ova metoda biti u index.js / services
     spremiPrihod() {
-      // još uvijek sprema na lokalni store u frontend, pod stanje
-      let podaci = {
-        kategorija: this.stanje.uneseniPodaci.kategorija,
-        iznos: this.stanje.uneseniPodaci.iznos,
-        datum: this.stanje.uneseniPodaci.datum,
-        biljeska: this.stanje.uneseniPodaci.biljeska,
-      };
-      this.stanje.prihodi += parseInt(podaci.iznos);
-      console.log("Ukupni prihodi: ", this.stanje.prihodi);
-      console.log("Upisani prihod: ", podaci.iznos);
-      this.$emit("potvrdiUpis", podaci);
-      this.stanjeRacuna();
-      // poziv async, spremamo generirane podatke, dodati then
-      Stanje.noviPrihod(podaci);
-      // isprazniti sva polja za novi upis
-      this.stanje.uneseniPodaci.kategorija = '';
-      this.stanje.uneseniPodaci.iznos = '';
-      this.stanje.uneseniPodaci.datum = '';
-      this.stanje.uneseniPodaci.biljeska = '';
+      Prihod.noviPrihod({
+        id: this.stanje._id,
+        kategorija: this.stanje.kategorija,
+        iznos: this.stanje.iznos,
+        datum: this.stanje.datum,
+        biljeska: this.stanje.biljeska,
+      }).then((data) => {
+        console.log("Spremljeni podaci: ", data);
+      });
     },
   },
 };

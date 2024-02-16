@@ -1,17 +1,27 @@
 // samo varijabla u koju će se puniti stanje
 // globalna datoteka
 
-let stanje = {
-  stanjeRacuna: 0,
-  prihodi: 0,
-  rashodi: 0,
-  stednja: 0,
-  uneseniPodaci: {
-    kategorija: '',
+export default {
+  stanjeRacuna: {
     iznos: null,
-    datum: '',
-    biljeska: ''
-  }
+    prihodi: null,
+    rashodi: null
+  },
+  prihodi: {
+    kategorija: "",
+    iznos: null,
+    datum: null,
+    biljeska: "",
+  },
+  rashodi: {
+    kategorija: "",
+    iznos: null,
+    datum: null,
+    biljeska: "",
+  },
+  stednja: {
+    iznos: null,
+    datum: null,
+    biljeska: "",
+  },
 };
-
-export default stanje;

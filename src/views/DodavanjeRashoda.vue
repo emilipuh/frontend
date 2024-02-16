@@ -11,7 +11,7 @@
                 type="radio"
                 class="btn-check"
                 :class="{
-                  active: this.stanje.uneseniPodaci.kategorija === 'kupovina',
+                  active: stanje.kategorija === 'kupovina',
                 }"
                 @click="updateKategorija('kupovina')"
                 name="btnradio"
@@ -28,7 +28,7 @@
                 type="radio"
                 class="btn-check"
                 :class="{
-                  active: this.stanje.uneseniPodaci.kategorija === 'racuni',
+                  active: stanje.kategorija === 'racuni',
                 }"
                 @click="updateKategorija('racuni')"
                 name="btnradio"
@@ -51,15 +51,14 @@
                   <div>
                     <i class="fa-solid fa-ellipsis fa-lg"></i>
                   </div>
-                  {{ this.stanje.uneseniPodaci.kategorija }}
+                  {{ dropdownKategorija }}
                 </button>
                 <ul class="dropdown-menu">
                   <input
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active:
-                        this.stanje.uneseniPodaci.kategorija === 'Zdravlje',
+                      active: dropdownKategorija === 'Zdravlje',
                     }"
                     @click="updateKategorija('Zdravlje')"
                     name="btnradio"
@@ -74,8 +73,7 @@
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active:
-                        this.stanje.uneseniPodaci.kategorija === 'Edukacija',
+                      active: dropdownKategorija === 'Edukacija',
                     }"
                     @click="updateKategorija('Edukacija')"
                     name="btnradio"
@@ -90,7 +88,7 @@
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active: this.stanje.uneseniPodaci.kategorija === 'Vozilo',
+                      active: dropdownKategorija === 'Vozilo',
                     }"
                     @click="updateKategorija('Vozilo')"
                     name="btnradio"
@@ -105,9 +103,7 @@
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active:
-                        this.stanje.uneseniPodaci.kategorija ===
-                        'Kućni ljubimci',
+                      active: dropdownKategorija === 'Kućni ljubimci',
                     }"
                     @click="updateKategorija('Kućni ljubimci')"
                     name="btnradio"
@@ -122,7 +118,7 @@
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active: this.stanje.uneseniPodaci.kategorija === 'Ostalo',
+                      active: dropdownKategorija === 'Ostalo',
                     }"
                     @click="updateKategorija('Ostalo')"
                     name="btnradio"
@@ -138,7 +134,7 @@
         <div class="col-12">
           <label for="iznos" class="form-label">Iznos</label>
           <input
-            v-model="this.stanje.uneseniPodaci.iznos"
+            v-model="stanje.iznos"
             type=""
             placeholder="Iznos"
             class="form-control"
@@ -148,7 +144,7 @@
         <div class="col-12">
           <label for="datum" class="form-label">Datum</label>
           <input
-            v-model="this.stanje.uneseniPodaci.datum"
+            v-model="stanje.datum"
             type="date"
             class="form-control"
             placeholder="Datum"
@@ -158,7 +154,7 @@
         <div class="col-12">
           <label for="biljeska" class="form-label">Bilješka</label>
           <input
-            v-model="this.stanje.uneseniPodaci.biljeska"
+            v-model="stanje.biljeska"
             type=""
             placeholder="Bilješka"
             class="form-control"
@@ -178,7 +174,7 @@
 import Potvrdi from "@/components/Potvrdi.vue";
 import Ponisti from "@/components/Ponisti.vue";
 import stanje from "@/stanje";
-import { Stanje } from "@/services";
+import { Stanje, Rashod } from "@/services";
 
 export default {
   name: "dodavanjeRashoda",
@@ -186,40 +182,47 @@ export default {
     Potvrdi,
     Ponisti,
   },
-  data: function () {
+  data() {
     return {
-      stanje
+      stanje,
+      dropdownKategorija: 'Više'
     };
   },
   methods: {
     updateKategorija(kategorija) {
-      this.stanje.uneseniPodaci.kategorija = kategorija;
+      if(['Zdravlje', 'Edukacija', 'Vozilo', 'Kućni ljubimci', 'Ostalo'].includes(kategorija)) {
+        this.dropdownKategorija = kategorija;
+        console.log("Trenutna kategorija: ", kategorija)
+      } else {
+        this.stanje.kategorija = kategorija;
+        console.log("Trenutna kategorija: ", kategorija)
+      }
     },
-    stanjeRacuna() {
-      this.stanje.stanjeRacuna =
-        this.stanje.prihodi- this.stanje.rashodi;
-        console.log("Stanje računa: ", this.stanje.stanjeRacuna)
-    },
+    // stanjeRacuna() {
+    //   this.stanjeRacuna =
+    //     this.stanje.prihodi- this.stanje.rashodi;
+    //     console.log("Stanje računa: ", this.stanje.stanjeRacuna)
+    // },
     spremiRashod() {
-      // još uvijek sprema u lokalni store na frontend
-      let podaci = {
-        kategorija: this.stanje.uneseniPodaci.kategorija,
-        iznos: this.stanje.uneseniPodaci.iznos,
-        datum: this.stanje.uneseniPodaci.datum,
-        biljeska: this.stanje.uneseniPodaci.biljeska,
-      };
-      this.stanje.rashodi += parseInt(podaci.iznos);
-      console.log("Ukupni rashodi: ", this.stanje.rashodi);
-      console.log("Upisani rashod: ", podaci.iznos);
-      this.$emit("potvrdiUpis", podaci);
-      this.stanjeRacuna();
-      // poziv async, spremamo generirane podatke, dodati then
-      Stanje.noviRashod(podaci);
-      // isprazniti sva polja za novi upis
-      this.stanje.uneseniPodaci.kategorija = '';
-      this.stanje.uneseniPodaci.iznos = '';
-      this.stanje.uneseniPodaci.datum = '';
-      this.stanje.uneseniPodaci.biljeska = '';
+      // // još uvijek sprema u lokalni store na frontend
+      // let noviRashod = {
+      //   kategorija: this.kategorija,
+      //   iznos: this.iznos,
+      //   datum: this.datum,
+      //   biljeska: this.biljeska,
+      // };
+      // this.stanje.rashodi += parseInt(noviRashod.iznos);
+      // console.log("Ukupni rashodi: ", this.stanje.rashodi);
+      // console.log("Upisani rashod: ", noviRashod.iznos);
+      // this.$emit("potvrdiUpis", noviRashod);
+      // // this.stanjeRacuna();
+      // // poziv async, spremamo generirane podatke, dodati then
+      // Rashod.noviRashod(noviRashod);
+      // // isprazniti sva polja za novi upis
+      // // this.kategorija = "";
+      // // this.iznos = "";
+      // // this.datum = "";
+      // // this.biljeska = "";
     },
   },
 };

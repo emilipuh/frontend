@@ -36,12 +36,16 @@
 
 <script>
 import Obrisi from "@/components/Obrisi.vue";
+import { Prihod } from "@/services";
 
 export default {
   name: "pregledPrihoda",
   components: {
     Obrisi,
   },
+  mounted(){ 
+    Prihod.pregledPrihoda()
+  }
 };
 </script>
 
