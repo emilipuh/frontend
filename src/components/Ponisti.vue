@@ -18,7 +18,7 @@
         </div>
         <div class="buttons">
           <button type="button" class="btns" data-bs-dismiss="modal">Ne</button>
-          <router-link to="/" class="btns">Da</router-link>
+          <button class="btns" @click="ponisti()">Da</button>
         </div>
       </div>
     </div>
@@ -28,6 +28,11 @@
 <script>
 export default {
   name: "Potvrdi",
+  methods: {
+    ponisti() {
+      this.$router.push({ name: 'home' })
+    }
+  }
 };
 </script>
 

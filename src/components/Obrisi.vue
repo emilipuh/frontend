@@ -17,7 +17,7 @@
         </div>
         <div class="buttons">
           <button type="button" class="btns" data-bs-dismiss="modal">Ne</button>
-          <router-link to="/" class="btns">Da</router-link>
+          <button class="btns" @click="obrisi()">Da</button>
         </div>
       </div>
     </div>

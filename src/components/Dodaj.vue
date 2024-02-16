@@ -5,9 +5,9 @@
     data-bs-toggle="modal"
     data-bs-target="#dodaj"
   >
-  <div class="navbar-icon">
-    <i class="fa-regular fa-square-plus fa-xl"></i>
-  </div>
+    <div class="navbar-icon">
+      <i class="fa-regular fa-square-plus fa-xl"></i>
+    </div>
     Dodaj
   </button>
   <div
@@ -20,16 +20,8 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body d-flex flex-column">
-          <button class="btnPrihod bg-light">
-            <router-link to="/dodajPrihod"
-              >+ Prihod</router-link
-            >
-          </button>
-          <button class="btnRashod bg-light">
-            <router-link to="/dodajRashod"
-              >- Rashod</router-link
-            >
-          </button>
+          <button class="btnPrihod bg-light" @click="noviPrihod()">+ Prihod</button>
+          <button class="btnRashod bg-light" @click="noviRashod()">- Rashod</button>
         </div>
       </div>
     </div>
@@ -39,6 +31,14 @@
 <script>
 export default {
   name: "Dodaj",
+  methods: {
+    noviPrihod() {
+      this.$router.push({ name: 'dodajPrihod' })
+    },
+    noviRashod() {
+      this.$router.push({ name: 'dodajRashod' })
+    }
+  }
 };
 </script>
 
@@ -50,6 +50,7 @@ export default {
 
 .btnPrihod,
 .btnRashod {
+  font-size: 18px;
   padding: 12px 0px;
   border-radius: 10px;
   border: none;

@@ -38,9 +38,9 @@
               </div>
               <ul class="dropdown-menu">
                 <li>
-                  <router-link to="/pregledPrihoda" class="dropdown-item"
-                    >Pregled prihoda</router-link
-                  >
+                  <button class="dropdown-item" @click="pregledPrihoda">
+                    Pregled prihoda
+                  </button>
                 </li>
               </ul>
             </li>
@@ -55,21 +55,21 @@
               </div>
               <ul class="dropdown-menu">
                 <li>
-                  <router-link to="/pregledRashoda" class="dropdown-item"
-                    >Pregled rashoda</router-link
-                  >
+                  <button class="dropdown-item" @click="pregledRashoda">
+                    Pregled rashoda
+                  </button>
                 </li>
               </ul>
             </li>
             <li class="mt-5">
-              <router-link to="/stednja" class="nav-item">Štednja</router-link>
+              <button class="nav-item" @click="stednja">Štednja</button>
             </li>
           </ul>
         </div>
         <div class="offcanvas-footer">
           <i class="fa-solid fa-power-off"></i>
           <!-- router link -->
-          <a style="margin-left: 1vh;" class="nav-item" >Odjava</a>
+          <a style="margin-left: 1vh" class="nav-item">Odjava</a>
         </div>
       </div>
     </div>
@@ -86,6 +86,18 @@ export default {
     KorisnickiPodaci,
     Dodaj,
   },
+  methods: {
+    pregledPrihoda() {
+      this.$router.push({ name: "pregledPrihoda" });
+    },
+    pregledRashoda() {
+      this.$router.push({ name: "pregledRashoda" });
+
+    },
+    stednja() {
+      this.$router.push({ name: "stednja" });
+    },
+  },
 };
 </script>
 
@@ -100,6 +112,9 @@ export default {
 .nav-item {
   padding-bottom: 10px;
   font-size: 20px;
+  background-color: inherit;
+  border: none;
+  padding-left: 0;
 }
 .btn {
   border: none;
