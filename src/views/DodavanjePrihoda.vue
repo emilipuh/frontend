@@ -11,7 +11,7 @@
                 type="radio"
                 name="kategorija"
                 class="btn-check"
-                :class="{ active: stanje.kategorija === 'placa' }"
+                :class="{ active: stanje.prihodi.kategorija === 'placa' }"
                 @click="updateKategorija('placa')"
                 id="placa"
                 autocomplete="off"
@@ -27,7 +27,7 @@
                 name="kategorija"
                 class="btn-check"
                 :class="{
-                  active: stanje.kategorija === 'ostalo',
+                  active: stanje.prihodi.kategorija === 'ostalo',
                 }"
                 @click="updateKategorija('ostalo')"
                 id="ostalo"
@@ -45,7 +45,7 @@
           <div class="col-12">
             <label for="iznos" class="form-label">Iznos</label>
             <input
-              v-model="stanje.iznos"
+              v-model="stanje.prihodi.iznos"
               type=""
               name="iznos"
               placeholder="Iznos"
@@ -56,7 +56,7 @@
           <div class="col-12">
             <label for="datum" class="form-label">Datum</label>
             <input
-              v-model="stanje.datum"
+              v-model="stanje.prihodi.datum"
               type="date"
               name="datum"
               class="form-control"
@@ -67,7 +67,7 @@
           <div class="col-12">
             <label for="biljeska" class="form-label">Bilješka</label>
             <input
-              v-model="stanje.biljeska"
+              v-model="stanje.prihodi.biljeska"
               type="text"
               name="biljeska"
               placeholder="Bilješka"
@@ -104,18 +104,24 @@ export default {
   },
   methods: {
     updateKategorija(kategorija) {
-      this.stanje.kategorija = kategorija;
+      this.stanje.prihodi.kategorija = kategorija;
     },
     spremiPrihod() {
-      Prihod.noviPrihod({
-        id: this.stanje._id,
-        kategorija: this.stanje.kategorija,
-        iznos: this.stanje.iznos,
-        datum: this.stanje.datum,
-        biljeska: this.stanje.biljeska,
-      }).then((data) => {
-        console.log("Spremljeni podaci: ", data);
-      });
+      let noviPrihodPodaci = {
+        kategorija: this.stanje.prihodi.kategorija,
+        iznos: this.stanje.prihodi.iznos,
+        datum: this.stanje.prihodi.datum,
+        biljeska: this.stanje.prihodi.biljeska
+      }
+
+      Prihod.noviPrihod(noviPrihodPodaci)
+        .then(() => { // prazna callback funkcija jer u return u noviPrihod ne vraćamo ništa
+          Stanje.dohvatiStanje()
+            .then((noviPrihodPodaci) => {
+              this.$emit('azurirajStanje', noviPrihodPodaci);
+            })
+          console.log("Spremljeno: ", noviPrihodPodaci)
+        })
     },
   },
 };
