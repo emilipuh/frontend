@@ -5,11 +5,11 @@
     <div class="upisi">
       <!-- morati će biti neki v-for koji vuce iz baze -->
       <!-- jedan hard coded za primjer -->
-      <div class="upis">
-        <div class="content mb-2"> 
-          <p class="text">15/10/2023 - 150 €</p>
+      <div class="upis" v-for="(rashod, index) in rashodi" :key="index">
+        <div class="content mb-2">
+          <p class="text">{{ rashod.datum }} - {{ rashod.iznos }} €</p>
           <p class="text" style="width: 25vh; text-align: center">
-            Mjesečna rata za kredit
+            {{ rashod.biljeska }}
           </p>
         </div>
         <div class="obrisi">
@@ -18,18 +18,35 @@
       </div>
     </div>
   </div>
-  <!-- <router-link to="/" id="icon">
-    <i class="fa-solid fa-caret-left fa-2xl" id="icon"></i
-  ></router-link> -->
 </template>
 
 <script>
 import Obrisi from "@/components/Obrisi.vue";
+import stanje from "@/stanje";
+import { Rashod } from "@/services";
 
 export default {
   name: "pregledRashoda",
   components: {
     Obrisi,
+  },
+  data() {
+    return {
+      stanje,
+      rashodi: [],
+    };
+  },
+  mounted() {
+    this.pregledRashoda();
+  },
+  methods: {
+    async pregledRashoda() {
+      try {
+        this.rashodi = await Rashod.pregledRashoda();
+      } catch (err) {
+        console.error("Greška prilikom dohvata: ", err);
+      }
+    },
   },
 };
 </script>
