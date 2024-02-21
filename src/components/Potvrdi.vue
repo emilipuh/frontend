@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     handleClick() {
-      console.log("Izvršena potvrdi komponenta")
       this.$emit("potvrdiUpis");
       this.$router.push({ name: 'home' })
     },

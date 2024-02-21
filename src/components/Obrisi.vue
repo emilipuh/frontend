@@ -27,6 +27,11 @@
 <script>
 export default {
   name: "Obrisi",
+  methods: {
+    obrisi() {
+      console.log("Upit za brisanje")
+    }
+  }
 };
 </script>
 
