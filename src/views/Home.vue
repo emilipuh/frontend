@@ -1,20 +1,19 @@
 <template>
   <div class="container">
-    <div id="stanje" v-if="stanje">
-      <!-- ako postoji stanje -->
+    <div id="stanje">
       <h5 style="padding: 0">STANJE RAČUNA:</h5>
-      <h6 style="margin-bottom: 0">{{ stanje.iznos }} €</h6>
+      <h6 style="margin-bottom: 0">{{ stanjeRacuna }} €</h6>
     </div>
     <div class="container-view">
-      <div id="prihodi" v-if="stanje">
-        <h6>PRIHODI: {{ stanje.prihodi }} €</h6>
+      <div id="prihodi">
+        <h6>PRIHODI: {{ prihodi }} €</h6>
         <!-- čitamo sa backenda -->
       </div>
-      <div id="rashodi" v-if="stanje">
-        <h6>RASHODI: {{ stanje.rashodi }} €</h6>
+      <div id="rashodi">
+        <h6>RASHODI: {{ rashodi }} €</h6>
       </div>
-      <div id="stednja" v-if="stanje">
-        <h6>ŠTEDNJA: {{ stanje.stednja }} €</h6>
+      <div id="stednja">
+        <h6>ŠTEDNJA: {{ stednja.iznos || 0 }} €</h6>
       </div>
     </div>
   </div>
@@ -33,23 +32,27 @@ export default {
     NavbarIzbornik,
   },
   data: function () {
-    return {
-      stanje,
-    };
+    return stanje
   },
   mounted() {
-    // pomocu axiosa
-    Stanje.dohvatiStanje() // ovo mi vraća promise...
-      .then((data) => {
-        this.stanje = data;
-      })
-      .catch((err) => {
-        console.error("Dogodila se greška prilikom dohvata podataka: " + err);
-      });
+    this.azuriranjeStanja();
   },
   methods: {
-    azurirajStanje(novoStanje) {
-      this.stanje = novoStanje;
+    azuriranjeStanja() {
+      Stanje.dohvatiStanje()
+        .then((data) => {
+          this.stanjeRacuna = data.stanjeRacuna;
+          this.prihodi = data.prihodi;
+          this.rashodi = data.rashodi;
+          console.log("Ukupno stanje: ", this.stanjeRacuna);
+          console.log("Ukupni prihodi: ", this.prihodi);
+          console.log("Ukupni rashodi: ", this.rashodi);
+        })
+        .catch((error) => {
+          console.error(
+            "Dogodila se greška prilikom dohvata podataka: " + error
+          );
+        });
     },
   },
 };
