@@ -2,26 +2,25 @@
 // globalna datoteka
 
 export default {
-  stanjeRacuna: {
-    iznos: null,
-    prihodi: null,
-    rashodi: null
-  },
-  prihodi: {
+  stanjeRacuna: 0,
+  prihodi: 0,
+  prihod: {
     kategorija: "",
     iznos: null,
-    datum: null,
+    datum: "",
     biljeska: "",
   },
-  rashodi: {
+  rashodi: 0,
+  rashod: {
+    dropdownKategorija: 'Više',
     kategorija: "",
     iznos: null,
-    datum: null,
+    datum: "",
     biljeska: "",
   },
   stednja: {
     iznos: null,
-    datum: null,
+    datum: "",
     biljeska: "",
   },
 };
