@@ -11,7 +11,7 @@
                 type="radio"
                 class="btn-check"
                 :class="{
-                  active: stanje.kategorija === 'kupovina',
+                  active: rashod.kategorija === 'kupovina',
                 }"
                 @click="updateKategorija('kupovina')"
                 name="btnradio"
@@ -28,7 +28,7 @@
                 type="radio"
                 class="btn-check"
                 :class="{
-                  active: stanje.kategorija === 'racuni',
+                  active: rashod.kategorija === 'racuni',
                 }"
                 @click="updateKategorija('racuni')"
                 name="btnradio"
@@ -51,14 +51,14 @@
                   <div>
                     <i class="fa-solid fa-ellipsis fa-lg"></i>
                   </div>
-                  {{ dropdownKategorija }}
+                  {{ rashod.dropdownKategorija }}
                 </button>
                 <ul class="dropdown-menu">
                   <input
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active: dropdownKategorija === 'Zdravlje',
+                      active: rashod.dropdownKategorija === 'Zdravlje',
                     }"
                     @click="updateKategorija('Zdravlje')"
                     name="btnradio"
@@ -73,7 +73,7 @@
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active: dropdownKategorija === 'Edukacija',
+                      active: rashod.dropdownKategorija === 'Edukacija',
                     }"
                     @click="updateKategorija('Edukacija')"
                     name="btnradio"
@@ -88,7 +88,7 @@
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active: dropdownKategorija === 'Vozilo',
+                      active: rashod.dropdownKategorija === 'Vozilo',
                     }"
                     @click="updateKategorija('Vozilo')"
                     name="btnradio"
@@ -103,7 +103,7 @@
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active: dropdownKategorija === 'Kućni ljubimci',
+                      active: rashod.dropdownKategorija === 'Kućni ljubimci',
                     }"
                     @click="updateKategorija('Kućni ljubimci')"
                     name="btnradio"
@@ -118,7 +118,7 @@
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active: dropdownKategorija === 'Ostalo',
+                      active: rashod.dropdownKategorija === 'Ostalo',
                     }"
                     @click="updateKategorija('Ostalo')"
                     name="btnradio"
@@ -134,7 +134,7 @@
         <div class="col-12">
           <label for="iznos" class="form-label">Iznos</label>
           <input
-            v-model="stanje.iznos"
+            v-model="rashod.iznos"
             type=""
             placeholder="Iznos"
             class="form-control"
@@ -144,7 +144,7 @@
         <div class="col-12">
           <label for="datum" class="form-label">Datum</label>
           <input
-            v-model="stanje.datum"
+            v-model="rashod.datum"
             type="date"
             class="form-control"
             placeholder="Datum"
@@ -154,7 +154,7 @@
         <div class="col-12">
           <label for="biljeska" class="form-label">Bilješka</label>
           <input
-            v-model="stanje.biljeska"
+            v-model="rashod.biljeska"
             type=""
             placeholder="Bilješka"
             class="form-control"
@@ -183,46 +183,46 @@ export default {
     Ponisti,
   },
   data() {
-    return {
-      stanje,
-      dropdownKategorija: 'Više'
-    };
+    return stanje;
   },
   methods: {
     updateKategorija(kategorija) {
-      if(['Zdravlje', 'Edukacija', 'Vozilo', 'Kućni ljubimci', 'Ostalo'].includes(kategorija)) {
-        this.dropdownKategorija = kategorija;
-        console.log("Trenutna kategorija: ", kategorija)
+      if (
+        [
+          "Zdravlje",
+          "Edukacija",
+          "Vozilo",
+          "Kućni ljubimci",
+          "Ostalo",
+        ].includes(kategorija)
+      ) {
+        this.rashod.dropdownKategorija = kategorija;
       } else {
-        this.stanje.kategorija = kategorija;
-        console.log("Trenutna kategorija: ", kategorija)
+        this.rashod.dropdownKategorija = "Više";
+        this.rashod.kategorija = kategorija;
       }
     },
-    // stanjeRacuna() {
-    //   this.stanjeRacuna =
-    //     this.stanje.prihodi- this.stanje.rashodi;
-    //     console.log("Stanje računa: ", this.stanje.stanjeRacuna)
-    // },
     spremiRashod() {
-      // // još uvijek sprema u lokalni store na frontend
-      // let noviRashod = {
-      //   kategorija: this.kategorija,
-      //   iznos: this.iznos,
-      //   datum: this.datum,
-      //   biljeska: this.biljeska,
-      // };
-      // this.stanje.rashodi += parseInt(noviRashod.iznos);
-      // console.log("Ukupni rashodi: ", this.stanje.rashodi);
-      // console.log("Upisani rashod: ", noviRashod.iznos);
-      // this.$emit("potvrdiUpis", noviRashod);
-      // // this.stanjeRacuna();
-      // // poziv async, spremamo generirane podatke, dodati then
-      // Rashod.noviRashod(noviRashod);
-      // // isprazniti sva polja za novi upis
-      // // this.kategorija = "";
-      // // this.iznos = "";
-      // // this.datum = "";
-      // // this.biljeska = "";
+      let noviRashodPodaci = {
+        kategorija: this.rashod.kategorija || this.rashod.dropdownKategorija,
+        iznos: this.rashod.iznos,
+        datum: this.rashod.datum,
+        biljeska: this.rashod.biljeska,
+      };
+      Rashod.noviRashod(noviRashodPodaci).then(() => {
+        console.log("Spremljeno: ", noviRashodPodaci);
+        this.rashod.iznos = parseInt(noviRashodPodaci.iznos);
+        console.log(
+          "Rashod izjednačen sa noviRashodPodaci.iznos: ",
+          this.rashod.iznos
+        );
+        this.rashodi += parseInt(this.rashod.iznos);
+        console.log("Ukupni rashodi: ", this.rashodi);
+        Stanje.dohvatiStanje().then((data) => {
+          data.stanjeRacuna = this.prihodi - this.rashodi;
+          console.log("data.stanjeracuna", data.stanjeRacuna);
+        });
+      });
     },
   },
 };
