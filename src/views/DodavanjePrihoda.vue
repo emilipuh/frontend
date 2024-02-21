@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="dodajPrihod">
-      <div class="content">
+      <form class="content">
         <h5 class="title">Novi prihod</h5>
         <div class="row">
           <div class="col-12">
@@ -11,7 +11,7 @@
                 type="radio"
                 name="kategorija"
                 class="btn-check"
-                :class="{ active: stanje.prihodi.kategorija === 'placa' }"
+                :class="{ active: prihod.kategorija === 'placa' }"
                 @click="updateKategorija('placa')"
                 id="placa"
                 autocomplete="off"
@@ -26,9 +26,7 @@
                 type="radio"
                 name="kategorija"
                 class="btn-check"
-                :class="{
-                  active: stanje.prihodi.kategorija === 'ostalo',
-                }"
+                :class="{ active: prihod.kategorija === 'ostalo' }"
                 @click="updateKategorija('ostalo')"
                 id="ostalo"
                 autocomplete="off"
@@ -45,7 +43,7 @@
           <div class="col-12">
             <label for="iznos" class="form-label">Iznos</label>
             <input
-              v-model="stanje.prihodi.iznos"
+              v-model="prihod.iznos"
               type=""
               name="iznos"
               placeholder="Iznos"
@@ -56,7 +54,7 @@
           <div class="col-12">
             <label for="datum" class="form-label">Datum</label>
             <input
-              v-model="stanje.prihodi.datum"
+              v-model="prihod.datum"
               type="date"
               name="datum"
               class="form-control"
@@ -67,7 +65,7 @@
           <div class="col-12">
             <label for="biljeska" class="form-label">Bilješka</label>
             <input
-              v-model="stanje.prihodi.biljeska"
+              v-model="prihod.biljeska"
               type="text"
               name="biljeska"
               placeholder="Bilješka"
@@ -76,7 +74,7 @@
             />
           </div>
         </div>
-      </div>
+      </form>
     </div>
     <div class="buttons">
       <Ponisti />
@@ -97,31 +95,39 @@ export default {
     Potvrdi,
     Ponisti,
   },
-  data: function () {
-    return {
-      stanje,
-    };
+  data() {
+    return stanje;
   },
   methods: {
     updateKategorija(kategorija) {
-      this.stanje.prihodi.kategorija = kategorija;
+      this.prihod.kategorija = kategorija;
+      console.log("Odabrana kategorija: ", kategorija);
+      console.log("Trenutno stanje: ", this.prihod); // ovo mi je cijeli js za stanje
     },
     spremiPrihod() {
       let noviPrihodPodaci = {
-        kategorija: this.stanje.prihodi.kategorija,
-        iznos: this.stanje.prihodi.iznos,
-        datum: this.stanje.prihodi.datum,
-        biljeska: this.stanje.prihodi.biljeska
-      }
+        kategorija: this.prihod.kategorija,
+        iznos: this.prihod.iznos,
+        datum: this.prihod.datum,
+        biljeska: this.prihod.biljeska,
+      };
 
-      Prihod.noviPrihod(noviPrihodPodaci)
-        .then(() => { // prazna callback funkcija jer u return u noviPrihod ne vraćamo ništa
+      Prihod.noviPrihod(noviPrihodPodaci) // vraća promise 
+        .then(() => {         
+          console.log("Spremljeno: ", noviPrihodPodaci);
+          this.prihod.iznos = parseInt(noviPrihodPodaci.iznos);
+          console.log("Prihod izjednačen sa noviprihodpodaci.iznos: ", this.prihod.iznos)
+          this.prihodi += parseInt(this.prihod.iznos);
+          console.log("Ukupni prihodi: ", this.prihodi)
           Stanje.dohvatiStanje()
-            .then((noviPrihodPodaci) => {
-              this.$emit('azurirajStanje', noviPrihodPodaci);
+            .then(data => {
+              data.stanjeRacuna = this.prihodi - this.rashodi; 
+              console.log("data.stanjeracuna", data.stanjeRacuna)
             })
-          console.log("Spremljeno: ", noviPrihodPodaci)
         })
+        .catch((error) => {
+          console.error("Greška prilikom spremanja prihoda:", error);
+        });
     },
   },
 };
