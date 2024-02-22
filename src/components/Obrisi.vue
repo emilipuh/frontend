@@ -17,7 +17,7 @@
         </div>
         <div class="buttons">
           <button type="button" class="btns" data-bs-dismiss="modal">Ne</button>
-          <button class="btns" @click="obrisi()">Da</button>
+          <button class="btns" @click="handleClick()">Da</button>
         </div>
       </div>
     </div>
@@ -28,10 +28,12 @@
 export default {
   name: "Obrisi",
   methods: {
-    obrisi() {
-      console.log("Upit za brisanje")
-    }
-  }
+    handleClick() {
+      this.$emit("obrisiUpis");
+      this.$router.push({ name: "home" });
+    },
+  },
+  emits: ["obrisiUpis"],
 };
 </script>
 
