@@ -10,9 +10,10 @@
             {{ prihod.biljeska }}
           </p>
         </div>
-        <div class="obrisi">
-          <Obrisi />
-        </div>
+        <!-- <div class="obrisi">
+          <Obrisi @obrisiUpis="obrisiPrihod()"/>
+        </div> -->
+        <button class="btn" @click="detaljiPrihoda(prihod._id)">Uredi</button>
       </div>
     </div>
   </div>
@@ -45,6 +46,9 @@ export default {
         console.error("Greška prilikom dohvata prihoda:", err);
       }
     },
+    detaljiPrihoda() {
+      this.$router.push({ name: 'detaljiPrihoda' })
+    }
   },
 };
 </script>
