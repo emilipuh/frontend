@@ -3,6 +3,7 @@ import Home from '../views/Home.vue';
 import DodavanjePrihoda from '@/views/DodavanjePrihoda';
 import DodavanjeRashoda from '@/views/DodavanjeRashoda';
 import PregledPrihoda from '@/views/PregledPrihoda';
+import DetaljiPrihoda from '@/views/DetaljiPrihoda'
 import PregledRashoda from '@/views/PregledRashoda';
 import Stednja from '@/views/Stednja';
 import DodajStednju from '@/views/DodajStednju';
@@ -27,7 +28,13 @@ const routes = [
     path: '/pregledPrihoda',
     name: 'pregledPrihoda',
     component: PregledPrihoda
-  }, 
+  },
+  {
+    path: '/detaljiPrihoda/:id',
+    name: 'detaljiPrihoda',
+    component: DetaljiPrihoda,
+    props: true
+  },  
   {
     path: '/pregledRashoda',
     name: 'pregledRashoda',
