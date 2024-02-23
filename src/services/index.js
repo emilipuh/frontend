@@ -32,12 +32,12 @@ let Stanje = {
       let response3 = await Service.get("/pregledRashoda");
       let rashodi = response3.data;
       console.log("Dohvaćeni rashodi: ", rashodi);
-      for (let i = 0; i < rashodi.length; i++){
+      for (let i = 0; i < rashodi.length; i++) {
         let rashod = rashodi[i];
         let iznosRashoda = rashod.iznos;
         data.rashodi += iznosRashoda;
         data.stanjeRacuna = data.prihodi - data.rashodi;
-      } 
+      }
       return data;
     } catch (error) {
       console.error("Greška prilikom dohvata stanja:", error);
@@ -70,7 +70,22 @@ let Prihod = {
     console.log("Prihodi sa backenda: ", data);
     return data;
   },
-  async obrisiPrihod(prihod_id) {},
+  async dohvatiPrihod(id) {
+    console.log("ID: ", id)
+    let response = await Service.get(`detaljiPrihoda/${id}`)
+    let data = response.data
+    console.log("Detalji prihoda: ", data)
+    return data;
+  }
+  // async obrisiPrihod(prihodId) {
+  //   try {
+  //     let response = await Service.delete(`/pregledPrihoda`, prihodId);
+  //     console.log("Prihod uspješno obrisan");
+  //     // Dodajte logiku za osvježavanje prikaza prihoda nakon brisanja
+  //   } catch (error) {
+  //     console.error("Greška prilikom brisanja prihoda:", error);
+  //   }
+  // }
 };
 
 let Rashod = {
