@@ -10,7 +10,7 @@
             {{ prihod.biljeska }}
           </p>
         </div>
-        <button class="btn" @click="detaljiPrihoda(prihod)">Uredi</button>
+        <button class="btn" @click="detaljiPrihoda(prihod)">Pregled</button>
       </div>
     </div>
   </div>
