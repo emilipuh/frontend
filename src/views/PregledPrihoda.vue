@@ -3,32 +3,25 @@
     <h5>Prihodi</h5>
     <h6 style="text-align: start; margin: 4vh 2vh">Pregled upisa</h6>
     <div class="upisi">
-      <div class="upis" v-for="(prihod, index) in prihodi" :key="index">
+      <div class="upis" v-for="prihod in prihodi" :key="prihod._id">
         <div class="content mb-2">
           <p class="text">{{ prihod.datum }} - {{ prihod.iznos }} €</p>
           <p class="text" style="width: 25vh; text-align: center">
             {{ prihod.biljeska }}
           </p>
         </div>
-        <!-- <div class="obrisi">
-          <Obrisi @obrisiUpis="obrisiPrihod()"/>
-        </div> -->
-        <button class="btn" @click="detaljiPrihoda(prihod._id)">Uredi</button>
+        <button class="btn" @click="detaljiPrihoda(prihod)">Uredi</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Obrisi from "@/components/Obrisi.vue";
 import { Prihod } from "@/services";
 import stanje from "@/stanje";
 
 export default {
   name: "pregledPrihoda",
-  components: {
-    Obrisi,
-  },
   data() {
     return {
       stanje,
@@ -46,9 +39,9 @@ export default {
         console.error("Greška prilikom dohvata prihoda:", err);
       }
     },
-    detaljiPrihoda() {
-      this.$router.push({ name: 'detaljiPrihoda' })
-    }
+    detaljiPrihoda(prihod) {
+      this.$router.push({ path: `detaljiPrihoda/${prihod._id}` });
+    },
   },
 };
 </script>
@@ -76,10 +69,5 @@ export default {
 .text {
   font-weight: bold;
   margin: 1vh;
-}
-
-.obrisi {
-  padding-right: 1vh;
-  margin-bottom: 1vh;
 }
 </style>
