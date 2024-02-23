@@ -76,16 +76,15 @@ let Prihod = {
     let data = response.data
     console.log("Detalji prihoda: ", data)
     return data;
+  },
+  async obrisiPrihod(id) {
+    try {
+      await Service.delete(`/detaljiPrihoda/${id}`);
+      console.log("Prihod uspješno obrisan");
+    } catch (error) {
+      console.error("Greška prilikom brisanja prihoda:", error);
+    }
   }
-  // async obrisiPrihod(prihodId) {
-  //   try {
-  //     let response = await Service.delete(`/pregledPrihoda`, prihodId);
-  //     console.log("Prihod uspješno obrisan");
-  //     // Dodajte logiku za osvježavanje prikaza prihoda nakon brisanja
-  //   } catch (error) {
-  //     console.error("Greška prilikom brisanja prihoda:", error);
-  //   }
-  // }
 };
 
 let Rashod = {
