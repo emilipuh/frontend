@@ -2,7 +2,7 @@
   <div class="container">
     <h5>Prihodi</h5>
     <h6 style="text-align: start; margin: 4vh 2vh">Pregled upisa</h6>
-    <div class="upisi">
+    <div class="upisi" v-if="prihodi && prihodi.length > 0">
       <div class="upis" v-for="prihod in prihodi" :key="prihod._id">
         <div class="content mb-2">
           <p class="text">{{ prihod.datum }} - {{ prihod.iznos }} €</p>
@@ -12,6 +12,10 @@
         </div>
         <button class="btn" @click="detaljiPrihoda(prihod)">Pregled</button>
       </div>
+    </div>
+    <div v-else>
+      <p class="text">Nema podataka za prikaz</p>
+      <!-- <button class="btn" @click="dohvatiPrihode()">Dohvati ponovno</button> -->
     </div>
   </div>
 </template>
