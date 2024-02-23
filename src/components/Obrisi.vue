@@ -5,7 +5,7 @@
     data-bs-toggle="modal"
     data-bs-target="#obrisi"
   >
-    <i class="fa-solid fa-trash-can"></i>
+    Obriši
   </button>
   <div class="modal" tabindex="-1" id="obrisi">
     <div class="modal-dialog modal-dialog-centered">
@@ -80,7 +80,7 @@ h6 {
   display: flex;
   justify-content: space-evenly;
 }
-.btns {
+.btn, .btns {
   border-radius: 12px;
   border: none;
   margin-top: 1vh;
@@ -89,5 +89,9 @@ h6 {
   color: black;
   background-color: whitesmoke;
   padding: 1.5vh 5vh;
+}
+
+.btns {
+  margin-bottom: 1vh;
 }
 </style>
