@@ -12,9 +12,8 @@
             {{ rashod.biljeska }}
           </p>
         </div>
-        <div class="obrisi">
-          <Obrisi />
-        </div>
+        <button class="btn" @click="detaljiRashoda(rashod)">Pregled</button>
+        <!--<div class="obrisi"><Obrisi /></div> -->
       </div>
     </div>
   </div>
@@ -24,6 +23,7 @@
 import Obrisi from "@/components/Obrisi.vue";
 import stanje from "@/stanje";
 import { Rashod } from "@/services";
+import DetaljiRashoda from "./DetaljiRashoda.vue";
 
 export default {
   name: "pregledRashoda",
@@ -37,16 +37,19 @@ export default {
     };
   },
   mounted() {
-    this.pregledRashoda();
+    this.dohvatiRashode();
   },
   methods: {
-    async pregledRashoda() {
+    async dohvatiRashode() {
       try {
         this.rashodi = await Rashod.pregledRashoda();
       } catch (err) {
         console.error("Greška prilikom dohvata: ", err);
       }
     },
+    detaljiRashoda(rashod) {
+      this.$router.push({ path: `detaljiRashoda/${rashod._id}` });
+    },    
   },
 };
 </script>
@@ -65,6 +68,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+}
+// na cijelu stranicu???
+.upisi {
+  overflow: auto;
 }
 
 .text {

@@ -1,5 +1,5 @@
 <template>
-  <div class="container" v-if="prihod">
+  <div class="container" v-if="rashod">
     <h2>Detalji rashoda</h2>
     <div class="content">
       <p>ID: {{ rashod._id }}</p>
@@ -24,6 +24,7 @@ import { Rashod } from "@/services";
 
 export default {
   name: "detaljiRashoda",
+  props: ["id"],
   components: {
     Obrisi,
   },
@@ -33,11 +34,14 @@ export default {
     };
   },
   mounted() {
-    console.log();
+    this.dohvati();
   },
   methods: {
-    obrisiRashod() {
-      console.log("upit za brisanje...");
+    async dohvati() {
+      this.rashod = await Rashod.dohvatiRashod(this.id);
+    },
+    async obrisiRashod(rashod) {
+        await Rashod.obrisiRashod(rashod);
     },
   },
 };
