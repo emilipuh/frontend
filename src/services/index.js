@@ -110,6 +110,21 @@ let Rashod = {
     console.log("Rashodi sa backenda: ", data);
     return data;
   },
+  async dohvatiRashod(id) {
+    console.log("ID: ", id)
+    let response = await Service.get(`detaljiRashoda/${id}`)
+    let data = response.data
+    console.log("Detalji rashoda: ", data)
+    return data;
+  },
+  async obrisiRashod(id) {
+    try {
+      await Service.delete(`/detaljiRashoda/${id}`);
+      console.log("Rashod uspješno obrisan");
+    } catch (error) {
+      console.error("Greška prilikom brisanja rashoda:", error);
+    }
+  }
 };
 
 export { Service, Stanje, Prihod, Rashod };
