@@ -38,7 +38,7 @@
               </div>
               <ul class="dropdown-menu">
                 <li>
-                  <button class="dropdown-item" @click="pregledPrihoda">
+                  <button class="dropdown-item" @click="pregledPrihoda()">
                     Pregled prihoda
                   </button>
                 </li>
@@ -55,14 +55,16 @@
               </div>
               <ul class="dropdown-menu">
                 <li>
-                  <button class="dropdown-item" @click="pregledRashoda">
+                  <button class="dropdown-item" @click="pregledRashoda()">
                     Pregled rashoda
                   </button>
                 </li>
               </ul>
             </li>
             <li class="mt-5">
-              <button class="nav-item" @click="stednja">Štednja</button>
+              <button class="nav-item" @click="pregledStednji()">
+                Štednja
+              </button>
             </li>
           </ul>
         </div>
@@ -92,10 +94,9 @@ export default {
     },
     pregledRashoda() {
       this.$router.push({ name: "pregledRashoda" });
-
     },
-    stednja() {
-      this.$router.push({ name: "stednja" });
+    pregledStednji() {
+      this.$router.push({ name: "pregledStednji" });
     },
   },
 };
