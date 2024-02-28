@@ -6,8 +6,9 @@ import PregledPrihoda from "@/views/PregledPrihoda";
 import DetaljiPrihoda from "@/views/DetaljiPrihoda";
 import PregledRashoda from "@/views/PregledRashoda";
 import DetaljiRashoda from "@/views/DetaljiRashoda";
-import Stednja from "@/views/Stednja";
-import DodajStednju from "@/views/DodajStednju";
+import PregledStednji from "@/views/PregledStednji";
+import DodavanjeStednje from "@/views/DodavanjeStednje";
+import DetaljiStednje from "@/views/DetaljiStednje";
 
 const routes = [
   {
@@ -43,19 +44,25 @@ const routes = [
     props: true,
   },
   {
+    path: "/detaljiStednje/:id",
+    name: "detaljiStednje",
+    component: DetaljiStednje,
+    props: true,
+  },
+  {
     path: "/pregledRashoda",
     name: "pregledRashoda",
     component: PregledRashoda,
   },
   {
-    path: "/stednja",
-    name: "stednja",
-    component: Stednja,
+    path: "/pregledStednji",
+    name: "pregledStednji",
+    component: PregledStednji,
   },
   {
-    path: "/dodajStednju",
-    name: "dodajStednju",
-    component: DodajStednju,
+    path: "/dodavanjeStednje",
+    name: "dodavanjeStednje",
+    component: DodavanjeStednje,
   },
 ];
 
