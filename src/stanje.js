@@ -18,6 +18,7 @@ export default {
     datum: "",
     biljeska: "",
   },
+  stednje: 0,
   stednja: {
     iznos: null,
     datum: "",
