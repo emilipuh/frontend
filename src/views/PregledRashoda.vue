@@ -3,8 +3,6 @@
     <h5>Rashodi</h5>
     <h6 style="text-align: start; margin: 4vh 2vh">Pregled upisa</h6>
     <div class="upisi">
-      <!-- morati će biti neki v-for koji vuce iz baze -->
-      <!-- jedan hard coded za primjer -->
       <div class="upis" v-for="(rashod, index) in rashodi" :key="index">
         <div class="content mb-2">
           <p class="text">{{ rashod.datum }} - {{ rashod.iznos }} €</p>
@@ -13,7 +11,6 @@
           </p>
         </div>
         <button class="btn" @click="detaljiRashoda(rashod)">Pregled</button>
-        <!--<div class="obrisi"><Obrisi /></div> -->
       </div>
     </div>
   </div>
@@ -23,7 +20,6 @@
 import Obrisi from "@/components/Obrisi.vue";
 import stanje from "@/stanje";
 import { Rashod } from "@/services";
-import DetaljiRashoda from "./DetaljiRashoda.vue";
 
 export default {
   name: "pregledRashoda",
@@ -77,10 +73,5 @@ export default {
 .text {
   font-weight: bold;
   margin: 1vh;
-}
-
-.obrisi {
-  padding-right: 1vh;
-  margin-bottom: 1vh;
 }
 </style>

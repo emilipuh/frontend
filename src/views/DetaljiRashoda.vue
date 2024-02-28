@@ -41,7 +41,7 @@ export default {
       this.rashod = await Rashod.dohvatiRashod(this.id);
     },
     async obrisiRashod(rashod) {
-        await Rashod.obrisiRashod(rashod);
+      await Rashod.obrisiRashod(rashod);
     },
   },
 };
