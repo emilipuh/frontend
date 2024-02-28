@@ -13,7 +13,7 @@
         <h6>RASHODI: {{ rashodi }} €</h6>
       </div>
       <div id="stednja">
-        <h6>ŠTEDNJA: {{ stednja.iznos || 0 }} €</h6>
+        <h6>ŠTEDNJA: {{ stednje }} €</h6>
       </div>
     </div>
   </div>
@@ -32,7 +32,7 @@ export default {
     NavbarIzbornik,
   },
   data: function () {
-    return stanje
+    return stanje;
   },
   mounted() {
     this.azuriranjeStanja();
@@ -44,9 +44,11 @@ export default {
           this.stanjeRacuna = data.stanjeRacuna;
           this.prihodi = data.prihodi;
           this.rashodi = data.rashodi;
+          this.stednje = data.stednja;
           console.log("Ukupno stanje: ", this.stanjeRacuna);
           console.log("Ukupni prihodi: ", this.prihodi);
           console.log("Ukupni rashodi: ", this.rashodi);
+          console.log("Ukupna stednja: ", this.stednje);
         })
         .catch((error) => {
           console.error(
