@@ -11,13 +11,21 @@
   <div v-else>
     <p>Štednja nije pronađena.</p>
   </div>
+  <div class="buttons">
+    <button class="btn">Uredi</button>
+    <Obrisi @obrisiUpis="obrisiStednju(stednja._id)"/>
+  </div>
 </template>
 
 <script>
 import { Stednja } from "@/services";
+import Obrisi from "@/components/Obrisi.vue";
 
 export default {
   name: "detaljiStednje",
+  components: {
+    Obrisi,
+  },
   props: ["id"],
   data() {
     return {
@@ -31,11 +39,14 @@ export default {
     async dohvati() {
       this.stednja = await Stednja.dohvatiStednju(this.id);
     },
+    async obrisiStednju(id) {
+      await Stednja.obrisiStednju(id);
+    }
   },
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .container {
   max-height: 100dvh;
   padding-top: 2vh;
