@@ -13,8 +13,8 @@
     <p>Prihod nije pronađen.</p>
   </div>
   <div class="buttons">
-    <button class="btn">Uredi</button>
-    <Obrisi @obrisiUpis="obrisiPrihod(prihod._id)"/>
+    <button class="btn" @click="natrag()">Natrag</button>
+    <Obrisi @obrisiUpis="obrisiPrihod(prihod._id)" />
   </div>
 </template>
 
@@ -42,9 +42,12 @@ export default {
       console.log("Prihod: ", this.prihod);
     },
     async obrisiPrihod(id) {
-      console.log("Id od prihoda za brisanje: ", id) // dohvaća dobar id
+      console.log("Id od prihoda za brisanje: ", id); // dohvaća dobar id
       await Prihod.obrisiPrihod(id);
-    }
+    },
+    natrag() {
+      this.$router.replace({ name: "pregledPrihoda" });
+    },
   },
 };
 </script>

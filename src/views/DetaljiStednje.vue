@@ -12,8 +12,8 @@
     <p>Štednja nije pronađena.</p>
   </div>
   <div class="buttons">
-    <button class="btn">Uredi</button>
-    <Obrisi @obrisiUpis="obrisiStednju(stednja._id)"/>
+    <button class="btn" @click="natrag()">Natrag</button>
+    <Obrisi @obrisiUpis="obrisiStednju(stednja._id)" />
   </div>
 </template>
 
@@ -41,7 +41,10 @@ export default {
     },
     async obrisiStednju(id) {
       await Stednja.obrisiStednju(id);
-    }
+    },
+    natrag() {
+      this.$router.replace({ name: "pregledStednji" });
+    },
   },
 };
 </script>

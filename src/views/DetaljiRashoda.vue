@@ -13,7 +13,7 @@
     <p>Rashod nije pronađen.</p>
   </div>
   <div class="buttons">
-    <button class="btn">Uredi</button>
+    <button class="btn" @click="natrag()">Natrag</button>
     <Obrisi @obrisiUpis="obrisiRashod(rashod._id)" />
   </div>
 </template>
@@ -42,6 +42,9 @@ export default {
     },
     async obrisiRashod(rashod) {
       await Rashod.obrisiRashod(rashod);
+    },
+    natrag() {
+      this.$router.replace({ name: "pregledRashoda" });
     },
   },
 };
