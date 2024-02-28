@@ -15,6 +15,7 @@ let Stanje = {
         stanjeRacuna: null,
         prihodi: data[0].prihodi,
         rashodi: data[0].rashodi,
+        stednja: data[0].stednja,
       };
       // tu dobijem stanje iz baze koje je inicijalizirano na 0
       // moram dohvatiti podatke sa prihoda i svaki od iznosa pribrojiti stanju baze(koji je inicijaliziran na 0)
@@ -37,6 +38,14 @@ let Stanje = {
         let iznosRashoda = rashod.iznos;
         data.rashodi += iznosRashoda;
         data.stanjeRacuna = data.prihodi - data.rashodi;
+      }
+      let response4 = await Service.get("/pregledStednji");
+      let stednje = response4.data;
+      console.log("Dohvaćene štednje: ", stednje);
+      for (let i = 0; i < stednje.length; i++) {
+        let stednja = stednje[i];
+        let iznosStednje = parseFloat(stednja.iznos);
+        data.stednja += iznosStednje;
       }
       return data;
     } catch (error) {
@@ -71,10 +80,10 @@ let Prihod = {
     return data;
   },
   async dohvatiPrihod(id) {
-    console.log("ID: ", id)
-    let response = await Service.get(`detaljiPrihoda/${id}`)
-    let data = response.data
-    console.log("Detalji prihoda: ", data)
+    console.log("ID: ", id);
+    let response = await Service.get(`detaljiPrihoda/${id}`);
+    let data = response.data;
+    console.log("Detalji prihoda: ", data);
     return data;
   },
   async obrisiPrihod(id) {
@@ -84,7 +93,7 @@ let Prihod = {
     } catch (error) {
       console.error("Greška prilikom brisanja prihoda:", error);
     }
-  }
+  },
 };
 
 let Rashod = {
@@ -111,10 +120,10 @@ let Rashod = {
     return data;
   },
   async dohvatiRashod(id) {
-    console.log("ID: ", id)
-    let response = await Service.get(`detaljiRashoda/${id}`)
-    let data = response.data
-    console.log("Detalji rashoda: ", data)
+    console.log("ID: ", id);
+    let response = await Service.get(`detaljiRashoda/${id}`);
+    let data = response.data;
+    console.log("Detalji rashoda: ", data);
     return data;
   },
   async obrisiRashod(id) {
@@ -124,7 +133,41 @@ let Rashod = {
     } catch (error) {
       console.error("Greška prilikom brisanja rashoda:", error);
     }
-  }
+  },
 };
 
-export { Service, Stanje, Prihod, Rashod };
+let Stednja = {
+  async dohvatiStednje() {
+    let response = await Service.get("/pregledStednji");
+    let data = response.data;
+    console.log("Štednje sa backenda: ", data);
+    return data;
+  },
+  async novaStednja(podaciStednja) {
+    let serverData = {
+      iznos: parseFloat(podaciStednja.iznos),
+      datum: podaciStednja.datum,
+      biljeska: podaciStednja.biljeska,
+    };
+    console.log("Server data: ", serverData);
+    let podaci = await Service.post("/novaStednja", podaciStednja);
+    console.log(podaci);
+  },
+  async dohvatiStednju(id) {
+    console.log("ID: ", id);
+    let response = await Service.get(`detaljiStednje/${id}`);
+    let data = response.data;
+    console.log("Detalji stednje: ", data);
+    return data;
+  },
+  async obrisiStednju(id) {
+    try {
+      await Service.delete(`/detaljiStednje/${id}`);
+      console.log("Stednja uspješno obrisana");
+    } catch (error) {
+      console.error("Greška prilikom brisanja stednje:", error);
+    }
+  },
+};
+
+export { Service, Stanje, Prihod, Rashod, Stednja };
