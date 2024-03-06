@@ -61,9 +61,4 @@ p {
 .modal-content {
   background-color: #066995;
 }
-
-// doraditi
-.modal-backdrop {
-  z-index: -1;
-}
 </style>
