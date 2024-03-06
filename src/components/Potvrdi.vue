@@ -1,5 +1,4 @@
 <template>
-  <!-- modal -->
   <button
     type="button"
     class="btn"
@@ -26,6 +25,7 @@
 </template>
 
 <script>
+import { onBeforeUnmount } from "vue";
 import stanje from "@/stanje";
 
 export default {
@@ -35,10 +35,37 @@ export default {
       stanje,
     };
   },
+  mounted() {
+    this.closeModalOnRouteChange();
+  },
   methods: {
     handleClick() {
       this.$emit("potvrdiUpis");
-      this.$router.push({ name: 'home' })
+      this.$router.push({ name: "home" });
+    },
+    closeModalOnRouteChange() {
+      const closeModal = () => {
+        const modal = document.getElementById("potvrdi");
+        if (modal) {
+          const modalInstance = new bootstrap.Modal(modal);
+          modalInstance.hide();
+          const backdrop = document.getElementsByClassName("modal-backdrop")[0];
+          if (backdrop) {
+            backdrop.remove();
+          }
+        }
+      };
+
+      this.$router.beforeEach((to, from, next) => {
+        closeModal();
+        next();
+      });
+
+      onBeforeUnmount(() => {
+        this.$router.beforeEach((to, from, next) => {
+          next();
+        });
+      });
     },
   },
   emits: ["potvrdiUpis"],

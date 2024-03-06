@@ -25,12 +25,41 @@
 </template>
 
 <script>
+import { onBeforeUnmount } from "vue";
+
 export default {
   name: "Obrisi",
+  mounted() {
+    this.closeModalOnRouteChange();
+  },
   methods: {
     handleClick() {
       this.$emit("obrisiUpis");
       this.$router.push({ name: "home" });
+    },
+    closeModalOnRouteChange() {
+      const closeModal = () => {
+        const modal = document.getElementById("obrisi");
+        if (modal) {
+          const modalInstance = new bootstrap.Modal(modal);
+          modalInstance.hide();
+          const backdrop = document.getElementsByClassName("modal-backdrop")[0];
+          if (backdrop) {
+            backdrop.remove();
+          }
+        }
+      };
+
+      this.$router.beforeEach((to, from, next) => {
+        closeModal();
+        next(); 
+      });
+
+      onBeforeUnmount(() => {
+        this.$router.beforeEach((to, from, next) => {
+          next();
+        });
+      });
     },
   },
   emits: ["obrisiUpis"],
@@ -80,7 +109,8 @@ h6 {
   display: flex;
   justify-content: space-evenly;
 }
-.btn, .btns {
+.btn,
+.btns {
   border-radius: 12px;
   border: none;
   margin-top: 1vh;
