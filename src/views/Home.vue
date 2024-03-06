@@ -87,4 +87,8 @@ export default {
 #stednja {
   margin-top: 10%;
 }
+
+.modal-backdrop {
+  z-index: 1000;
+}
 </style>
