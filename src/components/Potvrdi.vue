@@ -119,6 +119,7 @@ h6 {
 .buttons {
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 1vh;
 }
 .btns {
   border-radius: 12px;
