@@ -17,9 +17,9 @@
         <div class="modal-body">
           <!-- ovdje idu učitani korisnički podaci iz baze -->
           <p style="color: #0585bc; font-weight: bold">Korisničko ime:</p>
-          <p>user123</p>
+          <p>{{ auth.username }}</p>
           <p style="color: #0585bc; font-weight: bold">Email:</p>
-          <p>user123@gmail.com</p>
+          <p>{{ auth.email }}</p>
         </div>
       </div>
     </div>
@@ -27,8 +27,15 @@
 </template>
 
 <script>
+import { Auth } from '@/services';
+
 export default {
   name: "KorisnickiPodaci",
+  data() {
+    return {
+      auth: Auth.state
+    }
+  }
 };
 </script>
 
