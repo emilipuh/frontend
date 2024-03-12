@@ -71,7 +71,9 @@
         <div class="offcanvas-footer">
           <i class="fa-solid fa-power-off"></i>
           <!-- router link -->
-          <a style="margin-left: 1vh" class="nav-item">Odjava</a>
+          <button style="margin-left: 1vh" class="nav-item" @click="odjava()">
+            Odjava
+          </button>
         </div>
       </div>
     </div>
@@ -81,6 +83,7 @@
 <script>
 import KorisnickiPodaci from "./KorisnickiPodaci.vue";
 import Dodaj from "./Dodaj.vue";
+import { Auth } from "@/services";
 
 export default {
   name: "Navbar",
@@ -97,6 +100,10 @@ export default {
     },
     pregledStednji() {
       this.$router.push({ name: "pregledStednji" });
+    },
+    odjava() {
+      Auth.logout();
+      this.$router.go();
     },
   },
 };
