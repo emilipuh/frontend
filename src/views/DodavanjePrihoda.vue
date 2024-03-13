@@ -101,8 +101,6 @@ export default {
   methods: {
     updateKategorija(kategorija) {
       this.prihod.kategorija = kategorija;
-      console.log("Odabrana kategorija: ", kategorija);
-      console.log("Trenutno stanje: ", this.prihod); // ovo mi je cijeli js za stanje
     },
     spremiPrihod() {
       let noviPrihodPodaci = {
@@ -114,16 +112,16 @@ export default {
 
       Prihod.noviPrihod(noviPrihodPodaci) // vraća promise 
         .then(() => {         
-          console.log("Spremljeno: ", noviPrihodPodaci);
           this.prihod.iznos = parseInt(noviPrihodPodaci.iznos);
-          console.log("Prihod izjednačen sa noviprihodpodaci.iznos: ", this.prihod.iznos)
           this.prihodi += parseInt(this.prihod.iznos);
-          console.log("Ukupni prihodi: ", this.prihodi)
           Stanje.dohvatiStanje()
             .then(data => {
               data.stanjeRacuna = this.prihodi - this.rashodi; 
-              console.log("data.stanjeracuna", data.stanjeRacuna)
             })
+          this.prihod.kategorija = '';
+          this.prihod.iznos = '';
+          this.prihod.datum = '';
+          this.prihod.biljeska = '';
         })
         .catch((error) => {
           console.error("Greška prilikom spremanja prihoda:", error);

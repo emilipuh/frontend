@@ -222,6 +222,10 @@ export default {
           data.stanjeRacuna = this.prihodi - this.rashodi;
           console.log("data.stanjeracuna", data.stanjeRacuna);
         });
+        this.rashod.kategorija = "";
+        this.rashod.iznos = "";
+        this.rashod.datum = "";
+        this.rashod.biljeska = "";
       });
     },
   },

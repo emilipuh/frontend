@@ -67,18 +67,12 @@ export default {
         biljeska: this.stednja.biljeska,
       };
       Stednja.novaStednja(novaStednjaPodaci).then(() => {
-        console.log("Spremljeno: ", novaStednjaPodaci);
         this.stednja.iznos = parseInt(novaStednjaPodaci.iznos);
-        console.log("Stednja.iznos: ", typeof this.stednja.iznos);//num
-        console.log(
-          "Stednja izjednačena sa novaStednjaPodaci.iznos: ",
-          this.stednja.iznos // num
-        );
-        //this.stednje = parseFloat(this.stednje);
         this.stednje += this.stednja.iznos;
-        console.log(typeof this.stednje);
-        console.log("Ukupna stednja: ", this.stednje);
       });
+      this.stednja.iznos = "";
+      this.stednja.datum = "";
+      this.stednja.biljeska = "";
     },
   },
 };
