@@ -2,7 +2,12 @@
   <div class="container">
     <div id="stanje">
       <h5 style="padding: 0">STANJE RAČUNA:</h5>
-      <h6 style="margin-bottom: 0">{{ stanjeRacuna }} €</h6>
+      <h5
+        style="margin-bottom: 0; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);"
+        :class="{ pozitivno: stanjeRacuna > 0, negativno: stanjeRacuna < 0, nula: stanjeRacuna == 0 }"
+      >
+        {{ stanjeRacuna }} €
+      </h5>
     </div>
     <div class="container-view">
       <div id="prihodi">
@@ -13,7 +18,10 @@
         <h6>RASHODI: {{ rashodi }} €</h6>
       </div>
       <div id="stednja">
-        <h6>ŠTEDNJA: {{ stednje }} €</h6>
+        <h6>
+          ŠTEDNJA:
+          <span :class="{ zeleno: stednje > 0 }"> {{ stednje }} € </span>
+        </h6>
       </div>
     </div>
   </div>
@@ -24,7 +32,7 @@
 <script>
 import NavbarIzbornik from "@/components/NavbarIzbornik.vue";
 import stanje from "@/stanje.js";
-import { Stanje } from "@/services";
+import { Stanje, Auth } from "@/services";
 
 export default {
   name: "Home",
@@ -39,9 +47,10 @@ export default {
   },
   methods: {
     azuriranjeStanja() {
-      Stanje.dohvatiStanje()
+      let userId = Auth.getUserId();
+      Stanje.dohvatiStanje(userId)
         .then((data) => {
-          this.stanjeRacuna = data.stanjeRacuna;
+          this.stanjeRacuna = data.stanje;
           this.prihodi = data.prihodi;
           this.rashodi = data.rashodi;
           this.stednje = data.stednja;
@@ -85,7 +94,25 @@ export default {
 }
 
 #stednja {
-  margin-top: 10%;
+  margin-top: 5vh;
+  border-radius: 1vh;
+  padding: 1vh 4vh 0vh 4vh;
+  background-color: #ffbe53;
+}
+.zeleno {
+  color: green;
+}
+
+.pozitivno {
+  color: yellowgreen;
+}
+
+.negativno {
+  color: red;
+}
+
+.nula {
+  color: rgb(49, 49, 49);
 }
 
 .modal-backdrop {
