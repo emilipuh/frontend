@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { Stednja, Service } from "@/services";
+import { Stednja, Auth } from "@/services";
 import stanje from "@/stanje";
 
 export default {
@@ -40,9 +40,10 @@ export default {
   methods: {
     async dohvatiStednje() {
       try {
-        this.stednje = await Stednja.dohvatiStednje();
+        let userId = Auth.getUserId();
+        this.stednje = await Stednja.pregledStednji(userId);
       } catch (err) {
-        console.error("Greška: ", err);
+        console.error("Greška prilikom dohvata štednji: ", err);
       }
     },
     dodajStednju() {

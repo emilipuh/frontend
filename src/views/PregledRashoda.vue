@@ -19,7 +19,7 @@
 <script>
 import Obrisi from "@/components/Obrisi.vue";
 import stanje from "@/stanje";
-import { Rashod } from "@/services";
+import { Rashod, Auth } from "@/services";
 
 export default {
   name: "pregledRashoda",
@@ -37,15 +37,16 @@ export default {
   },
   methods: {
     async dohvatiRashode() {
+      let userId = Auth.getUserId();
       try {
-        this.rashodi = await Rashod.pregledRashoda();
+        this.rashodi = await Rashod.pregledRashoda(userId);
       } catch (err) {
         console.error("Greška prilikom dohvata: ", err);
       }
     },
     detaljiRashoda(rashod) {
       this.$router.push({ path: `detaljiRashoda/${rashod._id}` });
-    },    
+    },
   },
 };
 </script>

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { Prihod } from "@/services";
+import { Prihod, Auth } from "@/services";
 import stanje from "@/stanje";
 
 export default {
@@ -38,7 +38,8 @@ export default {
   methods: {
     async dohvatiPrihode() {
       try {
-        this.prihodi = await Prihod.pregledPrihoda();
+        let userId = Auth.getUserId();
+        this.prihodi = await Prihod.pregledPrihoda(userId);
       } catch (err) {
         console.error("Greška prilikom dohvata prihoda:", err);
       }
