@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>SIGN UP</h1>
+    <h1>REGISTRACIJA</h1>
     <div class="content">
       <form>
         <div class="username">
@@ -11,6 +11,7 @@
               type="username"
               class="form-control"
               id="username"
+              v-model="username"
             />
           </div>
         </div>
@@ -22,6 +23,7 @@
               type="email"
               class="form-control"
               id="email"
+              v-model="email"
             />
           </div>
         </div>
@@ -33,6 +35,7 @@
               type="password"
               class="form-control"
               id="password"
+              v-model="password"
             />
           </div>
         </div>
@@ -41,49 +44,100 @@
           <div>
             <input
               placeholder="Lozinka"
-              type="repeatPass"
+              type="password"
               class="form-control"
               id="repeatPass"
+              v-model="repeatPass"
             />
           </div>
         </div>
       </form>
+      <p v-if="error" class="error-message">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        {{ error }}
+      </p>
     </div>
-    <button type="submit" class="btn">SIGN UP</button>
+    <button type="submit" class="btn" @click="signup()">REGISTRACIJA</button>
   </div>
 </template>
 
 <script>
+import { Auth } from "@/services";
+
 export default {
   name: "signup",
+  data() {
+    return {
+      username: "",
+      email: "",
+      password: "",
+      repeatPass: "",
+      error: "",
+    };
+  },
+  methods: {
+    async signup() {
+      if (!this.username || !this.email || !this.password || !this.repeatPass) {
+        this.error = "Sva polja moraju biti ispunjena";
+        return;
+      }
+
+      let user = {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+        repeatPass: this.repeatPass,
+      };
+      // ako se lozinke ne podudaraju onda nema registracije
+      if (user.password !== user.repeatPass) {
+        this.error = "Lozinke se ne podudaraju";
+        return;
+      } else {
+        this.error = "";
+        let registerSuccess = await Auth.registration(user);
+        console.log("Uspješna registracija ", registerSuccess);
+        if (registerSuccess === true) {
+          console.log("Registracija je uspješna i token je dobiven");
+          await Auth.login(user.username, user.password);
+          this.$router.push({ name: "home" });
+        }
+      }
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
 .container {
+  margin: auto;
+  min-height: 100dvh;
   color: black;
-  min-height: 90dvh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
-h1 {
-  color: black;
-  text-align: start;
-  margin: 0vh 0vh 2vh 4vh;
-}
 .content {
   background-color: #066995;
   border-radius: 2vh;
   margin: 0vh 4vh 3vh 4vh;
+  padding: 0vh 2vh;
+  min-height: 30dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+h1 {
+  color: black;
+  margin-bottom: 3vh;
+  align-self: start;
+  margin-left: 10vh;
+}
 label {
-  margin-bottom: 1vh;
+  margin-bottom: 0.5vh;
 }
 
 .username,
@@ -95,6 +149,10 @@ label {
   margin: 2vh;
 }
 
+.repeatPass {
+  margin-bottom: 3vh;
+}
+
 .form-control {
   border-radius: 1vh;
   padding: 1.5vh;
@@ -104,8 +162,10 @@ label {
   background-color: yellow;
   color: black;
   font-size: 18px;
-  padding: 2vh;
-  margin: 0vh 10vh;
+  padding: 2vh 8vh;
   border-radius: 1.5vh;
+}
+.error-message {
+  margin-bottom: 2vh;
 }
 </style>
