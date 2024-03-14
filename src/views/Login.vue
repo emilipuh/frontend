@@ -2,7 +2,7 @@
   <div class="container">
     <h1>LOGIN</h1>
     <div class="content">
-      <form>
+      <form @submit.prevent="login()">
         <div class="username">
           <label for="username">Korisničko ime:</label>
           <div>
@@ -51,14 +51,19 @@ export default {
   },
   methods: {
     async login() {
-      if (!this.username || !this.password) {
-        this.error = "Korisničko ime i lozinka su obavezni";
-        return;
-      }
-      let success = await Auth.login(this.username, this.password);
-      console.log("Rezultat prijave: ", success);
-      if (success == true) {
-        this.$router.push({ name: "home" });
+      try {
+        if (!this.username || !this.password) {
+          this.error = "Korisničko ime i lozinka su obavezni";
+          return;
+        }
+        let success = await Auth.login(this.username, this.password);
+        console.log("Rezultat prijave: ", success);
+        if (success == true) {
+          this.$router.push({ name: "home" });
+        }
+      } catch (error) {
+        this.error = "Korisnik ne postoji ili je lozinka neispravna!";
+        console.error("Greška prilikom prijave: ", error);
       }
     },
   },
@@ -116,5 +121,9 @@ label {
   font-size: 18px;
   padding: 2vh 8vh;
   border-radius: 1.5vh;
+}
+
+.error-message {
+  margin: 1vh 0vh;
 }
 </style>
