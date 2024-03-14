@@ -7,25 +7,35 @@
           <label for="username">Korisničko ime:</label>
           <div>
             <input
-              placeholder="Korisničko ime"
+              placeholder="npr. user123"
               type="username"
               class="form-control"
               id="username"
               v-model="username"
+              @blur="checkUsernameLength"
             />
           </div>
+          <p v-if="errorUsername" class="error-message">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            {{ errorUsername }}
+          </p>
         </div>
         <div class="email">
           <label for="email">Email:</label>
           <div>
             <input
-              placeholder="Email"
+              placeholder="npr. me@example.com"
               type="email"
               class="form-control"
               id="email"
               v-model="email"
+              @blur="checkEmail"
             />
           </div>
+          <p v-if="errorEmail" class="error-message">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            {{ errorEmail }}
+          </p>
         </div>
         <div class="password">
           <label for="password">Lozinka:</label>
@@ -36,8 +46,13 @@
               class="form-control"
               id="password"
               v-model="password"
+              @blur="checkPassword"
             />
           </div>
+          <p v-if="errorPassword" class="error-message">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            {{ errorPassword }}
+          </p>
         </div>
         <div class="repeatPass">
           <label for="repeatPass">Ponovite lozinku:</label>
@@ -57,7 +72,7 @@
         {{ error }}
       </p>
     </div>
-    <button type="submit" class="btn" @click="signup()">REGISTRACIJA</button>
+    <button type="button" class="btn" @click="signup()">REGISTRACIJA</button>
   </div>
 </template>
 
@@ -73,10 +88,48 @@ export default {
       password: "",
       repeatPass: "",
       error: "",
+      errorUsername: "",
+      errorEmail: "",
+      errorPassword: "",
     };
   },
   methods: {
+    validateEmail() {
+      const regx = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
+      if (regx.test(this.email)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    checkUsernameLength() {
+      // ako je korisničko ime kraće od šest znakova
+      if (this.username.length < 4) {
+        this.errorUsername = "Korisničko ime mora imati barem 4 znaka";
+        return;
+      } else {
+        this.errorUsername = "";
+      }
+    },
+    checkEmail() {
+      // ako email nije uobičajen
+      if (!this.validateEmail()) {
+        this.errorEmail = "Neispravan format email adrese";
+        return;
+      } else {
+        this.errorEmail = "";
+      }
+    },
+    checkPassword() {
+      if (this.password.length <= 6) {
+        this.errorPassword = "Lozinka mora imati barem 6 znakova";
+        return;
+      } else {
+        this.errorPassword = "";
+      }
+    },
     async signup() {
+      // ako polja nisu ispunjena
       if (!this.username || !this.email || !this.password || !this.repeatPass) {
         this.error = "Sva polja moraju biti ispunjena";
         return;
@@ -88,6 +141,7 @@ export default {
         password: this.password,
         repeatPass: this.repeatPass,
       };
+
       // ako se lozinke ne podudaraju onda nema registracije
       if (user.password !== user.repeatPass) {
         this.error = "Lozinke se ne podudaraju";
@@ -121,9 +175,8 @@ export default {
 .content {
   background-color: #066995;
   border-radius: 2vh;
-  margin: 0vh 4vh 3vh 4vh;
-  padding: 0vh 2vh;
-  min-height: 30dvh;
+  margin-bottom: 3vh;
+  width: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -134,7 +187,7 @@ h1 {
   color: black;
   margin-bottom: 3vh;
   align-self: start;
-  margin-left: 10vh;
+  margin-left: 15%;
 }
 label {
   margin-bottom: 0.5vh;
@@ -146,16 +199,20 @@ label {
 .repeatPass {
   text-align: start;
   font-size: 18px;
-  margin: 2vh;
+  margin: 1vh 3vh 0vh 3vh;
 }
 
 .repeatPass {
-  margin-bottom: 3vh;
+  margin-bottom: 2vh;
+}
+
+form {
+  width: 100%;
 }
 
 .form-control {
   border-radius: 1vh;
-  padding: 1.5vh;
+  padding: 1.7vh;
 }
 
 .btn {
@@ -166,6 +223,8 @@ label {
   border-radius: 1.5vh;
 }
 .error-message {
-  margin-bottom: 2vh;
+  margin: 1vh 0.5vh;
+  font-size: 14px;
+  color: rgb(223, 223, 0);
 }
 </style>

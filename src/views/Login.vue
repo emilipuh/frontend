@@ -2,7 +2,7 @@
   <div class="container">
     <h1>LOGIN</h1>
     <div class="content">
-      <form @submit.prevent="login()">
+      <form>
         <div class="username">
           <label for="username">Korisničko ime:</label>
           <div>
@@ -90,9 +90,8 @@ h1 {
 .content {
   background-color: #066995;
   border-radius: 2vh;
-  margin: 0vh 4vh 3vh 4vh;
-  padding: 0vh 2vh;
-  min-height: 30dvh;
+  margin-bottom: 3vh;
+  width: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,16 +102,26 @@ label {
   margin-bottom: 0.5vh;
 }
 
+h1 {
+  color: black;
+  margin-bottom: 3vh;
+  align-self: start;
+  margin-left: 15%;
+}
 .username,
 .password {
   text-align: start;
   font-size: 18px;
-  margin: 2vh;
+  margin: 1vh 3vh 3vh 3vh;
+}
+
+form {
+  width: 100%;
 }
 
 .form-control {
   border-radius: 1vh;
-  padding: 1.5vh;
+  padding: 1.7vh;
 }
 
 .btn {
@@ -124,6 +133,8 @@ label {
 }
 
 .error-message {
-  margin: 1vh 0vh;
+  margin: 1vh 0.5vh;
+  font-size: 14px;
+  color: rgb(223, 223, 0);
 }
 </style>
