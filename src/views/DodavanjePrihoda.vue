@@ -45,7 +45,6 @@
             <input
               v-model="prihod.iznos"
               type=""
-              name="iznos"
               placeholder="Iznos"
               class="form-control"
               id="iznos"
@@ -58,7 +57,6 @@
               type="date"
               name="datum"
               class="form-control"
-              placeholder="Datum"
               id="datum"
             />
           </div>
@@ -102,30 +100,30 @@ export default {
     updateKategorija(kategorija) {
       this.prihod.kategorija = kategorija;
     },
-    spremiPrihod() {
-      let noviPrihodPodaci = {
-        kategorija: this.prihod.kategorija,
-        iznos: this.prihod.iznos,
-        datum: this.prihod.datum,
-        biljeska: this.prihod.biljeska,
-      };
+    async spremiPrihod() {
+      try {
+        let noviPrihodPodaci = {
+          kategorija: this.prihod.kategorija,
+          iznos: this.prihod.iznos,
+          datum: this.prihod.datum,
+          biljeska: this.prihod.biljeska,
+        };
 
-      Prihod.noviPrihod(noviPrihodPodaci) // vraća promise 
-        .then(() => {         
-          this.prihod.iznos = parseInt(noviPrihodPodaci.iznos);
-          this.prihodi += parseInt(this.prihod.iznos);
-          Stanje.dohvatiStanje()
-            .then(data => {
-              data.stanjeRacuna = this.prihodi - this.rashodi; 
-            })
-          this.prihod.kategorija = '';
-          this.prihod.iznos = '';
-          this.prihod.datum = '';
-          this.prihod.biljeska = '';
-        })
-        .catch((error) => {
-          console.error("Greška prilikom spremanja prihoda:", error);
-        });
+        await Prihod.noviPrihod(noviPrihodPodaci);
+
+        this.prihod.iznos = parseInt(noviPrihodPodaci.iznos);
+        this.prihodi += parseInt(this.prihod.iznos);
+
+        let data = await Stanje.dohvatiStanje();
+        data.stanjeRacuna = this.prihodi - this.rashodi;
+
+        this.prihod.kategorija = "";
+        this.prihod.iznos = "";
+        this.prihod.datum = "";
+        this.prihod.biljeska = "";
+      } catch (error) {
+        console.error("Greška prilikom spremanja prihoda:", error);
+      }
     },
   },
 };
@@ -135,6 +133,7 @@ export default {
 .container {
   min-height: 100dvh;
   padding: 0px;
+  margin: 0px;
   display: flex;
   justify-content: space-evenly;
 }
@@ -172,7 +171,6 @@ export default {
 }
 .button {
   border-radius: 12px;
-  font-size: 18px;
   font-weight: bold;
   text-decoration: none;
   color: black;
