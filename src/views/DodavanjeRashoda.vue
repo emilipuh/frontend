@@ -11,7 +11,7 @@
                 type="radio"
                 class="btn-check"
                 :class="{
-                  active: rashod.kategorija === 'kupovina',
+                  active: stanje.rashod.kategorija === 'kupovina',
                 }"
                 @click="updateKategorija('kupovina')"
                 name="btnradio"
@@ -28,7 +28,7 @@
                 type="radio"
                 class="btn-check"
                 :class="{
-                  active: rashod.kategorija === 'racuni',
+                  active: stanje.rashod.kategorija === 'racuni',
                 }"
                 @click="updateKategorija('racuni')"
                 name="btnradio"
@@ -43,22 +43,23 @@
               </label>
               <div class="dropdown">
                 <button
-                  class="btn"
+                  class="btn dropdown-btn"
                   type="radio"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  v-bind:class="{ active: selectedDropdownCategory !== null }"
                 >
                   <div>
                     <i class="fa-solid fa-ellipsis fa-lg"></i>
                   </div>
-                  {{ rashod.dropdownKategorija }}
+                  {{ stanje.rashod.dropdownKategorija }}
                 </button>
                 <ul class="dropdown-menu">
                   <input
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active: rashod.dropdownKategorija === 'Zdravlje',
+                      active: stanje.rashod.dropdownKategorija === 'Zdravlje',
                     }"
                     @click="updateKategorija('Zdravlje')"
                     name="btnradio"
@@ -73,7 +74,7 @@
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active: rashod.dropdownKategorija === 'Edukacija',
+                      active: stanje.rashod.dropdownKategorija === 'Edukacija',
                     }"
                     @click="updateKategorija('Edukacija')"
                     name="btnradio"
@@ -88,7 +89,7 @@
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active: rashod.dropdownKategorija === 'Vozilo',
+                      active: stanje.rashod.dropdownKategorija === 'Vozilo',
                     }"
                     @click="updateKategorija('Vozilo')"
                     name="btnradio"
@@ -103,7 +104,8 @@
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active: rashod.dropdownKategorija === 'Kućni ljubimci',
+                      active:
+                        stanje.rashod.dropdownKategorija === 'Kućni ljubimci',
                     }"
                     @click="updateKategorija('Kućni ljubimci')"
                     name="btnradio"
@@ -118,7 +120,7 @@
                     type="radio"
                     class="btn-check"
                     :class="{
-                      active: rashod.dropdownKategorija === 'Ostalo',
+                      active: stanje.rashod.dropdownKategorija === 'Ostalo',
                     }"
                     @click="updateKategorija('Ostalo')"
                     name="btnradio"
@@ -134,7 +136,7 @@
         <div class="col-12">
           <label for="iznos" class="form-label">Iznos</label>
           <input
-            v-model="rashod.iznos"
+            v-model="stanje.rashod.iznos"
             type=""
             placeholder="Iznos"
             class="form-control"
@@ -144,7 +146,7 @@
         <div class="col-12">
           <label for="datum" class="form-label">Datum</label>
           <input
-            v-model="rashod.datum"
+            v-model="stanje.rashod.datum"
             type="date"
             class="form-control"
             placeholder="Datum"
@@ -154,7 +156,7 @@
         <div class="col-12">
           <label for="biljeska" class="form-label">Bilješka</label>
           <input
-            v-model="rashod.biljeska"
+            v-model="stanje.rashod.biljeska"
             type=""
             placeholder="Bilješka"
             class="form-control"
@@ -183,7 +185,10 @@ export default {
     Ponisti,
   },
   data() {
-    return stanje;
+    return {
+      stanje,
+      selectedDropdownCategory: null,
+    };
   },
   methods: {
     updateKategorija(kategorija) {
@@ -196,37 +201,38 @@ export default {
           "Ostalo",
         ].includes(kategorija)
       ) {
-        this.rashod.dropdownKategorija = kategorija;
+        this.stanje.rashod.dropdownKategorija = kategorija;
+        this.selectedDropdownCategory = kategorija;
       } else {
-        this.rashod.dropdownKategorija = "Više";
-        this.rashod.kategorija = kategorija;
+        this.stanje.rashod.dropdownKategorija = "Više";
+        this.stanje.rashod.kategorija = kategorija;
+        this.selectedDropdownCategory = null;
       }
     },
-    spremiRashod() {
-      let noviRashodPodaci = {
-        kategorija: this.rashod.kategorija || this.rashod.dropdownKategorija,
-        iznos: this.rashod.iznos,
-        datum: this.rashod.datum,
-        biljeska: this.rashod.biljeska,
-      };
-      Rashod.noviRashod(noviRashodPodaci).then(() => {
-        console.log("Spremljeno: ", noviRashodPodaci);
-        this.rashod.iznos = parseInt(noviRashodPodaci.iznos);
-        console.log(
-          "Rashod izjednačen sa noviRashodPodaci.iznos: ",
-          this.rashod.iznos
-        );
-        this.rashodi += parseInt(this.rashod.iznos);
-        console.log("Ukupni rashodi: ", this.rashodi);
-        Stanje.dohvatiStanje().then((data) => {
-          data.stanjeRacuna = this.prihodi - this.rashodi;
-          console.log("data.stanjeracuna", data.stanjeRacuna);
-        });
-        this.rashod.kategorija = "";
-        this.rashod.iznos = "";
-        this.rashod.datum = "";
-        this.rashod.biljeska = "";
-      });
+    async spremiRashod() {
+      try {
+        let noviRashodPodaci = {
+          kategorija:
+            this.stanje.rashod.kategorija || this.stanje.rashod.dropdownKategorija,
+          iznos: this.stanje.rashod.iznos,
+          datum: this.stanje.rashod.datum,
+          biljeska: this.stanje.rashod.biljeska,
+        };
+        await Rashod.noviRashod(noviRashodPodaci);
+        this.stanje.rashod.iznos = parseInt(noviRashodPodaci.iznos);
+
+        this.stanje.rashodi += parseInt(this.stanje.rashod.iznos);
+        let data = await Stanje.dohvatiStanje();
+        data.stanjeRacuna = this.stanje.prihodi - this.stanje.rashodi;
+
+        this.stanje.rashod.kategorija = "";
+        this.stanje.rashod.dropdownKategorija = "Više";
+        this.stanje.rashod.iznos = "";
+        this.stanje.rashod.datum = "";
+        this.stanje.rashod.biljeska = "";
+      } catch (error) {
+        console.error("Greška pri spremanju rashoda: ", error);
+      }
     },
   },
 };
@@ -261,6 +267,12 @@ export default {
   display: flex;
   justify-content: space-around;
 }
+
+.dropdown-btn.active {
+  background-color: yellow;
+  border: none;
+}
+
 .btn {
   color: black;
 }
@@ -273,15 +285,6 @@ export default {
 .buttons {
   display: flex;
   justify-content: space-evenly;
-}
-.button {
-  border-radius: 12px;
-  font-size: 18px;
-  font-weight: bold;
-  text-decoration: none;
-  color: black;
-  background-color: whitesmoke;
-  padding: 1.5vh 5vh;
 }
 
 .form-control {
