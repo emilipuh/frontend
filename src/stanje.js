@@ -12,7 +12,7 @@ export default {
   },
   rashodi: 0,
   rashod: {
-    dropdownKategorija: 'Više',
+    dropdownKategorija: "Više",
     kategorija: "",
     iznos: null,
     datum: "",
