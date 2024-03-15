@@ -11,7 +11,7 @@
         aria-controls="izbornik"
         aria-label="Toggle navigation"
       >
-        <div class="navbar-icon">
+        <div class="navbar-icon" style="margin-bottom: 1vh">
           <i class="fa-solid fa-bars fa-xl"></i>
         </div>
         Izbornik
@@ -23,57 +23,63 @@
         aria-labelledby="izbornik"
       >
         <div class="offcanvas-header">
-          <h5 style="color: #066995">Expense Track</h5>
+          <h2 style="color: #066995; margin-top: 3vh">Expense Track</h2>
         </div>
         <div class="offcanvas-body">
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <div
-                class="nav-item dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Prihodi
+          <div class="collapse-btns">
+            <button
+              class="btns dropdown-toggle"
+              data-bs-toggle="collapse"
+              href="#pregledPrihoda"
+              role="button"
+              aria-expanded="false"
+              aria-controls="pregledPrihoda"
+            >
+              Prihodi
+            </button>
+            <div class="collapse multi-collapse" id="pregledPrihoda">
+              <div class="card card-body">
+                <button class="dropdown-item" @click="pregledPrihoda()">
+                  Pregled prihoda
+                </button>
               </div>
-              <ul class="dropdown-menu">
-                <li>
-                  <button class="dropdown-item" @click="pregledPrihoda()">
-                    Pregled prihoda
-                  </button>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <div
-                class="nav-item dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Rashodi
+            </div>
+            <button
+              class="btns dropdown-toggle"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#pregledRashoda"
+              aria-expanded="false"
+              aria-controls="pregledRashoda"
+              style="margin-top: 2vh"
+            >
+              Rashodi
+            </button>
+            <div class="collapse multi-collapse" id="pregledRashoda">
+              <div class="card card-body">
+                <button class="dropdown-item" @click="pregledRashoda()">
+                  Pregled rashoda
+                </button>
               </div>
-              <ul class="dropdown-menu">
-                <li>
-                  <button class="dropdown-item" @click="pregledRashoda()">
-                    Pregled rashoda
-                  </button>
-                </li>
-              </ul>
-            </li>
-            <li class="mt-5">
-              <button class="nav-item" @click="pregledStednji()">
-                Štednja
-              </button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
         <div class="offcanvas-footer">
-          <i class="fa-solid fa-power-off"></i>
-          <!-- router link -->
-          <button style="margin-left: 1vh" class="nav-item" @click="odjava()">
-            Odjava
-          </button>
+          <div>
+            <button
+              class="btns"
+              style="margin-bottom: 30vh"
+              @click="pregledStednji()"
+            >
+              Štednja
+            </button>
+          </div>
+          <div>
+            <i class="fa-solid fa-power-off"></i>
+            <button style="margin-left: 1vh" class="btns" @click="odjava()">
+              Odjava
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -90,6 +96,12 @@ export default {
   components: {
     KorisnickiPodaci,
     Dodaj,
+  },
+  data() {
+    return {
+      prihodiCollapse: false,
+      rashodiCollapse: false,
+    };
   },
   methods: {
     pregledPrihoda() {
@@ -110,6 +122,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.btn {
+  font-size: 16px;
+  border: none;
+  color: black;
+}
 .offcanvas {
   max-width: 300px;
 }
@@ -117,28 +134,28 @@ export default {
   text-align: start;
   margin-top: 3vh;
 }
-.nav-item {
-  padding-bottom: 10px;
+.collapse-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+.card-body {
+  border: none;
+  padding: 1vh 0vh 2vh 3vh;
+}
+.btns {
+  padding-bottom: 1vh;
   font-size: 20px;
   background-color: inherit;
   border: none;
   padding-left: 0;
 }
-.btn {
-  border: none;
-  font-size: 16px;
-  color: black;
-}
-.navbar-icon {
-  margin-bottom: 1vh;
-}
 .offcanvas-footer {
+  display: flex;
+  flex-direction: column;
   text-align: start;
   font-size: 20px;
   padding: 16px;
-}
-
-.dropdown-menu {
-  border: none;
 }
 </style>
