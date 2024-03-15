@@ -1,17 +1,25 @@
 <template>
   <div class="container">
     <h5>Rashodi</h5>
-    <h6 style="text-align: start; margin: 4vh 2vh">Pregled upisa</h6>
-    <div class="upisi">
+    <h6 style="text-align: start; margin: 4vh 2vh; color: black">
+      Pregled upisa
+    </h6>
+    <div class="upisi" v-if="rashodi && rashodi.length > 0">
       <div class="upis" v-for="(rashod, index) in rashodi" :key="index">
-        <div class="content mb-2">
-          <p class="text">{{ rashod.datum }} - {{ rashod.iznos }} €</p>
+        <div class="content">
+          <p class="text">{{ rashod.datum }}: {{ rashod.biljeska }}</p>
           <p class="text" style="width: 25vh; text-align: center">
-            {{ rashod.biljeska }}
+            <span style="color: #ffbe53">{{ rashod.iznos }} €</span>
           </p>
         </div>
-        <button class="btn" @click="detaljiRashoda(rashod)">Pregled</button>
+        <button class="btn" @click="detaljiRashoda(rashod)">
+          <i class="fa-solid fa-circle-info"></i>
+          Detalji
+        </button>
       </div>
+    </div>
+    <div v-else>
+      <p class="text">Nema podataka za prikaz</p>
     </div>
   </div>
 </template>
@@ -53,8 +61,12 @@ export default {
 
 <style scoped lang="scss">
 .container {
+  min-height: 80dvh;
   max-height: 100dvh;
-  padding-top: 2vh;
+}
+.upisi {
+  overflow: auto;
+  margin-bottom: 6vh;
 }
 .upis {
   border-radius: 2vh;
@@ -66,13 +78,8 @@ export default {
   justify-content: space-between;
   align-items: flex-end;
 }
-// na cijelu stranicu???
-.upisi {
-  overflow: auto;
-}
-
 .text {
-  font-weight: bold;
-  margin: 1vh;
+  margin: 0.5vh 1vh;
+  color: black;
 }
 </style>

@@ -1,21 +1,25 @@
 <template>
   <div class="container">
     <h5>Prihodi</h5>
-    <h6 style="text-align: start; margin: 4vh 2vh">Pregled upisa</h6>
+    <h6 style="text-align: start; margin: 4vh 2vh; color: black">
+      Pregled upisa
+    </h6>
     <div class="upisi" v-if="prihodi && prihodi.length > 0">
       <div class="upis" v-for="prihod in prihodi" :key="prihod._id">
-        <div class="content mb-2">
-          <p class="text">{{ prihod.datum }} - {{ prihod.iznos }} €</p>
+        <div class="content">
+          <p class="text">{{ prihod.datum }}: {{ prihod.biljeska }}</p>
           <p class="text" style="width: 25vh; text-align: center">
-            {{ prihod.biljeska }}
+            <span style="color: #ffbe53">{{ prihod.iznos }} €</span>
           </p>
         </div>
-        <button class="btn" @click="detaljiPrihoda(prihod)">Pregled</button>
+        <button class="btn" @click="detaljiPrihoda(prihod)">
+          <i class="fa-solid fa-circle-info"></i>
+          Detalji
+        </button>
       </div>
     </div>
     <div v-else>
       <p class="text">Nema podataka za prikaz</p>
-      <!-- <button class="btn" @click="dohvatiPrihode()">Dohvati ponovno</button> -->
     </div>
   </div>
 </template>
@@ -53,12 +57,12 @@ export default {
 
 <style scoped lang="scss">
 .container {
+  min-height: 80dvh;
   max-height: 100dvh;
-  padding-top: 2vh;
 }
-
 .upisi {
   overflow: auto;
+  margin-bottom: 6vh;
 }
 .upis {
   border-radius: 2vh;
@@ -70,9 +74,8 @@ export default {
   justify-content: space-between;
   align-items: flex-end;
 }
-
 .text {
-  font-weight: bold;
-  margin: 1vh;
+  margin: 0.5vh 1vh;
+  color: black;
 }
 </style>
