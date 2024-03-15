@@ -72,7 +72,7 @@ export default {
   border-radius: 2vh;
   background-color: #188abb;
   text-align: start;
-  padding: 0.5vh 1vh 0vh 1vh;
+  padding: 0.5vh 1vh 0.5vh 1vh;
   margin-bottom: 1vh;
   display: flex;
   justify-content: space-between;

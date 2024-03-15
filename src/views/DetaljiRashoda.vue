@@ -1,20 +1,33 @@
 <template>
-  <div class="container" v-if="rashod">
+  <div class="container">
     <h2>Detalji rashoda</h2>
-    <div class="content">
-      <p>ID: {{ rashod._id }}</p>
-      <p>Kategorija: {{ rashod.kategorija }}</p>
-      <p>Iznos: {{ rashod.iznos }}</p>
-      <p>Datum: {{ rashod.datum }}</p>
-      <p>Bilješka: {{ rashod.biljeska }}</p>
+    <div v-if="rashod">
+      <div class="content">
+        <p>
+          Kategorija:
+          <span style="font-weight: bold">{{ rashod.kategorija }}</span>
+        </p>
+        <p>
+          Iznos: <span style="font-weight: bold">{{ rashod.iznos }}</span>
+        </p>
+        <p>
+          Datum: <span style="font-weight: bold">{{ rashod.datum }}</span>
+        </p>
+        <p>
+          Vrijeme: <span style="font-weight: bold">{{ rashod.vrijeme }}</span>
+        </p>
+        <p>
+          Bilješka: <span style="font-weight: bold">{{ rashod.biljeska }}</span>
+        </p>
+      </div>
     </div>
-  </div>
-  <div v-else>
-    <p>Rashod nije pronađen.</p>
-  </div>
-  <div class="buttons">
-    <button class="btn" @click="natrag()">Natrag</button>
-    <Obrisi @obrisiUpis="obrisiRashod(rashod._id)" />
+    <div v-else>
+      <p>Rashod nije pronađen.</p>
+    </div>
+    <div class="buttons">
+      <button class="btn" @click="natrag()">Natrag</button>
+      <Obrisi @obrisiUpis="obrisiRashod(rashod._id)" />
+    </div>
   </div>
 </template>
 
@@ -40,8 +53,8 @@ export default {
     async dohvati() {
       this.rashod = await Rashod.dohvatiRashod(this.id);
     },
-    async obrisiRashod(rashod) {
-      await Rashod.obrisiRashod(rashod);
+    async obrisiRashod(id) {
+      await Rashod.obrisiRashod(id);
     },
     natrag() {
       this.$router.replace({ name: "pregledRashoda" });
@@ -49,15 +62,19 @@ export default {
   },
 };
 </script>
+
 <style scoped lang="scss">
 .container {
+  color: black;
+  min-height: 80dvh;
   max-height: 100dvh;
-  padding-top: 2vh;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .content {
-  margin: 5vh 0vh;
-  padding: 5vh;
+  margin: 4vh 2vh;
+  padding: 4vh 4vh;
   border-radius: 2vh;
   text-align: start;
   background-color: #188abb;
@@ -67,7 +84,7 @@ export default {
   justify-content: space-evenly;
 }
 .btn {
-  border-radius: 12px;
+  border-radius: 1.5vh;
   border: none;
   margin-top: 1vh;
   font-size: 16px;

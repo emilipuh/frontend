@@ -1,20 +1,33 @@
 <template>
-  <div class="container" v-if="prihod">
+  <div class="container">
     <h2>Detalji prihoda</h2>
-    <div class="content">
-      <p>ID: {{ prihod._id }}</p>
-      <p>Kategorija: {{ prihod.kategorija }}</p>
-      <p>Iznos: {{ prihod.iznos }}</p>
-      <p>Datum: {{ prihod.datum }}</p>
-      <p>Bilješka: {{ prihod.biljeska }}</p>
+    <div v-if="prihod">
+      <div class="content">
+        <p>
+          Kategorija:
+          <span style="font-weight: bold">{{ prihod.kategorija }}</span>
+        </p>
+        <p>
+          Iznos: <span style="font-weight: bold">{{ prihod.iznos }}</span>
+        </p>
+        <p>
+          Datum: <span style="font-weight: bold">{{ prihod.datum }}</span>
+        </p>
+        <p>
+          Vrijeme: <span style="font-weight: bold">{{ prihod.vrijeme }}</span>
+        </p>
+        <p>
+          Bilješka: <span style="font-weight: bold">{{ prihod.biljeska }}</span>
+        </p>
+      </div>
     </div>
-  </div>
-  <div v-else>
-    <p>Prihod nije pronađen.</p>
-  </div>
-  <div class="buttons">
-    <button class="btn" @click="natrag()">Natrag</button>
-    <Obrisi @obrisiUpis="obrisiPrihod(prihod._id)" />
+    <div v-else>
+      <p>Prihod nije pronađen.</p>
+    </div>
+    <div class="buttons">
+      <button class="btn" @click="natrag()">Natrag</button>
+      <Obrisi @obrisiUpis="obrisiPrihod(prihod._id)" />
+    </div>
   </div>
 </template>
 
@@ -54,13 +67,16 @@ export default {
 
 <style scoped lang="scss">
 .container {
+  color: black;
+  min-height: 80dvh;
   max-height: 100dvh;
-  padding-top: 2vh;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .content {
-  margin: 5vh 0vh;
-  padding: 5vh;
+  margin: 4vh 2vh;
+  padding: 4vh 4vh;
   border-radius: 2vh;
   text-align: start;
   background-color: #188abb;
@@ -70,7 +86,7 @@ export default {
   justify-content: space-evenly;
 }
 .btn {
-  border-radius: 12px;
+  border-radius: 1.5vh;
   border: none;
   margin-top: 1vh;
   font-size: 16px;
