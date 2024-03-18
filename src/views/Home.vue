@@ -54,10 +54,6 @@ export default {
           this.prihodi = data.prihodi;
           this.rashodi = data.rashodi;
           this.stednje = data.stednja;
-          console.log("Ukupno stanje: ", this.stanjeRacuna);
-          console.log("Ukupni prihodi: ", this.prihodi);
-          console.log("Ukupni rashodi: ", this.rashodi);
-          console.log("Ukupna stednja: ", this.stednje);
         })
         .catch((error) => {
           console.error(
