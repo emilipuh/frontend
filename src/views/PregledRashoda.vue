@@ -48,6 +48,7 @@ export default {
       let userId = Auth.getUserId();
       try {
         this.rashodi = await Rashod.pregledRashoda(userId);
+        this.rashodi.sort((a, b) => new Date(b.datum) - new Date(a.datum));
       } catch (err) {
         console.error("Greška prilikom dohvata: ", err);
       }
@@ -61,7 +62,7 @@ export default {
 
 <style scoped lang="scss">
 .container {
-  min-height: 80dvh;
+  // min-height: 80dvh;
   max-height: 100dvh;
 }
 .upisi {
@@ -77,6 +78,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+}
+.btn {
+  padding: 0;
+  min-width: 8vh;
 }
 .text {
   margin: 0.5vh 1vh;

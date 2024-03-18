@@ -10,7 +10,7 @@
           <div class="content">
             <p class="text">{{ stednja.datum }}: {{ stednja.biljeska }}</p>
             <p class="text" style="width: 25vh; text-align: center">
-              <span style="font-weight: bold;">{{ stednja.iznos }} €</span>
+              <span style="font-weight: bold">{{ stednja.iznos }} €</span>
             </p>
           </div>
           <button class="button" @click="detaljiStednje(stednja._id)">
@@ -47,6 +47,7 @@ export default {
       try {
         let userId = Auth.getUserId();
         this.stednje = await Stednja.pregledStednji(userId);
+        this.stednje.sort((a, b) => new Date(b.datum) - new Date(a.datum)); // sortiranje
       } catch (err) {
         console.error("Greška prilikom dohvata štednji: ", err);
       }
@@ -63,12 +64,12 @@ export default {
 
 <style scoped lang="scss">
 .container {
-  min-height: 80dvh;
+  // min-height: 80dvh;
   max-height: 100dvh;
 }
 .upisi {
-  overflow: auto;
-  margin-bottom: 6vh;
+  max-height: calc(100vh - 33vh);
+  overflow-y: auto;
 }
 
 .upis {
@@ -88,6 +89,8 @@ export default {
 .button {
   border: none;
   background-color: inherit;
+  padding: 0;
+  min-width: 8vh;
 }
 .btn {
   border-radius: 2vh;
@@ -96,6 +99,10 @@ export default {
   color: black;
   background-color: whitesmoke;
   padding: 1.5vh 5vh;
-  margin: 0vh 12vh 15vh 12vh;
+  margin: 0vh 12vh 3vh 12vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 </style>

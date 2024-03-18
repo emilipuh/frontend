@@ -44,6 +44,7 @@ export default {
       try {
         let userId = Auth.getUserId();
         this.prihodi = await Prihod.pregledPrihoda(userId);
+        this.prihodi.sort((a, b) => new Date(b.datum) - new Date(a.datum));
       } catch (err) {
         console.error("Greška prilikom dohvata prihoda:", err);
       }
@@ -57,7 +58,7 @@ export default {
 
 <style scoped lang="scss">
 .container {
-  min-height: 80dvh;
+  //min-height: 80dvh; => mijenja margine
   max-height: 100dvh;
 }
 .upisi {
@@ -73,6 +74,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+}
+.btn {
+  padding: 0;
+  min-width: 8vh;
 }
 .text {
   margin: 0.5vh 1vh;
