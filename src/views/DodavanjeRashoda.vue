@@ -11,9 +11,9 @@
                 type="radio"
                 class="btn-check"
                 :class="{
-                  active: stanje.rashod.kategorija === 'kupovina',
+                  active: stanje.rashod.kategorija === 'Kupovina',
                 }"
-                @click="updateKategorija('kupovina')"
+                @click="updateKategorija('Kupovina')"
                 name="btnradio"
                 id="kupovina"
                 autocomplete="off"
@@ -28,9 +28,9 @@
                 type="radio"
                 class="btn-check"
                 :class="{
-                  active: stanje.rashod.kategorija === 'racuni',
+                  active: stanje.rashod.kategorija === 'Računi',
                 }"
-                @click="updateKategorija('racuni')"
+                @click="updateKategorija('Računi')"
                 name="btnradio"
                 id="racuni"
                 autocomplete="off"
@@ -213,7 +213,8 @@ export default {
       try {
         let noviRashodPodaci = {
           kategorija:
-            this.stanje.rashod.kategorija || this.stanje.rashod.dropdownKategorija,
+            this.stanje.rashod.kategorija ||
+            this.stanje.rashod.dropdownKategorija,
           iznos: this.stanje.rashod.iznos,
           datum: this.stanje.rashod.datum,
           biljeska: this.stanje.rashod.biljeska,

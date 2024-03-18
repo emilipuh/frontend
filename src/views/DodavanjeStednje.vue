@@ -48,7 +48,7 @@
 import Potvrdi from "@/components/Potvrdi.vue";
 import Ponisti from "@/components/Ponisti.vue";
 import stanje from "@/stanje";
-import { Stanje, Stednja } from "@/services";
+import { Stednja } from "@/services";
 
 export default {
   name: "dodajStednju",
@@ -60,19 +60,23 @@ export default {
     return stanje;
   },
   methods: {
-    spremiStednju() {
-      let novaStednjaPodaci = {
-        iznos: this.stednja.iznos,
-        datum: this.stednja.datum,
-        biljeska: this.stednja.biljeska,
-      };
-      Stednja.novaStednja(novaStednjaPodaci).then(() => {
+    async spremiStednju() {
+      try {
+        let novaStednjaPodaci = {
+          iznos: this.stednja.iznos,
+          datum: this.stednja.datum,
+          biljeska: this.stednja.biljeska,
+        };
+        await Stednja.novaStednja(novaStednjaPodaci);
         this.stednja.iznos = parseInt(novaStednjaPodaci.iznos);
         this.stednje += this.stednja.iznos;
-      });
-      this.stednja.iznos = "";
-      this.stednja.datum = "";
-      this.stednja.biljeska = "";
+
+        this.stednja.iznos = "";
+        this.stednja.datum = "";
+        this.stednja.biljeska = "";
+      } catch (error) {
+        console.error("Greška prilikom spremanja štednje: ", error);
+      }
     },
   },
 };

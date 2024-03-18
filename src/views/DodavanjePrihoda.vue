@@ -11,8 +11,8 @@
                 type="radio"
                 name="kategorija"
                 class="btn-check"
-                :class="{ active: prihod.kategorija === 'placa' }"
-                @click="updateKategorija('placa')"
+                :class="{ active: prihod.kategorija === 'Plaća' }"
+                @click="updateKategorija('Plaća')"
                 id="placa"
                 autocomplete="off"
               />
@@ -26,8 +26,8 @@
                 type="radio"
                 name="kategorija"
                 class="btn-check"
-                :class="{ active: prihod.kategorija === 'ostalo' }"
-                @click="updateKategorija('ostalo')"
+                :class="{ active: prihod.kategorija === 'Ostalo' }"
+                @click="updateKategorija('Ostalo')"
                 id="ostalo"
                 autocomplete="off"
               />
@@ -108,7 +108,7 @@ export default {
           datum: this.prihod.datum,
           biljeska: this.prihod.biljeska,
         };
-
+        
         await Prihod.noviPrihod(noviPrihodPodaci);
 
         this.prihod.iznos = parseInt(noviPrihodPodaci.iznos);
