@@ -22,10 +22,23 @@ Service.interceptors.response.use(
   (error) => {
     if (error.response.status == 401 || error.response.status == 403) {
       Auth.logout();
-      $router.go();
+      // razmisliti
+      // $router.go();
     }
   }
 );
+
+// trenutno vrijeme
+function dohvatiTrenutnoVrijeme() {
+  const trenutnoVrijeme = Date.now();
+  const datum = new Date(trenutnoVrijeme);
+
+  const sati = String(datum.getHours()).padStart(2, "0");
+  const minute = String(datum.getMinutes()).padStart(2, "0");
+  const sekunde = String(datum.getSeconds()).padStart(2, "0");
+
+  return `${sati}:${minute}:${sekunde}`;
+}
 
 let Stanje = {
   async dohvatiStanje(userId) {
@@ -79,6 +92,7 @@ let Prihod = {
       kategorija: podaciPrihod.kategorija,
       iznos: parseFloat(podaciPrihod.iznos),
       datum: podaciPrihod.datum,
+      vrijeme: dohvatiTrenutnoVrijeme(),
       biljeska: podaciPrihod.biljeska,
     };
     console.log("server data: ", serverData);
@@ -122,6 +136,7 @@ let Rashod = {
       kategorija: podaciRashod.kategorija,
       iznos: parseFloat(podaciRashod.iznos),
       datum: podaciRashod.datum,
+      vrijeme: dohvatiTrenutnoVrijeme(),
       biljeska: podaciRashod.biljeska,
     };
     // čekamo odgovor sa backenda
@@ -172,6 +187,7 @@ let Stednja = {
       userId: userId,
       iznos: parseFloat(podaciStednja.iznos),
       datum: podaciStednja.datum,
+      vrijeme: dohvatiTrenutnoVrijeme(),
       biljeska: podaciStednja.biljeska,
     };
     await Service.post("/novaStednja", serverData);
