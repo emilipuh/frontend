@@ -137,8 +137,8 @@ export default {
 .collapse-btns {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  align-items: start;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .card-body {
   border: none;
