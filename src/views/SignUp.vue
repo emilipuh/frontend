@@ -149,7 +149,6 @@ export default {
       } else {
         this.error = "";
         let registerSuccess = await Auth.registration(user);
-        console.log("Uspješna registracija ", registerSuccess);
         if (registerSuccess === true) {
           console.log("Registracija je uspješna i token je dobiven");
           await Auth.login(user.username, user.password);
