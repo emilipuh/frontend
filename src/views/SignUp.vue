@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import { Auth } from "@/services";
+import { Auth, Validacija } from "@/services";
 
 export default {
   name: "signup",
@@ -93,17 +93,8 @@ export default {
       errorPassword: "",
     };
   },
-  methods: {
-    validateEmail() {
-      const regx = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
-      if (regx.test(this.email)) {
-        return true;
-      } else {
-        return false;
-      }
-    },
+  methods: {  
     checkUsernameLength() {
-      // ako je korisničko ime kraće od šest znakova
       if (this.username.length < 4) {
         this.errorUsername = "Korisničko ime mora imati barem 4 znaka";
         return;
@@ -112,8 +103,7 @@ export default {
       }
     },
     checkEmail() {
-      // ako email nije uobičajen
-      if (!this.validateEmail()) {
+      if (!Validacija.validateEmail(this.email)) {
         this.errorEmail = "Neispravan format email adrese";
         return;
       } else {
