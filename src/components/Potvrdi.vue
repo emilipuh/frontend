@@ -12,7 +12,7 @@
       <div class="modal-content">
         <div class="modal-body">
           <div class="confirm">
-            <h6>Želite li spremiti upis?</h6>
+            <h6>Spremiti?</h6>
           </div>
         </div>
         <div class="buttons">

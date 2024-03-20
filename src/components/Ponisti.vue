@@ -13,7 +13,7 @@
       <div class="modal-content">
         <div class="modal-body">
           <div class="confirm">
-            <h6>Želite li poništiti upis?</h6>
+            <h6>Poništiti?</h6>
           </div>
         </div>
         <div class="buttons">
@@ -26,13 +26,42 @@
 </template>
 
 <script>
+import { onBeforeUnmount } from "vue";
+
 export default {
   name: "Potvrdi",
+  mounted() {
+    this.closeModalOnRouteChange();
+  },
   methods: {
     ponisti() {
-      this.$router.push({ name: 'home' })
-    }
-  }
+      this.$router.push({ name: "home" });
+    },
+    closeModalOnRouteChange() {
+      const closeModal = () => {
+        const modal = document.getElementById("ponisti");
+        if (modal) {
+          const modalInstance = new bootstrap.Modal(modal);
+          modalInstance.hide();
+          const backdrop = document.getElementsByClassName("modal-backdrop")[0];
+          if (backdrop) {
+            backdrop.remove();
+          }
+        }
+      };
+
+      this.$router.beforeEach((to, from, next) => {
+        closeModal();
+        next();
+      });
+
+      onBeforeUnmount(() => {
+        this.$router.beforeEach((to, from, next) => {
+          next();
+        });
+      });
+    },
+  },
 };
 </script>
 
