@@ -210,8 +210,7 @@ let Stednja = {
 
 let Auth = {
   async registration(user_data) {
-    let response = await Service.post("/korisnici", user_data);
-    console.log("Rezultat registracije: ", response.data);
+    await Service.post("/korisnici", user_data);
     return true;
   },
   async login(username, password) {
@@ -261,4 +260,15 @@ let Auth = {
   },
 };
 
-export { Service, Stanje, Prihod, Rashod, Stednja, Auth };
+let Validacija = {
+  validateEmail(email) {
+    const regx = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
+    if (regx.test(email)) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+}
+
+export { Service, Stanje, Prihod, Rashod, Stednja, Auth, Validacija };
