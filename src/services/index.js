@@ -22,8 +22,7 @@ Service.interceptors.response.use(
   (error) => {
     if (error.response.status == 401 || error.response.status == 403) {
       Auth.logout();
-      // razmisliti
-      // $router.go();
+      $router.go();
     }
   }
 );
@@ -260,15 +259,11 @@ let Auth = {
   },
 };
 
-let Validacija = {
-  validateEmail(email) {
-    const regx = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
-    if (regx.test(email)) {
-      return true;
-    } else {
-      return false;
-    }
+let Promjene = {
+  async promijenaPodataka(podaci) {
+    let result = await Service.patch("/urediKorisnika", podaci);
+    return result;
   },
-}
+};
 
-export { Service, Stanje, Prihod, Rashod, Stednja, Auth, Validacija };
+export { Service, Stanje, Prihod, Rashod, Stednja, Auth, Promjene };
