@@ -13,6 +13,7 @@ import Login from "@/views/Login";
 import SignUp from "@/views/SignUp";
 import { Auth } from "@/services/index.js";
 import Pocetna from "@/views/Pocetna.vue";
+import UrediKorisnika from "@/views/UrediKorisnika.vue";
 
 const routes = [
   {
@@ -34,6 +35,11 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
+  },
+  {
+    path: "/urediKorisnika",
+    name: "urediKorisnika",
+    component: UrediKorisnika,
   },
   {
     path: "/dodajPrihod",
