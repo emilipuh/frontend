@@ -98,7 +98,7 @@ p {
 
 .btn {
   border-radius: 12px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   text-decoration: none;
   color: black;
