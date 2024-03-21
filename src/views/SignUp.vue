@@ -93,7 +93,7 @@ export default {
       errorPassword: "",
     };
   },
-  methods: {  
+  methods: {
     checkUsernameLength() {
       if (this.username.length < 4) {
         this.errorUsername = "Korisničko ime mora imati barem 4 znaka";
@@ -103,11 +103,14 @@ export default {
       }
     },
     checkEmail() {
-      if (!Validacija.validateEmail(this.email)) {
+      const regx = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/;
+
+      if (!regx.test(this.email)) {
         this.errorEmail = "Neispravan format email adrese";
-        return;
+        return false;
       } else {
         this.errorEmail = "";
+        return true;
       }
     },
     checkPassword() {
