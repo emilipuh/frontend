@@ -1,5 +1,6 @@
 <template>
   <button
+    :disabled="isDisabled"
     type="button"
     class="btn"
     data-bs-toggle="modal"
@@ -34,6 +35,17 @@ export default {
     return {
       stanje,
     };
+  },
+  props: {
+    postojiGreska: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    isDisabled() {
+      return this.postojiGreska; 
+    },
   },
   mounted() {
     this.closeModalOnRouteChange();
