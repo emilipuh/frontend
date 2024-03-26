@@ -4,8 +4,15 @@
       <div class="content">
         <h5 class="title">Novi rashod</h5>
         <div class="row">
-          <div class="col-12">
+          <div class="col-12" style="padding-bottom: 3vh">
             <label class="form-label">Kategorija</label>
+            <p
+              v-if="!odabranaKategorija"
+              class="error-message"
+              style="text-align: start"
+            >
+              {{ errors.kategorijaError }}
+            </p>
             <div class="kategorije">
               <input
                 type="radio"
@@ -133,7 +140,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-12" style="padding-bottom: 3vh">
           <label for="iznos" class="form-label">Iznos</label>
           <input
             v-model="stanje.rashod.iznos"
@@ -141,9 +148,14 @@
             placeholder="Iznos"
             class="form-control"
             id="iznos"
+            @blur="validacijaIznosa"
           />
+          <p v-if="errors.iznosError" class="error-message">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            {{ errors.iznosError }}
+          </p>
         </div>
-        <div class="col-12">
+        <div class="col-12" style="padding-bottom: 3vh">
           <label for="datum" class="form-label">Datum</label>
           <input
             v-model="stanje.rashod.datum"
@@ -151,9 +163,14 @@
             class="form-control"
             placeholder="Datum"
             id="datum"
+            @blur="provjeraDatuma"
           />
+          <p v-if="errors.datumError" class="error-message">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            {{ errors.datumError }}
+          </p>
         </div>
-        <div class="col-12">
+        <div class="col-12" style="padding-bottom: 3vh">
           <label for="biljeska" class="form-label">Bilješka</label>
           <input
             v-model="stanje.rashod.biljeska"
@@ -166,8 +183,8 @@
       </div>
     </div>
     <div class="buttons">
-      <Ponisti />
-      <Potvrdi @potvrdiUpis="spremiRashod" />
+      <Ponisti @ponistiUpis="ponistiRashod" />
+      <Potvrdi @potvrdiUpis="spremiRashod" :postojiGreska="postojiGreska" />
     </div>
   </div>
 </template>
@@ -187,10 +204,52 @@ export default {
   data() {
     return {
       stanje,
+      errors: {
+        error: "",
+        kategorijaError: "Odaberite kategoriju",
+        iznosError: "",
+        datumError: "",
+      },
+      odabranaKategorija: false,
       selectedDropdownCategory: null,
     };
   },
+  computed: {
+    postojiGreska() {
+      return !!(
+        this.errors.error ||
+        this.errors.iznosError ||
+        this.errors.datumError ||
+        !this.isDataChanged
+      );
+    },
+    isDataChanged() {
+      return (
+        this.stanje.rashod.kategorija !== "" &&
+        this.odabranaKategorija == true &&
+        // this.selectedDropdownCategory !== null &&
+        this.stanje.rashod.iznos !== "" &&
+        this.stanje.rashod.datum !== ""
+      );
+    },
+  },
   methods: {
+    validacijaIznosa() {
+      if (isNaN(this.stanje.rashod.iznos)) {
+        this.errors.iznosError = "Iznos nije valjan";
+      } else if (!this.stanje.rashod.iznos) {
+        this.errors.iznosError = "Iznos nije unesen";
+      } else {
+        this.errors.iznosError = "";
+      }
+    },
+    provjeraDatuma() {
+      if (!this.stanje.rashod.datum) {
+        this.errors.datumError = "Datum nije odabran";
+      } else {
+        this.errors.datumError = "";
+      }
+    },
     updateKategorija(kategorija) {
       if (
         [
@@ -201,9 +260,11 @@ export default {
           "Ostalo",
         ].includes(kategorija)
       ) {
+        this.odabranaKategorija = true;
         this.stanje.rashod.dropdownKategorija = kategorija;
         this.selectedDropdownCategory = kategorija;
       } else {
+        this.odabranaKategorija = true;
         this.stanje.rashod.dropdownKategorija = "Više";
         this.stanje.rashod.kategorija = kategorija;
         this.selectedDropdownCategory = null;
@@ -235,6 +296,15 @@ export default {
         console.error("Greška pri spremanju rashoda: ", error);
       }
     },
+    ponistiRashod() {
+      this.stanje.rashod.kategorija = "";
+      this.stanje.rashod.dropdownKategorija = "Više";
+      this.stanje.rashod.iznos = "";
+      this.stanje.rashod.datum = "";
+      this.stanje.rashod.biljeska = "";
+      this.odabranaKategorija = false;
+      this.selectedDropdownCategory = null;
+    },
   },
 };
 </script>
@@ -242,72 +312,65 @@ export default {
 <style scoped lang="scss">
 .container {
   min-height: 100dvh;
-  padding: 0px;
+  padding: 0vh;
+  margin: 0vh;
   display: flex;
   justify-content: space-evenly;
 }
-
 .dodajRashod {
   border-radius: 18px;
   background-color: #066995;
   margin-left: 2vh;
   margin-right: 2vh;
 }
-
 .content {
   margin: 4vh;
 }
-
 .title {
   font-size: 22px;
   margin-bottom: 3vh;
   padding: 0;
 }
-
 .kategorije {
   display: flex;
   justify-content: space-around;
 }
-
 .dropdown-btn.active {
   background-color: yellow;
   border: none;
 }
-
 .btn {
   color: black;
 }
-
 .btn-check:checked + .btn {
   background-color: yellow;
   border: none;
 }
-
 .buttons {
   display: flex;
   justify-content: space-evenly;
 }
-
 .form-control {
   margin-top: 1vh !important;
-  margin-bottom: 4vh !important;
   padding: 1.5vh;
   text-align: center;
   font-size: 16px;
 }
-
 .form-label {
   display: flex;
   color: black;
   font-size: 18px;
   font-weight: bold;
 }
-
 ::placeholder {
   color: lightgrey;
 }
-
 #iznos {
   color: red;
+}
+.error-message {
+  margin: 1vh 0.5vh;
+  font-size: 14px;
+  color: rgb(223, 223, 0);
 }
 </style>
