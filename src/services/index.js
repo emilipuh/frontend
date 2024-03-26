@@ -32,11 +32,13 @@ function dohvatiTrenutnoVrijeme() {
   const trenutnoVrijeme = Date.now();
   const datum = new Date(trenutnoVrijeme);
 
+  const dan = String(datum.getDate()).padStart(2, "0");
+  const mjesec = String(datum.getMonth() + 1).padStart(2, "0");
+  const godina = datum.getFullYear();
   const sati = String(datum.getHours()).padStart(2, "0");
   const minute = String(datum.getMinutes()).padStart(2, "0");
-  const sekunde = String(datum.getSeconds()).padStart(2, "0");
 
-  return `${sati}:${minute}:${sekunde}`;
+  return `${godina}-${mjesec}-${dan} ${sati}:${minute}`;
 }
 
 let Stanje = {
@@ -91,7 +93,7 @@ let Prihod = {
       kategorija: podaciPrihod.kategorija,
       iznos: parseFloat(podaciPrihod.iznos),
       datum: podaciPrihod.datum,
-      vrijeme: dohvatiTrenutnoVrijeme(),
+      upisano: dohvatiTrenutnoVrijeme(),
       biljeska: podaciPrihod.biljeska,
     };
     console.log("server data: ", serverData);
@@ -135,7 +137,7 @@ let Rashod = {
       kategorija: podaciRashod.kategorija,
       iznos: parseFloat(podaciRashod.iznos),
       datum: podaciRashod.datum,
-      vrijeme: dohvatiTrenutnoVrijeme(),
+      upisano: dohvatiTrenutnoVrijeme(),
       biljeska: podaciRashod.biljeska,
     };
     // čekamo odgovor sa backenda
@@ -186,7 +188,7 @@ let Stednja = {
       userId: userId,
       iznos: parseFloat(podaciStednja.iznos),
       datum: podaciStednja.datum,
-      vrijeme: dohvatiTrenutnoVrijeme(),
+      upisano: dohvatiTrenutnoVrijeme(),
       biljeska: podaciStednja.biljeska,
     };
     await Service.post("/novaStednja", serverData);
@@ -265,4 +267,5 @@ let Promjene = {
     return result;
   },
 };
+
 export { Service, Stanje, Prihod, Rashod, Stednja, Auth, Promjene };
