@@ -204,7 +204,8 @@ export default {
               user.email = azuriraniPodaci.email;
             }
             localStorage.setItem("user", JSON.stringify(user));
-            //this.$router.go(); // jer mi se inače ne prikazuju odmah korisnički podaci
+            confirm("Podaci uspješno ažurirani!");
+            this.$router.go(); // jer mi se inače ne prikazuju odmah korisnički podaci
           }
         } else {
           console.error("Greška prilikom ažuriranja podataka.");
