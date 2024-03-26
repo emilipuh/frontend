@@ -1,93 +1,79 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
-import DodavanjePrihoda from "@/views/DodavanjePrihoda";
-import DodavanjeRashoda from "@/views/DodavanjeRashoda";
-import PregledPrihoda from "@/views/PregledPrihoda";
-import DetaljiPrihoda from "@/views/DetaljiPrihoda";
-import PregledRashoda from "@/views/PregledRashoda";
-import DetaljiRashoda from "@/views/DetaljiRashoda";
-import PregledStednji from "@/views/PregledStednji";
-import DodavanjeStednje from "@/views/DodavanjeStednje";
-import DetaljiStednje from "@/views/DetaljiStednje";
-import Login from "@/views/Login";
-import SignUp from "@/views/SignUp";
 import { Auth } from "@/services/index.js";
-import Pocetna from "@/views/Pocetna.vue";
-import UrediKorisnika from "@/views/UrediKorisnika.vue";
 
 const routes = [
   {
     path: "/pocetna",
     name: "pocetna",
-    component: Pocetna,
+    component: () => import("@/views/Pocetna.vue"),
   },
   {
     path: "/login",
     name: "login",
-    component: Login,
+    component: () => import("@/views/Login.vue"),
   },
   {
     path: "/signup",
     name: "signup",
-    component: SignUp,
+    component: () => import("@/views/SignUp.vue"),
   },
   {
     path: "/",
     name: "home",
-    component: Home,
+    component: () => import("@/views/Home.vue"),
   },
   {
     path: "/urediKorisnika",
     name: "urediKorisnika",
-    component: UrediKorisnika,
+    component: () => import("@/views/UrediKorisnika.vue"),
   },
   {
     path: "/dodajPrihod",
     name: "dodajPrihod",
-    component: DodavanjePrihoda,
+    component: () => import("@/views/DodavanjePrihoda.vue"),
   },
   {
     path: "/dodajRashod",
     name: "dodajRashod",
-    component: DodavanjeRashoda,
+    component: () => import("@/views/DodavanjeRashoda.vue"),
+  },
+  {
+    path: "/dodavanjeStednje",
+    name: "dodavanjeStednje",
+    component: () => import("@/views/DodavanjeStednje.vue"),
   },
   {
     path: "/pregledPrihoda",
     name: "pregledPrihoda",
-    component: PregledPrihoda,
+    component: () => import("@/views/PregledPrihoda.vue"),
+  },
+  {
+    path: "/pregledRashoda",
+    name: "pregledRashoda",
+    component: () => import("@/views/PregledRashoda.vue"),
+  },
+  {
+    path: "/pregledStednji",
+    name: "pregledStednji",
+    component: () => import("@/views/PregledStednji.vue"),
   },
   {
     path: "/detaljiPrihoda/:id",
     name: "detaljiPrihoda",
-    component: DetaljiPrihoda,
+    component: () => import("@/views/DetaljiPrihoda.vue"),
     props: true,
   },
   {
     path: "/detaljiRashoda/:id",
     name: "detaljiRashoda",
-    component: DetaljiRashoda,
+    component: () => import("@/views/DetaljiRashoda.vue"),
     props: true,
   },
   {
     path: "/detaljiStednje/:id",
     name: "detaljiStednje",
-    component: DetaljiStednje,
+    component: () => import("@/views/DetaljiStednje.vue"),
     props: true,
-  },
-  {
-    path: "/pregledRashoda",
-    name: "pregledRashoda",
-    component: PregledRashoda,
-  },
-  {
-    path: "/pregledStednji",
-    name: "pregledStednji",
-    component: PregledStednji,
-  },
-  {
-    path: "/dodavanjeStednje",
-    name: "dodavanjeStednje",
-    component: DodavanjeStednje,
   },
 ];
 
@@ -103,7 +89,7 @@ router.beforeEach((to, from, next) => {
   const user = Auth.getUser();
   if (potrebanLogin && !user) {
     // ako je login potreban i ne postoji korisnik uvijek me vrati na login ili signup
-    next("/pocetna");    
+    next("/pocetna");
     return;
   }
   next();
