@@ -145,7 +145,7 @@ export default {
         if (registerSuccess === true) {
           console.log("Registracija je uspješna i token je dobiven");
           await Auth.login(user.username, user.password);
-          this.$router.push({ name: "home" });
+          this.$router.replace({ name: "home" });
         }
       }
     },
