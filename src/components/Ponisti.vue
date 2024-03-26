@@ -1,5 +1,4 @@
 <template>
-  <!-- modal -->
   <button
     type="button"
     class="btn"
@@ -18,7 +17,7 @@
         </div>
         <div class="buttons">
           <button type="button" class="btns" data-bs-dismiss="modal">Ne</button>
-          <button class="btns" @click="ponisti()">Da</button>
+          <button class="btns" @click="handleClick()">Da</button>
         </div>
       </div>
     </div>
@@ -34,7 +33,8 @@ export default {
     this.closeModalOnRouteChange();
   },
   methods: {
-    ponisti() {
+    handleClick() {
+      this.$emit("ponistiUpis");
       this.$router.push({ name: "home" });
     },
     closeModalOnRouteChange() {
@@ -62,6 +62,7 @@ export default {
       });
     },
   },
+  emits: ["ponistiUpis"],
 };
 </script>
 
