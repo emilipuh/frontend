@@ -58,7 +58,7 @@ export default {
         }
         let success = await Auth.login(this.username, this.password);
         if (success == true) {
-          this.$router.push({ name: "home" });
+          this.$router.replace({ name: "home" });
         }
       } catch (error) {
         this.error = "Korisnik ne postoji ili je lozinka neispravna!";
