@@ -10,7 +10,7 @@
           Datum: <span style="font-weight: bold">{{ stednja.datum }}</span>
         </p>
         <p>
-          Vrijeme: <span style="font-weight: bold">{{ stednja.vrijeme }}</span>
+          Upisano: <span style="font-weight: bold">{{ stednja.upisano }}</span>
         </p>
         <p>
           Bilješka:
@@ -54,7 +54,7 @@ export default {
       await Stednja.obrisiStednju(id);
     },
     natrag() {
-      this.$router.replace({ name: "pregledStednji" });
+      this.$router.go(-1);
     },
   },
 };

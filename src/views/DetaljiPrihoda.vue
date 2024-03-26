@@ -14,7 +14,7 @@
           Datum: <span style="font-weight: bold">{{ prihod.datum }}</span>
         </p>
         <p>
-          Vrijeme: <span style="font-weight: bold">{{ prihod.vrijeme }}</span>
+          Upisano: <span style="font-weight: bold">{{ prihod.upisano }}</span>
         </p>
         <p>
           Bilješka: <span style="font-weight: bold">{{ prihod.biljeska }}</span>
@@ -59,7 +59,7 @@ export default {
       await Prihod.obrisiPrihod(id);
     },
     natrag() {
-      this.$router.replace({ name: "pregledPrihoda" });
+      this.$router.go(-1);
     },
   },
 };

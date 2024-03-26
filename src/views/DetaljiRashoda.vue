@@ -14,7 +14,7 @@
           Datum: <span style="font-weight: bold">{{ rashod.datum }}</span>
         </p>
         <p>
-          Vrijeme: <span style="font-weight: bold">{{ rashod.vrijeme }}</span>
+          Upisano: <span style="font-weight: bold">{{ rashod.upisano }}</span>
         </p>
         <p>
           Bilješka: <span style="font-weight: bold">{{ rashod.biljeska }}</span>
@@ -57,7 +57,7 @@ export default {
       await Rashod.obrisiRashod(id);
     },
     natrag() {
-      this.$router.replace({ name: "pregledRashoda" });
+      this.$router.go(-1);
     },
   },
 };
