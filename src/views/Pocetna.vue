@@ -48,7 +48,7 @@ export default {
   color: #ffbe53;
 }
 .centered {
-  margin-top: 80%;
+  margin-top: 65vh;
 }
 .buttons {
   margin-top: 60vh;
@@ -65,10 +65,10 @@ export default {
   font-size: 18px;
 }
 .btn-login {
-  padding: 4% 14%;
+  padding: 2vh 5vh;
 }
 .btn-signup {
-  padding: 4% 8%;
+  padding: 2vh 4vh;
 }
 .fade-in-enter-active,
 .fade-in-leave-active {
