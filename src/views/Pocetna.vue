@@ -25,10 +25,10 @@ export default {
   },
   methods: {
     prijava() {
-      this.$router.replace({ name: "login" });
+      this.$router.push({ name: "login" });
     },
     registracija() {
-      this.$router.replace({ name: "signup" });
+      this.$router.push({ name: "signup" });
     },
   },
 };
