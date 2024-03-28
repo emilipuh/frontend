@@ -42,7 +42,7 @@ export default {
   max-height: 100dvh;
 }
 .title {
-  margin-top: 5vh; 
+  margin-top: 10vh; 
   transition: margin-top 1s;
   font-size: 40px;
   color: #ffbe53;
@@ -51,7 +51,8 @@ export default {
   margin-top: 80%;
 }
 .buttons {
-  margin-top: 65vh;
+  margin-top: 60vh;
+  margin-bottom: 15vh;
   width: 90%;
   display: flex;
   justify-content: space-between;
