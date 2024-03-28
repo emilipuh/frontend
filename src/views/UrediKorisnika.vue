@@ -236,14 +236,14 @@ export default {
 .content {
   background-color: #066995;
   border-radius: 2vh;
-  padding: 4vh 0vh 6vh 0vh;
+  padding: 4vh 0vw 6vh 0vw;
   width: 90%;
-  margin: 3vh 0vh 6vh 0vh;
+  margin: 3vh 0vw 6vh 0vw;
 }
 h3 {
   color: black;
   align-self: start;
-  margin-left: 10%;
+  margin-left: 10vw;
 }
 label {
   margin-bottom: 0.5vh;
@@ -255,10 +255,10 @@ label {
 .repeatPass {
   text-align: start;
   font-size: 18px;
-  margin: 1vh 3vh 0vh 3vh;
+  margin: 1vh 6vw 0vh 6vw;
 }
 .oldPass {
-  margin: 6vh 3vh 0vh 3vh;
+  margin: 6vh 6vw 0vh 6vw;
 }
 form {
   width: 100%;
@@ -272,7 +272,7 @@ form {
   color: black;
   display: flex;
   justify-content: flex-start;
-  margin-left: 3vh;
+  margin-left: 6vw;
   margin-top: 4vh;
   font-size: 16px;
 }
@@ -282,7 +282,7 @@ form {
   justify-content: space-evenly;
 }
 .error-message {
-  margin: 1vh 0.5vh;
+  margin: 1vh 0.5vw;
   font-size: 14px;
   color: rgb(223, 223, 0);
 }

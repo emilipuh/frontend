@@ -318,10 +318,10 @@ export default {
   justify-content: space-evenly;
 }
 .dodajRashod {
-  border-radius: 18px;
+  border-radius: 2vh;
   background-color: #066995;
-  margin-left: 2vh;
-  margin-right: 2vh;
+  margin-left: 4vw;
+  margin-right: 4vw;
 }
 .content {
   margin: 4vh;
@@ -359,7 +359,7 @@ export default {
 .form-label {
   display: flex;
   color: black;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
 }
 ::placeholder {

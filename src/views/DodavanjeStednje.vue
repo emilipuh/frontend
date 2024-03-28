@@ -136,7 +136,7 @@ export default {
 <style scoped lang="scss">
 .container {
   min-height: 100dvh;
-  padding: 0px;
+  padding: 0;
   display: flex;
   justify-content: space-evenly;
 }
@@ -170,7 +170,7 @@ export default {
 .form-label {
   display: flex;
   color: black;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
 }
 ::placeholder {

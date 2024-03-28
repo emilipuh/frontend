@@ -206,66 +206,57 @@ export default {
 <style scoped lang="scss">
 .container {
   min-height: 100dvh;
-  padding: 0px;
-  margin: 0px;
+  padding: 0vh;
+  margin: 0vh;
   display: flex;
   justify-content: space-evenly;
 }
-
 .dodajPrihod {
-  border-radius: 18px;
+  border-radius: 2vh;
   background-color: #066995;
-  margin-left: 2vh;
-  margin-right: 2vh;
+  margin-left: 4vw;
+  margin-right: 4vw;
 }
-
 .content {
   margin: 4vh;
 }
-
 .title {
   font-size: 22px;
   margin-bottom: 3vh;
   padding: 0;
 }
-
 .btn {
   color: black;
   margin-right: 2vh;
 }
-
 .btn-check:checked + .btn {
   background-color: yellow;
   border: none;
 }
-
 .buttons {
   display: flex;
   justify-content: space-evenly;
 }
 .button {
-  border-radius: 12px;
+  border-radius: 2vh;
   font-weight: bold;
   text-decoration: none;
   color: black;
   background-color: whitesmoke;
-  padding: 1.5vh 5vh;
+  padding: 1.5vh 5vw;
 }
-
 .form-control {
   margin-top: 1vh !important;
   padding: 1.5vh;
   text-align: center;
   font-size: 16px;
 }
-
 .form-label {
   display: flex;
   color: black;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
 }
-
 ::placeholder {
   color: lightgrey;
 }

@@ -163,7 +163,6 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
 .content {
   background-color: #066995;
   border-radius: 2vh;
@@ -174,48 +173,40 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
 h1 {
   color: black;
   margin-bottom: 3vh;
   align-self: start;
-  margin-left: 15%;
+  margin-left: 12vw;
 }
 label {
   margin-bottom: 0.5vh;
 }
-
 .username,
 .email,
 .password,
 .repeatPass {
   text-align: start;
   font-size: 18px;
-  margin: 1vh 3vh 0vh 3vh;
+  margin: 2vh 5vw 2.5vh 5vw;
 }
-
-.repeatPass {
-  margin-bottom: 2vh;
-}
-
 form {
   width: 100%;
 }
-
 .form-control {
   border-radius: 1vh;
-  padding: 1.7vh;
+  padding: 2vh;
+  margin-bottom: 0.5vh;
 }
-
 .btn {
   background-color: yellow;
   color: black;
-  font-size: 18px;
-  padding: 2vh 8vh;
+  font-size: 16px;
+  padding: 2vh 14vw;
   border-radius: 1.5vh;
 }
 .error-message {
-  margin: 1vh 0.5vh;
+  margin-bottom: 1vh;
   font-size: 14px;
   color: rgb(223, 223, 0);
 }

@@ -72,45 +72,38 @@ export default {
   justify-content: space-between;
   margin-top: 5vh;
 }
-
 #stanje {
   background-color: #066995;
-  border-radius: 15px;
-  padding: 3vh;
-  margin-left: 3vh;
-  margin-right: 3vh;
+  border-radius: 2vh;
+  padding: 4vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
 }
-
 .container-view {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-top: 4vh;
-  padding-left: 2vh;
+  padding-left: 6vw;
 }
-
 #stednja {
   margin-top: 5vh;
   border-radius: 1vh;
-  padding: 1vh 4vh 0vh 4vh;
+  padding: 1vh 8vw 0vh 8vw;
   background-color: #ffbe53;
 }
 .zeleno {
   color: green;
 }
-
 .pozitivno {
   color: yellowgreen;
 }
-
 .negativno {
   color: red;
 }
-
 .nula {
   color: rgb(49, 49, 49);
 }
-
 .modal-backdrop {
   z-index: 1000;
 }

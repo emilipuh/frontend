@@ -38,45 +38,41 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  min-height: 100dvh;
+  max-height: 100dvh;
 }
-
 .title {
   margin-top: 10vh; 
   transition: margin-top 1s;
   font-size: 40px;
   color: #ffbe53;
 }
-
 .centered {
-  margin-top: 40vh;
+  margin-top: 80%;
 }
-
 .buttons {
   margin-top: 65vh;
   width: 90%;
   display: flex;
   justify-content: space-between;
 }
-
 .btn-login, .btn-signup {
   border-radius: 1vh;
   border: none;
+  color: black;
   background-color: rgb(223, 223, 19);
-  padding: 2vh 3vh;
   font-size: 18px;
 }
 .btn-login {
-  padding: 0px 5vh;
+  padding: 4% 14%;
 }
-
+.btn-signup {
+  padding: 4% 8%;
+}
 .fade-in-enter-active,
 .fade-in-leave-active {
   transition: opacity 2s;
 }
-
 .fade-in-enter-from,
 .fade-in-leave-to {
   opacity: 0;
