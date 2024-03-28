@@ -48,7 +48,7 @@ export default {
   color: #ffbe53;
 }
 .centered {
-  margin-top: 65vh;
+  margin-top: 40vh;
 }
 .buttons {
   margin-top: 60vh;
