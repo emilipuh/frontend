@@ -42,7 +42,7 @@ export default {
   max-height: 100dvh;
 }
 .title {
-  margin-top: 10vh; 
+  //margin-top: 10vh; 
   transition: margin-top 1s;
   font-size: 40px;
   color: #ffbe53;
