@@ -4,7 +4,7 @@ import $router from "@/router";
 // glavna instanca pomoću koje ćemo komunicirati sa backendom
 let Service = axios.create({
   baseURL: "https://backend-et.onrender.com",
-  timeout: 2000,
+  timeout: 5000,
 });
 
 Service.interceptors.request.use((request) => {
