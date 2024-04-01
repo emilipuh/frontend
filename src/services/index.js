@@ -3,7 +3,7 @@ import $router from "@/router";
 
 // glavna instanca pomoću koje ćemo komunicirati sa backendom
 let Service = axios.create({
-  baseURL: process.env.VUE_PUBLIC_API_URL,
+  baseURL: "https://backend-et.onrender.com",
   timeout: 2000,
 });
 
