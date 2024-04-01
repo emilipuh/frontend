@@ -3,8 +3,8 @@ import $router from "@/router";
 
 // glavna instanca pomoću koje ćemo komunicirati sa backendom
 let Service = axios.create({
-  baseURL: "http://localhost:3000",
-  timeout: 5000,
+  baseURL: process.env.VUE_PUBLIC_API_URL,
+  timeout: 2000,
 });
 
 Service.interceptors.request.use((request) => {
