@@ -163,7 +163,7 @@ export default {
 <style scoped lang="scss">
 .container {
   margin: auto;
-  min-height: 90dvh;
+  min-height: 95dvh;
   color: black;
   display: flex;
   flex-direction: column;
