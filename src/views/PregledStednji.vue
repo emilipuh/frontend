@@ -64,11 +64,10 @@ export default {
 
 <style scoped lang="scss">
 .container {
-  // min-height: 80dvh;
   max-height: 100dvh;
 }
 .upisi {
-  max-height: calc(100vh - 33vh);
+  max-height: calc(100vh - 40vh);
   overflow-y: auto;
 }
 
@@ -91,6 +90,7 @@ export default {
   background-color: inherit;
   padding: 0;
   min-width: 8vh;
+  color: black;
 }
 .btn {
   border-radius: 2vh;
