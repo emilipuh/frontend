@@ -74,13 +74,17 @@
     </div>
     <button type="button" class="btn" @click="signup()">REGISTRACIJA</button>
   </div>
+  <div class="icon" @click="natrag()">
+    <i class="fa-solid fa-angle-left"></i>
+    <span style="margin-left: 1vw; font-size: 18px">Natrag</span>
+  </div>
 </template>
 
 <script>
-import { Auth, Validacija } from "@/services";
+import { Auth } from "@/services";
 
 export default {
-  name: "signup",
+  name: "registracija",
   data() {
     return {
       username: "",
@@ -149,6 +153,9 @@ export default {
         }
       }
     },
+    natrag() {
+      this.$router.replace({ name: "pocetna" });
+    },
   },
 };
 </script>
@@ -156,7 +163,7 @@ export default {
 <style scoped lang="scss">
 .container {
   margin: auto;
-  min-height: 100dvh;
+  min-height: 90dvh;
   color: black;
   display: flex;
   flex-direction: column;
@@ -209,5 +216,10 @@ form {
   margin-bottom: 1vh;
   font-size: 14px;
   color: rgb(223, 223, 0);
+}
+.icon {
+  color: black;
+  text-align: end;
+  margin-right: 10vw;
 }
 </style>
