@@ -39,15 +39,20 @@
         </div>
         <div class="password">
           <label for="password">Lozinka:</label>
-          <div>
+          <div class="pass">
             <input
               placeholder="Lozinka"
-              type="password"
+              :type="showPassword ? 'text' : 'password'"
               class="form-control"
               id="password"
               v-model="password"
               @blur="checkPassword"
             />
+            <i
+              class="fas"
+              :class="{ 'fa-eye-slash': !showPassword, 'fa-eye': showPassword }"
+              @click="togglePasswordVisibility"
+            ></i>
           </div>
           <p v-if="errorPassword" class="error-message">
             <i class="fa-solid fa-triangle-exclamation"></i>
@@ -56,14 +61,22 @@
         </div>
         <div class="repeatPass">
           <label for="repeatPass">Ponovite lozinku:</label>
-          <div>
+          <div class="pass">
             <input
               placeholder="Lozinka"
-              type="password"
+              :type="showPassword2 ? 'text' : 'password'"
               class="form-control"
               id="repeatPass"
               v-model="repeatPass"
             />
+            <i
+              class="fas"
+              :class="{
+                'fa-eye-slash': !showPassword2,
+                'fa-eye': showPassword2,
+              }"
+              @click="togglePasswordVisibility2"
+            ></i>
           </div>
         </div>
       </form>
@@ -95,6 +108,8 @@ export default {
       errorUsername: "",
       errorEmail: "",
       errorPassword: "",
+      showPassword: false,
+      showPassword2: false,
     };
   },
   methods: {
@@ -156,6 +171,12 @@ export default {
     natrag() {
       this.$router.replace({ name: "pocetna" });
     },
+    togglePasswordVisibility() {
+      this.showPassword = !this.showPassword;
+    },
+    togglePasswordVisibility2() {
+      this.showPassword2 = !this.showPassword2;
+    },
   },
 };
 </script>
@@ -195,7 +216,7 @@ label {
 .repeatPass {
   text-align: start;
   font-size: 18px;
-  margin: 2vh 5vw 2.5vh 5vw;
+  margin: 2vh 5vw;
 }
 form {
   width: 100%;
@@ -221,5 +242,12 @@ form {
   color: black;
   text-align: end;
   margin-right: 4vw;
+}
+.pass {
+  display: flex;
+  align-items: center;
+}
+.fas {
+  margin-left: -7vw;
 }
 </style>

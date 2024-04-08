@@ -17,26 +17,31 @@
         </div>
         <div class="password">
           <label for="password">Lozinka:</label>
-          <div>
+          <div class="pass">
             <input
               placeholder="Lozinka"
-              type="password"
+              :type="showPassword ? 'text' : 'password'"
               class="form-control"
               id="password"
               v-model="password"
             />
+            <i
+              class="fas"
+              :class="{ 'fa-eye-slash': !showPassword, 'fa-eye': showPassword }"
+              @click="togglePasswordVisibility"
+            ></i>
           </div>
         </div>
       </form>
       <p v-if="error" class="error-message">
-        <i class="fa-solid fa-triangle-exclamation"></i>
+        <i class="fas fa-exclamation-triangle"></i>
         {{ error }}
       </p>
     </div>
     <button type="button" @click="login()" class="btn">PRIJAVA</button>
   </div>
   <div class="icon" @click="natrag()">
-    <i class="fa-solid fa-angle-left"></i>
+    <i class="fas fa-angle-left"></i>
     <span style="margin-left: 1vw; font-size: 18px">Natrag</span>
   </div>
 </template>
@@ -51,6 +56,7 @@ export default {
       username: "",
       password: "",
       error: "",
+      showPassword: false,
     };
   },
   methods: {
@@ -71,6 +77,9 @@ export default {
     },
     natrag() {
       this.$router.replace({ name: "pocetna" });
+    },
+    togglePasswordVisibility() {
+      this.showPassword = !this.showPassword;
     },
   },
 };
@@ -134,5 +143,12 @@ form {
   color: black;
   text-align: end;
   margin-right: 4vw;
+}
+.pass {
+  display: flex;
+  align-items: center;
+}
+.fas {
+  margin-left: -7vw;
 }
 </style>
