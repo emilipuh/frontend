@@ -78,6 +78,7 @@ export default {
 .button {
   background-color: inherit;
   border: none;
+  color: black;
 }
 .icon {
   padding-left: 0.5vh;

@@ -62,7 +62,7 @@ export default {
 
       this.$router.beforeEach((to, from, next) => {
         closeModal();
-        next(); 
+        next();
       });
 
       onBeforeUnmount(() => {
@@ -87,6 +87,7 @@ export default {
   padding: 12px 0px;
   border-radius: 10px;
   border: none;
+  color: black;
 }
 
 .btnPrihod {

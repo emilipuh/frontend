@@ -150,6 +150,7 @@ export default {
   background-color: inherit;
   border: none;
   padding-left: 0;
+  color: black;
 }
 .offcanvas-footer {
   display: flex;
@@ -157,5 +158,8 @@ export default {
   text-align: start;
   font-size: 20px;
   padding: 16px;
+}
+.btn:focus {
+  box-shadow: none;
 }
 </style>
