@@ -133,6 +133,6 @@ form {
 .icon {
   color: black;
   text-align: end;
-  margin-right: 10vw;
+  margin-right: 4vw;
 }
 </style>
