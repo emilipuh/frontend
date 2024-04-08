@@ -8,14 +8,14 @@ const routes = [
     component: () => import("@/views/Pocetna.vue"),
   },
   {
-    path: "/login",
-    name: "login",
-    component: () => import("@/views/Login.vue"),
+    path: "/prijava",
+    name: "prijava",
+    component: () => import("@/views/Prijava.vue"),
   },
   {
-    path: "/signup",
-    name: "signup",
-    component: () => import("@/views/SignUp.vue"),
+    path: "/registracija",
+    name: "registracija",
+    component: () => import("@/views/Registracija.vue"),
   },
   {
     path: "/",
@@ -83,7 +83,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const javneStranice = ["/pocetna", "/login", "/signup"]; //stranice na koje možemo doći bez logina
+  const javneStranice = ["/pocetna", "/prijava", "/registracija"]; //stranice na koje možemo doći bez logina
   const potrebanLogin = !javneStranice.includes(to.path); //to => objekt, path => "url, putanja" stranice na koju želimo doći => url trenutne stranice
   // login je potreban kada stranica na koju želimo doći(to.path) nije u javnim stranicama
   const user = Auth.getUser();
