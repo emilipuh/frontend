@@ -5,14 +5,7 @@
         <h5 class="title">Novi prihod</h5>
         <div class="row">
           <div class="col-12">
-            <label class="form-label">Kategorija</label>
-            <p
-              v-if="!odabranaKategorija"
-              class="error-message"
-              style="text-align: start"
-            >
-              {{ errors.kategorijaError }}
-            </p>
+            <label class="form-label">Odaberite kategoriju</label>
             <div class="d-flex">
               <input
                 type="radio"
@@ -121,7 +114,6 @@ export default {
       stanje,
       errors: {
         error: "",
-        kategorijaError: "Odaberite kategoriju",
         iznosError: "",
         datumError: "",
       },
@@ -227,6 +219,8 @@ export default {
 }
 .btn {
   color: black;
+  border: 2px solid #79b2cb;
+  padding: 1vh 3vw;
   margin-right: 2vh;
 }
 .btn-check:checked + .btn {

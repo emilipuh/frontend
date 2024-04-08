@@ -5,14 +5,7 @@
         <h5 class="title">Novi rashod</h5>
         <div class="row">
           <div class="col-12" style="padding-bottom: 3vh">
-            <label class="form-label">Kategorija</label>
-            <p
-              v-if="!odabranaKategorija"
-              class="error-message"
-              style="text-align: start"
-            >
-              {{ errors.kategorijaError }}
-            </p>
+            <label class="form-label">Odaberite kategoriju</label>
             <div class="kategorije">
               <input
                 type="radio"
@@ -73,8 +66,11 @@
                     id="zdravlje"
                     autocomplete="off"
                   />
-                  <label class="btn" for="zdravlje">
-                    <i class="fa-solid fa-heart-pulse"></i>
+                  <label class="btn-dropdown" for="zdravlje">
+                    <i
+                      class="fa-solid fa-heart-pulse"
+                      style="margin-right: 0.5vw"
+                    ></i>
                     Zdravlje
                   </label>
                   <input
@@ -88,8 +84,8 @@
                     id="edukacija"
                     autocomplete="off"
                   />
-                  <label class="btn" for="edukacija">
-                    <i class="fa-solid fa-book"></i>
+                  <label class="btn-dropdown" for="edukacija">
+                    <i class="fa-solid fa-book" style="margin-right: 0.5vw"></i>
                     Edukacija
                   </label>
                   <input
@@ -103,8 +99,8 @@
                     id="vozilo"
                     autocomplete="off"
                   />
-                  <label class="btn" for="vozilo">
-                    <i class="fa-solid fa-car"></i>
+                  <label class="btn-dropdown" for="vozilo">
+                    <i class="fa-solid fa-car" style="margin-right: 0.5vw"></i>
                     Vozilo
                   </label>
                   <input
@@ -119,8 +115,8 @@
                     id="kucniLjubimci"
                     autocomplete="off"
                   />
-                  <label class="btn" for="kucniLjubimci">
-                    <i class="fa-solid fa-dog"></i>
+                  <label class="btn-dropdown" for="kucniLjubimci">
+                    <i class="fa-solid fa-dog" style="margin-right: 0.5vw"></i>
                     Kućni ljubimci
                   </label>
                   <input
@@ -134,7 +130,7 @@
                     id="ostalo"
                     autocomplete="off"
                   />
-                  <label class="btn" for="ostalo"> Ostalo </label>
+                  <label class="btn-dropdown" for="ostalo"> Ostalo </label>
                 </ul>
               </div>
             </div>
@@ -206,7 +202,6 @@ export default {
       stanje,
       errors: {
         error: "",
-        kategorijaError: "Odaberite kategoriju",
         iznosError: "",
         datumError: "",
       },
@@ -225,11 +220,11 @@ export default {
     },
     isDataChanged() {
       return (
-        this.stanje.rashod.kategorija !== "" &&
-        this.odabranaKategorija == true &&
-        // this.selectedDropdownCategory !== null &&
-        this.stanje.rashod.iznos !== "" &&
-        this.stanje.rashod.datum !== ""
+        this.stanje.rashod.kategorija !== "" ||
+        (this.odabranaKategorija == true &&
+          this.selectedDropdownCategory !== null &&
+          this.stanje.rashod.iznos !== "" &&
+          this.stanje.rashod.datum !== "")
       );
     },
   },
@@ -339,8 +334,16 @@ export default {
   background-color: yellow;
   border: none;
 }
+.btn-dropdown {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1vh 3vw;
+}
 .btn {
   color: black;
+  border: 2px solid #79b2cb;
+  padding: 1vh 3vw;
 }
 .btn-check:checked + .btn {
   background-color: yellow;
