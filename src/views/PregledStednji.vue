@@ -67,7 +67,7 @@ export default {
   max-height: 100dvh;
 }
 .upisi {
-  max-height: calc(100vh - 50vh);
+  max-height: calc(100vh - 45vh);
   overflow-y: auto;
 }
 
