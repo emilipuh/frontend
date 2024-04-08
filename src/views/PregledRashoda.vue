@@ -81,7 +81,7 @@ export default {
 }
 .btn {
   padding: 0;
-  min-width: 8vh;
+  min-width: 12vh;
 }
 .text {
   margin: 0.5vh 1vh;

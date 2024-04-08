@@ -220,11 +220,11 @@ export default {
     },
     isDataChanged() {
       return (
-        this.stanje.rashod.kategorija !== "" ||
-        (this.odabranaKategorija == true &&
-          this.selectedDropdownCategory !== null &&
-          this.stanje.rashod.iznos !== "" &&
-          this.stanje.rashod.datum !== "")
+        this.odabranaKategorija == true &&
+        (this.stanje.rashod.kategorija !== "" ||
+          this.selectedDropdownCategory !== null) &&
+        this.stanje.rashod.iznos !== "" &&
+        this.stanje.rashod.datum !== ""
       );
     },
   },
@@ -257,6 +257,7 @@ export default {
       ) {
         this.odabranaKategorija = true;
         this.stanje.rashod.dropdownKategorija = kategorija;
+        this.stanje.rashod.kategorija = "";
         this.selectedDropdownCategory = kategorija;
       } else {
         this.odabranaKategorija = true;

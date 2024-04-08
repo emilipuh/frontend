@@ -58,7 +58,6 @@ export default {
 
 <style scoped lang="scss">
 .container {
-  //min-height: 80dvh; => mijenja margine
   max-height: 100dvh;
 }
 .upisi {
@@ -77,7 +76,7 @@ export default {
 }
 .btn {
   padding: 0;
-  min-width: 8vh;
+  min-width: 12vh;
 }
 .text {
   margin: 0.5vh 1vh;

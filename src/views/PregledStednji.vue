@@ -89,7 +89,7 @@ export default {
   border: none;
   background-color: inherit;
   padding: 0;
-  min-width: 8vh;
+  min-width: 12vh;
   color: black;
 }
 .btn {
