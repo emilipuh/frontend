@@ -17,15 +17,16 @@ Service.interceptors.request.use((request) => {
 });
 // može se dogoditi da token istekne i da se vrati 401, tako da je dobra praksa napraviti još jedan interceptor
 
-// Service.interceptors.response.use(
-//   (response) => response,
-//   (error) => {
-//     if (error.response.status == 401 || error.response.status == 403) {
-//       Auth.logout();
-//       $router.go();
-//     }
-//   }
-// );
+Service.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.status == 401 || error.response.status == 403) {
+      Auth.logout();
+      alert("Sesija istekla");
+      $router.go();
+    }
+  }
+);
 
 // trenutno vrijeme
 function dohvatiTrenutnoVrijeme() {
