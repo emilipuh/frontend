@@ -18,7 +18,7 @@
         <h6>RASHODI: {{ rashodi }} €</h6>
       </div>
       <div id="stednja">
-        <h6>
+        <h6 @click="pregledStednje">
           ŠTEDNJA:
           <span :class="{ zeleno: stednje > 0 }"> {{ stednje }} € </span>
         </h6>
@@ -61,6 +61,9 @@ export default {
           );
         });
     },
+    pregledStednje() {
+      this.$router.push({ name: 'pregledStednji' })
+    }
   },
 };
 </script>
