@@ -23,17 +23,17 @@ const routes = [
     component: () => import("@/views/Home.vue"),
   },
   {
-    path: "/urediKorisnika",
+    path: "/uređivanjeKorisnika",
     name: "urediKorisnika",
     component: () => import("@/views/UrediKorisnika.vue"),
   },
   {
-    path: "/dodajPrihod",
+    path: "/dodavanjePrihoda",
     name: "dodajPrihod",
     component: () => import("@/views/DodavanjePrihoda.vue"),
   },
   {
-    path: "/dodajRashod",
+    path: "/dodavanjeRashoda",
     name: "dodajRashod",
     component: () => import("@/views/DodavanjeRashoda.vue"),
   },
